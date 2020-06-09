@@ -7,19 +7,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { SharedModule } from './components/shared/shared.module';
 
+const declarations: any[] = [AppComponent, LoginComponent];
+
+const imports: any[] = [
+  BrowserModule,
+  AppRoutingModule,
+  BrowserAnimationsModule,
+  SharedModule,
+];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    SharedModule
-  ],
+  declarations: [...declarations],
+  imports: [...imports],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

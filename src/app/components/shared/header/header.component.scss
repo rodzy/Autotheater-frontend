@@ -1,0 +1,26 @@
+nav{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 1vh;
+  height: 10vh;
+  background-color: #333333;
+}
+
+.nav-links{
+  display :flex;
+  width: 40%;
+  justify-content: space-around;
+}
+
+.logo{
+  width: 60px;
+  letter-spacing: 10px;
+  font-size: 1.2rem;
+}
+
+.avatar{
+  display: flex;
+  flex-direction: row;
+  justify-self: flex-end;
+}
