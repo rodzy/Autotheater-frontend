@@ -1,0 +1,41 @@
+.undernav{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 1vh;
+  height: 15vh;
+  background-color: #66ccff;
+  position: relative;
+  top: 93px;
+}
+
+.paragraph{
+  font-size: 1.5rem;
+  font-style: italic;
+  justify-content: center;
+  letter-spacing: 5px;
+}
+.petimg{
+  width: 100px;
+  position: relative;
+  left:146px;
+  animation: bounce 1s infinite alternate;
+  -webkit-animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+@-webkit-keyframes bounce {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}

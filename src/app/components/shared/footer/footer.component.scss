@@ -10,7 +10,8 @@ footer{
   background:#66ccff;
   color: white;
   height: 75px;
-  bottom: 0px;
+  bottom: 0;
+  //When content is placed position is deleted
   position:fixed;
 
 }
