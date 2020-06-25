@@ -13,6 +13,8 @@ export class UndernavComponent implements OnInit {
   buttonlogout: string;
   profiletag: string;
 
+  show = false;
+
   constructor() {
     this.setVars();
   }

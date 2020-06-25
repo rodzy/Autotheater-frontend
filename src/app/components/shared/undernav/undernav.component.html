@@ -4,21 +4,22 @@
       <div class="paragraph">
         {{ heading }}
       </div>
-
     </div>
+    <div class="link-container">
       <ul class="container-links">
-        <li>
+        <li *ngIf="!show">
           <a href="#">{{ buttonlogin }}</a>
         </li>
-        <li>
+        <li *ngIf="!show">
           <a href="#">{{ buttonsignin }}</a>
         </li>
-        <li>
+        <li *ngIf="show">
           <a href="#">{{ profiletag }}</a>
         </li>
-        <li>
+        <li *ngIf="show">
           <a href="#">{{ buttonlogout }}</a>
         </li>
       </ul>
     </div>
+  </div>
 </section>

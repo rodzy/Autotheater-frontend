@@ -16,7 +16,7 @@
   display:flex;
   font-size: 1.3rem;
   font-weight: bold;
-  padding-top: 0;
+  padding-top: 3px;
   color: #ffffff;
   text-shadow: 3px 3px #1476a2;
 }
@@ -35,7 +35,7 @@
   position: relative;
   top:-6px;
   display: flex;
-  width: 30%;
+  width: 100%;
   flex-direction: row;
   justify-content: space-around;
 }
