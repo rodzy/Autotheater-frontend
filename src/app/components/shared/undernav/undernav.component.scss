@@ -4,42 +4,73 @@
   padding-bottom: 0;
   background: #2188b6;
   display: flex;
-  background-color: #66ccff;
+  background-color: #7109ad;
   justify-content: center;
 }
 
-.container{
+.container {
   max-width: 100%;
 }
 
 .paragraph {
-  display:flex;
+  display: flex;
   font-size: 1.3rem;
   font-weight: bold;
   padding-top: 3px;
   color: #ffffff;
-  text-shadow: 3px 3px #1476a2;
+  text-shadow: 3px 3px #3c045c;
 }
 .petimg {
   flex: 1;
   width: 100px;
   position: relative;
-  left:356px;
+  left: 356px;
   animation: bounce 1s infinite alternate;
   -webkit-animation: bounce 1s infinite alternate;
 }
 
-
-
 .container-links {
   position: relative;
-  top:-6px;
+  top: -6px;
   display: flex;
   width: 100%;
   flex-direction: row;
   justify-content: space-around;
 }
 
+.loginbtn {
+  color: #fff;
+  text-align: center;
+  margin: -6px 0;
+  padding: 3px 0;
+  background: #545454;
+  width: 100px;
+  display: block;
+  border-radius: 5%;
+  border: none;
+}
+
+.signbtn {
+  color: #fff;
+  text-align: center;
+  margin: -6px 0;
+  padding: 3px 0;
+  background: #3c045c;
+  width: 100px;
+  display: block;
+  border-radius: 5%;
+  border: none;
+}
+
+.loginbtn:hover{
+  background: #363636;
+  transition: ease .5s;
+}
+
+.signbtn:hover{
+  background: #630699;
+  transition: ease .5s;
+}
 
 @keyframes bounce {
   from {
