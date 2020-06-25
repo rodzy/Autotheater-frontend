@@ -1,44 +1,38 @@
-nav{
+nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
   min-width: 1vh;
   height: 10vh;
   background-color: #333333;
-  position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
-
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
 }
 
-.nav-links{
-  display :flex;
+.nav-links {
+  display: flex;
   width: 40%;
   justify-content: space-around;
 }
 
-.logo{
+.logo {
   width: 60px;
   letter-spacing: 10px;
   font-size: 1.2rem;
 }
 
-.avatar{
+.avatar {
   display: flex;
   flex-direction: row;
   justify-self: flex-end;
 }
 
-
-svg{
+svg {
   fill: white;
 }
 
-svg:hover
-{
+svg:hover {
   fill: #66ccff;
 }
-
-

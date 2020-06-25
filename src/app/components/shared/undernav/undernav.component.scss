@@ -1,21 +1,24 @@
 .undernav {
+  width: 100%;
+  padding-top: 1em;
+  padding-bottom: 0;
+  background: #2188b6;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  min-width: 1vh;
-  height: 6vh;
   background-color: #66ccff;
-  position: relative;
-  top: 94px;
+  justify-content: center;
+}
+
+.container{
+  max-width: 100%;
 }
 
 .paragraph {
-  font-size: 1.4rem;
-  font-style: normal;
-  justify-content: center;
-  letter-spacing: 2px;
-  position: relative;
-  
+  display:flex;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding-top: 0;
+  color: #ffffff;
+  text-shadow: 3px 3px #1476a2;
 }
 .petimg {
   flex: 1;
@@ -25,6 +28,18 @@
   animation: bounce 1s infinite alternate;
   -webkit-animation: bounce 1s infinite alternate;
 }
+
+
+
+.container-links {
+  position: relative;
+  top:-6px;
+  display: flex;
+  width: 30%;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 
 @keyframes bounce {
   from {

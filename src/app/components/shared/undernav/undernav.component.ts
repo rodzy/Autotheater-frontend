@@ -8,6 +8,11 @@ import undernav from './undernav';
 })
 export class UndernavComponent implements OnInit {
   heading: string;
+  buttonlogin: string;
+  buttonsignin: string;
+  buttonlogout: string;
+  profiletag: string;
+
   constructor() {
     this.setVars();
   }
@@ -16,5 +21,9 @@ export class UndernavComponent implements OnInit {
 
   setVars() {
     this.heading = undernav.undernav.heading;
+    this.buttonlogin = undernav.undernav.buttonlogin;
+    this.buttonsignin = undernav.undernav.buttonsignin;
+    this.buttonlogout = undernav.undernav.buttonlogout;
+    this.profiletag = undernav.undernav.profiletag;
   }
 }
