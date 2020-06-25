@@ -7,5 +7,6 @@ export default {
     pagetwo: 'Billboard',
     pagethree: 'Offers',
     pagefour: 'Products',
+    dropdowntitle: 'Locations',
   },
 };

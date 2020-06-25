@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   pagetwo: string;
   pagethree: string;
   pagefour: string;
+  locations: string;
 
   constructor() {
     this.varSetter();
@@ -29,5 +30,6 @@ export class HeaderComponent implements OnInit {
     this.pagetwo = header.header.pagetwo;
     this.pagethree = header.header.pagethree;
     this.pagefour = header.header.pagefour;
+    this.locations = header.header.dropdowntitle;
   }
 }
