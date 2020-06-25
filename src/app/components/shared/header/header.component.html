@@ -17,9 +17,20 @@
     </li>
   </ul>
   <div>
-    <ul>
-      <li>{{locations}}</li>
-    </ul>
+        <li>
+          {{ locations
+          }}<span
+            class="material-icons"
+            style="vertical-align: middle; display: inline-flex;"
+          >
+            keyboard_arrow_down
+          </span>
+          <ul class="second-ul">
+            <li *ngFor="let item of dropd">
+              {{item}}
+            </li>
+          </ul>
+        </li>
+
   </div>
 </nav>
-

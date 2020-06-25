@@ -1,3 +1,5 @@
+@import "~material-design-icons/iconfont/material-icons.css";
+
 nav {
   display: flex;
   justify-content: space-around;
@@ -33,6 +35,20 @@ nav {
   position: relative;
   margin: auto;
   display: inline-block;
+}
+
+.second-ul {
+  display: none;
+}
+
+li:hover {
+  .second-ul {
+    display: block;
+    margin-top: 0px;
+    width: 200px;
+    background-color: #464646;
+    position: absolute;
+  }
 }
 
 svg {
