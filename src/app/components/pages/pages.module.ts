@@ -2,13 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IndexComponent } from './index/index.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { UIModule } from '../UI/ui.module';
+import { CarouselComponent } from './carousel/carousel.component';
 
-const declarations: any[] = [IndexComponent, PageNotFoundComponent, UIModule];
+const declarations: any[] = [
+  IndexComponent,
+  PageNotFoundComponent,
+  CarouselComponent,
+];
 
 const exports: any[] = [IndexComponent, PageNotFoundComponent];
 
-const imports: any[] = [CommonModule, UIModule];
+const imports: any[] = [CommonModule];
 
 @NgModule({
   declarations: [...declarations],
