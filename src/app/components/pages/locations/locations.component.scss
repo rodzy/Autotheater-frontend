@@ -4,5 +4,24 @@
   padding-bottom: 3em;
   background: #333333;
   display: flex;
+  justify-content: space-around;
+}
+.gridDiv{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.locationsDiv{
+  width: 40%;
+  padding-top: 5em;
+  padding-bottom: 3em;
+  background: #333333;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+
 }
