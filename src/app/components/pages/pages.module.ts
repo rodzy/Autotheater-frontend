@@ -5,6 +5,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { CarouselComponent } from './carousel/carousel.component';
 import { MoviesComponent } from './movies/movies.component';
 import { BillboardComponent } from './billboard/billboard.component';
+import { SharedModule } from '../shared/shared.module';
+import { LocationsComponent } from './locations/locations.component';
 
 const declarations: any[] = [
   IndexComponent,
@@ -12,11 +14,16 @@ const declarations: any[] = [
   CarouselComponent,
   MoviesComponent,
   BillboardComponent,
+  LocationsComponent,
 ];
 
-const exports: any[] = [IndexComponent, PageNotFoundComponent];
+const exports: any[] = [
+  IndexComponent,
+  PageNotFoundComponent,
+  LocationsComponent,
+];
 
-const imports: any[] = [CommonModule];
+const imports: any[] = [CommonModule, SharedModule];
 
 @NgModule({
   declarations: [...declarations],
