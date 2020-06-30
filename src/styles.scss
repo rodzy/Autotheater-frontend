@@ -13,6 +13,16 @@ body {
   color: #ffff;
 }
 
+body::-webkit-scrollbar {
+  width: 0.5rem;
+}
+body::-webkit-scrollbar-track {
+  background: #7109ad;
+}
+body::-webkit-scrollbar-thumb {
+  background: #45036b;
+}
+
 li {
   text-decoration: none;
   list-style: none;
@@ -29,5 +39,5 @@ a,li {
 
 nav,
 a:hover,li:hover {
-  color: #7109ad;
+  color: #fffb00;
 }
