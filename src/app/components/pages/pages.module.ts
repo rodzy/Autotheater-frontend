@@ -7,6 +7,7 @@ import { MoviesComponent } from './movies/movies.component';
 import { BillboardComponent } from './billboard/billboard.component';
 import { SharedModule } from '../shared/shared.module';
 import { LocationsComponent } from './locations/locations.component';
+import { LikedmoviesComponent } from './likedmovies/likedmovies.component';
 
 const declarations: any[] = [
   IndexComponent,
@@ -15,6 +16,7 @@ const declarations: any[] = [
   MoviesComponent,
   BillboardComponent,
   LocationsComponent,
+  LikedmoviesComponent
 ];
 
 const exports: any[] = [
