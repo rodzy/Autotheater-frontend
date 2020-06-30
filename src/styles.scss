@@ -13,6 +13,15 @@ body {
   color: #ffff;
 }
 
+::-moz-selection{
+  color:#ffffff;
+  background:#7109ad;
+}
+::selection{
+  color:#fffb00;
+  background:#7109ad;
+}
+
 body::-webkit-scrollbar {
   width: 0.5rem;
 }
@@ -21,6 +30,7 @@ body::-webkit-scrollbar-track {
 }
 body::-webkit-scrollbar-thumb {
   background: #45036b;
+  border-radius: 0.5rem;
 }
 
 li {

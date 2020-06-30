@@ -1,4 +1,4 @@
-.container{
+.container {
   width: 100%;
   padding-top: 5em;
   padding-bottom: 3em;
@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-around;
 }
-.gridDiv{
+.gridDiv {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,7 +15,7 @@
   margin: 0 auto;
 }
 
-.locationsDiv{
+.locationsDiv {
   width: 40%;
   padding-top: 2em;
   padding-bottom: 3em;
@@ -26,13 +26,134 @@
   border-radius: 0.5rem;
 }
 
-h1{
+h1 {
   font-weight: 600;
   text-align: center;
   text-shadow: 3px 3px #3c045c;
 }
 
-span
-{
-  color:#eeff00;
+p {
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+}
+
+#icons {
+  color: #fff;
+  vertical-align: middle;
+  display: inline-flex;
+}
+
+span {
+  color: #eeff00;
+}
+
+.locations-container {
+  display: flex;
+  justify-content: center;
+}
+
+.location {
+  background-color: rgb(54, 54, 54);
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  max-width: 100%;
+  margin: 20px;
+  overflow: hidden;
+  width: 600px;
+}
+
+.location h6 {
+  opacity: 0.6;
+  margin: 0;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.location h2 {
+  letter-spacing: 1px;
+  margin: 10px 0;
+}
+
+.location-preview {
+  background: url("https://images.unsplash.com/photo-1591188740449-3ed6b8f0d95e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80");
+  color: #fff;
+  padding: 30px;
+  max-width: 100px;
+  width: 100px;
+}
+
+.location-preview a {
+  color: #fff;
+  display: inline-block;
+  font-size: 12px;
+  opacity: 0.6;
+  margin-top: 30px;
+  text-decoration: none;
+}
+
+.location-info {
+  padding: 40px;
+  position: relative;
+  width: 100%;
+}
+
+.progress-container {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  text-align: right;
+  width: 150px;
+}
+
+.progress {
+  background-color: #ddd;
+  border-radius: 3px;
+  height: 5px;
+  width: 100%;
+}
+
+.progress::after {
+  border-radius: 3px;
+  background-color: #2a265f;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 5px;
+  width: 66%;
+}
+
+.progress-text {
+  font-size: 10px;
+  opacity: 0.6;
+  letter-spacing: 1px;
+}
+
+.btn {
+  background-color: #45036b;
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-size: 16px;
+  padding: 12px 25px;
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #5a018d;
+  transition: ease 0.5s;
+}
+
+@media screen and (max-width: 480px) {
+  .social-panel-container.visible {
+    transform: translateX(0px);
+  }
 }
