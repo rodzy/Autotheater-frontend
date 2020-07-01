@@ -1,8 +1,38 @@
 .container {
   width: 100%;
-  padding-top: 10em;
-  padding-bottom: 10em;
+  padding-top: 5em;
+  padding-bottom: 5em;
   background:transparent;
   display: flex;
+  justify-content: center;
+
+}
+.logo {
+  width: 60px;
+  letter-spacing: 10px;
+  font-size: 1.2rem;
+}
+
+.nav-links {
+  display: flex;
+  width: 60%;
   justify-content: space-around;
+}
+.gridDiv{
+
+  flex-direction: row;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 1vh;
+  height: 10vh;
+  background-color: #333333;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+nav {
+
 }

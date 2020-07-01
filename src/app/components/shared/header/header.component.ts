@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   pagethree: string;
   pagefour: string;
   locations: string;
-  dropd: string[] = ['Autotheater-Alajuela Oeste', 'Autotheater-Alajuela Este'];
+  dropd: string[] = ['Autotheater-Alajuela West', 'Autotheater-Alajuela East'];
 
   constructor() {
     this.varSetter();

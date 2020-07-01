@@ -59,6 +59,14 @@ li:hover {
     width: 200px;
     background-color: #464646;
     position: absolute;
+    border-radius: 0.5rem;
+    z-index: 1;
+  }
+}
+
+.second-ul{
+  li{
+    padding: 16px;
   }
 }
 
