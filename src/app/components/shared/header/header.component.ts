@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import header from './header';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -33,4 +34,13 @@ export class HeaderComponent implements OnInit {
     this.pagefour = header.header.pagefour;
     this.locations = header.header.dropdowntitle;
   }
+
+  navSlide = () => {
+    const burger = document.querySelector('.burger') as HTMLElement;
+    const nav = document.querySelector('.nav-links')as HTMLElement;
+    burger.addEventListener('click', () => {
+      nav.classList.toggle('nav-active');
+    });
+  }
+
 }
