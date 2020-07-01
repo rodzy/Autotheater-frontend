@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { UndernavComponent } from './undernav/undernav.component';
 import { CommonModule } from '@angular/common';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { RouterModule } from '@angular/router';
 
 const declarations: any[] = [
   HeaderComponent,
@@ -21,7 +22,12 @@ const exports: any[] = [
   BreadcrumbsComponent,
 ];
 
-const imports: any[] = [MatMenuModule, MatIconModule, CommonModule];
+const imports: any[] = [
+  MatMenuModule,
+  MatIconModule,
+  CommonModule,
+  RouterModule,
+];
 
 @NgModule({
   declarations: [...declarations],

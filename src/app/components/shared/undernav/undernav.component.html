@@ -8,10 +8,10 @@
     <div class="link-container">
       <ul class="container-links">
         <li *ngIf="!show">
-          <a href="#" class="loginbtn">{{ buttonlogin }}</a>
+          <a routerLink="/login" routerLinkActive="active" class="loginbtn">{{ buttonlogin }}</a>
         </li>
         <li *ngIf="!show">
-          <a href="#" class="signbtn">{{ buttonsignin }}</a>
+          <a routerLink="/register" routerLinkActive="active" class="signbtn">{{ buttonsignin }}</a>
         </li>
         <li *ngIf="show">
           <a href="#" class="signbtn">{{ profiletag }}</a>

@@ -6,6 +6,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './components/shared/shared.module';
 import { PagesModule } from './components/pages/pages.module';
 import { UsersModule } from './components/users/users.module';
+import { BillboardModule } from './components/billboard/billboard.module';
+import { MoviesModule } from './components/movies/movies.module';
+import { ProductsModule } from './components/products/products.module';
 
 const declarations: any[] = [AppComponent];
 
@@ -16,6 +19,9 @@ const imports: any[] = [
   SharedModule,
   PagesModule,
   UsersModule,
+  BillboardModule,
+  MoviesModule,
+  ProductsModule
 ];
 
 @NgModule({

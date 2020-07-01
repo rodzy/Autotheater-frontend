@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { LocationsComponent } from './locations/locations.component';
 import { LikedmoviesComponent } from './likedmovies/likedmovies.component';
 import { BottomnavComponent } from './bottomnav/bottomnav.component';
+import { PagesRoutingModule } from './pages-routing.module';
 
 const declarations: any[] = [
   IndexComponent,
@@ -14,7 +15,7 @@ const declarations: any[] = [
   CarouselComponent,
   LocationsComponent,
   LikedmoviesComponent,
-  BottomnavComponent
+  BottomnavComponent,
 ];
 
 const exports: any[] = [
@@ -23,7 +24,7 @@ const exports: any[] = [
   LocationsComponent,
 ];
 
-const imports: any[] = [CommonModule, SharedModule];
+const imports: any[] = [CommonModule, SharedModule,  PagesRoutingModule];
 
 @NgModule({
   declarations: [...declarations],

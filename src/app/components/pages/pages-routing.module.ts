@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BillboardindexComponent } from './billboardindex/billboardindex.component';
+
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { IndexComponent } from './index/index.component';
 
 const routes: Routes = [
   {
-    path: 'billboard',
-    pathMatch: 'full',
-    component: BillboardindexComponent,
+    path: '',
+    component: IndexComponent,
   },
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class BillboardRoutingModule {}
+export class PagesRoutingModule {}
