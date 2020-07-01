@@ -1,4 +1,4 @@
-# AutotheaterFrontend 🎫🎭
+# AutoTheater Frontend 🎫🎭
 
  This is the frontend for the autotheater app build on Angular 9 and styled from scratch by me.
 
