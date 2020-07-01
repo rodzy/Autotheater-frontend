@@ -6,13 +6,15 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { SharedModule } from '../shared/shared.module';
 import { LocationsComponent } from './locations/locations.component';
 import { LikedmoviesComponent } from './likedmovies/likedmovies.component';
+import { BottomnavComponent } from './bottomnav/bottomnav.component';
 
 const declarations: any[] = [
   IndexComponent,
   PageNotFoundComponent,
   CarouselComponent,
   LocationsComponent,
-  LikedmoviesComponent
+  LikedmoviesComponent,
+  BottomnavComponent
 ];
 
 const exports: any[] = [

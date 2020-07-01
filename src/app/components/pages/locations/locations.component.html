@@ -1,10 +1,12 @@
 <div class="container">
   <div class="gridDiv">
-    <div class="locatedDiv">
-      <h1>We are <span>located</span> at</h1>
-      <p>
-        Visit one of our auto cinemas, check the billboard available down below
-      </p>
+    <div class="container-located">
+      <div class="locatedDiv">
+        <h1 class="heading">We are <span>located</span> at</h1>
+        <p>
+          Visit one of our auto cinemas, check the billboard available down
+          below
+        </p>
         <div class="locations-container">
           <div class="location">
             <div class="location-preview"></div>
@@ -34,10 +36,27 @@
           </div>
         </div>
       </div>
-      <div class="locationsDiv">
-        <h1>Most<span> liked</span> movies</h1>
-        <p>Find the most upvoted movies rated by our clients</p>
-        <app-likedmovies></app-likedmovies>
+      <div>
+        <div class="product-container">
+          <div class="locations-container">
+            <div class="snacks">
+              <div class="snacks-preview">
+              </div>
+              <div class="snacks-info">
+                <h1 class="snack-heading">Check out our <span>snack gallery</span></h1>
+                <button class="btn-snack"><span class="material-icons">
+                  arrow_forward
+                  </span></button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    <div class="locationsDiv">
+      <h1>Most<span> liked</span> movies</h1>
+      <p>Find the most upvoted movies rated by our clients</p>
+      <app-likedmovies></app-likedmovies>
+    </div>
+  </div>
 </div>
