@@ -40,4 +40,26 @@ export class AuthService {
       .post<any>(this.server + 'app/auth/register', user, this.httpOptions)
       .pipe(catchError(this.handler.handleErrors.bind(this)));
   }
+
+  // Login registered users
+  // @TODO REWRITE DOCS FOR THE ROUTING IN THE SERVER
+  LoginUser(user: any): Observable<any> {
+    return this.http
+      .post<any>(this.server + 'app/auth/login', user, this.httpOptions)
+      .pipe(
+        // tslint:disable-next-line: no-shadowed-variable
+        map((user) => {
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.currentUserSubject.next(user);
+          return user;
+        })
+      );
+  }
+
+  // Logout
+  // @TODO REWRITE DOCS FOR THE ROUTING IN THE SERVER
+  Logout() {
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
+  }
 }
