@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   SERVER_URL: 'http://127.0.0.1:8000/api/v1/',
+  MOVIES_API: 'https://api.themoviedb.org/3/movie/'
 };
 
 /*
