@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { CustomErrorHandlerService } from './custom-error-handler.service';
 
 @Injectable({
@@ -30,5 +31,13 @@ export class AuthService {
   // Getting the current user information
   public getCurrentUserInfo(): any {
     return this.currentUserSubject.value;
+  }
+
+  // Create/Register users
+  // @TODO REWRITE DOCS FOR THE ROUTING IN THE SERVER
+  CreateUser(user: any): Observable<any> {
+    return this.http
+      .post<any>(this.server + 'app/auth/register', user, this.httpOptions)
+      .pipe(catchError(this.handler.handleErrors.bind(this)));
   }
 }
