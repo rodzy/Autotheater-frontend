@@ -7,6 +7,10 @@ const routes: Routes = [
     path: 'movies',
     component: IndexComponent,
   },
+  // {
+  //   path: 'movies/:id',
+  //   component:,
+  // }
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
