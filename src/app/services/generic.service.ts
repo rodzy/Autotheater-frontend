@@ -38,6 +38,7 @@ export class GenericService {
 
   // Listing
   List(endpoint: string): Observable<any> {
+    console.log('HERE DUDE');
     return this.http
       .get<any>(this.server + endpoint, { headers: this.headers })
       .pipe(catchError(this.handler.handleErrors.bind(this)));

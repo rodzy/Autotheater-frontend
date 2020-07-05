@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,12 +18,14 @@ const imports: any[] = [
   BrowserModule,
   AppRoutingModule,
   BrowserAnimationsModule,
+  HttpClientModule,
   SharedModule,
   PagesModule,
   UsersModule,
   BillboardModule,
   MoviesModule,
-  ProductsModule
+  ProductsModule,
+  ToastrModule.forRoot(),
 ];
 
 @NgModule({
