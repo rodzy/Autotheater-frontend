@@ -3,13 +3,13 @@
     <div *ngFor="let item of data">
       <h1>Name: {{ item.name }}</h1>
       <p>{{ item.sinopsis }}</p>
-    <div *ngIf="item?.genres">
+      <div *ngIf="item?.genres">
         <ul>
           <li *ngFor="let gen of item.genres">
-            {{gen.name}}
+            {{ gen.name }}
           </li>
         </ul>
-    </div>
+      </div>
     </div>
   </div>
 </div>
