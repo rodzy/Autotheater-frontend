@@ -30,7 +30,6 @@ export class IndexComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         (data: any) => {
-          console.log(data);
           this.data = data;
         },
         (error: any) => {
@@ -38,6 +37,21 @@ export class IndexComponent implements OnInit {
         }
       );
   }
+
+    // Listing most popular movies
+    listingPopularMovies() {
+      this.gService
+        .List('movies/popular')
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          (data: any) => {
+            this.data = data;
+          },
+          (error: any) => {
+            this.notification.message(error.name, error.messge, 'error');
+          }
+        );
+    }
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy(): void {

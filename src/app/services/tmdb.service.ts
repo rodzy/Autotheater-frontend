@@ -27,15 +27,20 @@ export class TmdbService {
     endpoint,
     key,
     language,
+    page,
   }: {
     endpoint: string;
     key: any;
     language: string;
+    page: any;
   }): Observable<any> {
     return this.http
-      .get<any>(`${this.api + endpoint}api_key=${key}&${language}`, {
-        headers: this.headers,
-      })
+      .get<any>(
+        `${this.api + endpoint}api_key=${key}&${language}&page=${page}`,
+        {
+          headers: this.headers,
+        }
+      )
       .pipe(catchError(this.handler.handleErrors.bind(this)));
   }
 }
