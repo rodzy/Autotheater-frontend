@@ -7,31 +7,28 @@
           Visit one of our auto cinemas, check the billboard available down
           below
         </p>
-        <div class="locations-container">
-          <div class="location">
-            <div class="location-preview"></div>
-            <div class="location-info">
-              <h2>Alajuela East</h2>
-              <h6>
-                <span class="material-icons" id="icons">
-                  place
-                </span>
-                Located 300mts from Pizza Hut
-              </h6>
-              <button class="btn">Go to billboard</button>
+        <div *ngIf="data">
+          <div class="locations-container" *ngFor="let item of data">
+            <div class="location">
+              <div class="location-preview"></div>
+              <div class="location-info">
+                <h2>{{ item.location }}</h2>
+                <h6>
+                  <span class="material-icons" id="icons">
+                    place
+                  </span>
+                  {{ item.description }}
+                </h6>
+                <button class="btn">Go to billboard</button>
+              </div>
             </div>
           </div>
         </div>
-        <div class="locations-container">
-          <div class="location">
-            <div class="location-preview"></div>
-            <div class="location-info">
-              <h2>Alajuela West</h2>
-              <h6>
-                <span class="material-icons" id="icons"> place </span>Located
-                300mts from Pizza Hut
-              </h6>
-              <button class="btn">Go to billboard</button>
+        <div *ngIf="!data">
+          <div class="locations-container">
+            <div class="location">
+              <div class="location-preview"></div>
+              <div class="location-info"></div>
             </div>
           </div>
         </div>
@@ -40,13 +37,16 @@
         <div class="product-container">
           <div class="locations-container">
             <div class="snacks">
-              <div class="snacks-preview">
-              </div>
+              <div class="snacks-preview"></div>
               <div class="snacks-info">
-                <h1 class="snack-heading">Check out our <span>snack gallery</span></h1>
-                <button class="btn-snack"><span class="material-icons">
-                  arrow_forward
-                  </span></button>
+                <h1 class="snack-heading">
+                  Check out our <span>snack gallery</span>
+                </h1>
+                <button class="btn-snack">
+                  <span class="material-icons">
+                    arrow_forward
+                  </span>
+                </button>
               </div>
             </div>
           </div>
