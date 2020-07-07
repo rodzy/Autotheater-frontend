@@ -5,7 +5,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { UndernavComponent } from './undernav/undernav.component';
 import { CommonModule } from '@angular/common';
-import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+
 import { RouterModule } from '@angular/router';
 import { BottomnavComponent } from './bottomnav/bottomnav.component';
 
@@ -13,7 +13,6 @@ const declarations: any[] = [
   HeaderComponent,
   FooterComponent,
   UndernavComponent,
-  BreadcrumbsComponent,
   BottomnavComponent,
 ];
 
@@ -21,7 +20,6 @@ const exports: any[] = [
   HeaderComponent,
   FooterComponent,
   UndernavComponent,
-  BreadcrumbsComponent,
   BottomnavComponent,
 ];
 

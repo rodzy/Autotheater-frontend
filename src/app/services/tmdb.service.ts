@@ -23,20 +23,15 @@ export class TmdbService {
   }
 
   // Getting the data from TMDB API for forms injection
-  RetrieveData({
-    endpoint,
-    key,
-    language,
-    page,
-  }: {
-    endpoint: string;
-    key: any;
-    language: string;
-    page: any;
-  }): Observable<any> {
+  RetrieveData(
+    endpoint: string,
+    key: string,
+    language: string,
+    page: string,
+  ): Observable<any> {
     return this.http
       .get<any>(
-        `${this.api + endpoint}api_key=${key}&${language}&page=${page}`,
+        `${this.api + endpoint}?api_key=${key}&${language}&page=${page}`,
         {
           headers: this.headers,
         }
