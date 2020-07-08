@@ -1,3 +1,18 @@
-<div style="justify-content: center;padding: 20%;">
-    <h1>Billboards here 👷‍♂️🦺</h1>
+<div>
+  <div *ngIf="data">
+    <div *ngFor="let item of data">
+      <h1>Name: {{ item.name }}</h1>
+      <p>{{ item.sinopsis }}</p>
+      <div *ngIf="item?.genres">
+        <ul>
+          <li *ngFor="let gen of item.genres">
+            {{ gen.name }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!data">
+    <app-loading></app-loading>
+  </div>
 </div>

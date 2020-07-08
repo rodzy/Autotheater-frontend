@@ -3,13 +3,11 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-billboardindex',
   templateUrl: './billboardindex.component.html',
-  styleUrls: ['./billboardindex.component.scss']
+  styleUrls: ['./billboardindex.component.scss'],
 })
 export class BillboardindexComponent implements OnInit {
+  data: any;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
