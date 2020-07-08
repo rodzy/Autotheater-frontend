@@ -12,7 +12,7 @@ section{
   display: flex;
   border: none;
   width: 90%;
-  height: 400px;
+  height: 450px;
   overflow: scroll;
   overflow-y: hidden;
   border-radius: 0.5rem;
@@ -40,7 +40,7 @@ section{
 
 .card {
   margin: 30px auto;
-  margin-left: 25px;
+  margin-left: 30px;
   width: 170px;
   height: 250px;
   border-radius: 0.5rem;
@@ -86,6 +86,32 @@ section{
 
 .title-black {
   color: black;
+}
+
+
+.gen-icon{
+  color:$secondary;
+  font-size: 20px;
+}
+.genres-tag{
+  background: $secondary-dual;
+  width: 90px;
+  display: flex;
+  margin: 2px;
+  border-radius: 0.7rem;
+}
+.genres-container{
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(2, 1fr);
+  color:$primary;
+
+}
+
+.heading{
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 10px;
 }
 
 @media all and (max-width: 500px) {

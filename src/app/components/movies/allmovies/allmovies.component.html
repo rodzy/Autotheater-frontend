@@ -10,18 +10,22 @@
         />
       </div>
       <div>
-        <h3>{{ item.name }}</h3>
+        <div class="heading">
+          {{item.name}}
+        </div>
         <div *ngIf="item.genres" class="genres-container">
           <div *ngFor="let gen of item.genres">
-            <span
-              class="material-icons gen-icon"
-              style="vertical-align: middle; display: inline-flex;"
-            >
-              fiber_manual_record
-            </span>
-            <span class="genres-tag">
+            <div class="genres-tag">
+
+                <span
+                class="material-icons gen-icon"
+                style="vertical-align: middle; display: inline-flex;"
+                >
+                fiber_manual_record
+              </span>
               {{ gen.name }}
-            </span>
+
+          </div>
           </div>
         </div>
       </div>
