@@ -23,11 +23,12 @@ export class UpcomingmoviesComponent implements OnInit {
     this.listUpcoming();
   }
 
+  // @TODO: KEY env call
   listUpcoming() {
     this.tmbdService
       .RetrieveData(
         'upcoming',
-        '7173b32ff3e2adf2e13d28656b0cf89c',
+        '7',
         'en-US',
         '1'
       )

@@ -8,12 +8,14 @@ import { CommonModule } from '@angular/common';
 
 import { RouterModule } from '@angular/router';
 import { BottomnavComponent } from './bottomnav/bottomnav.component';
+import { LoadingComponent } from './loading/loading.component';
 
 const declarations: any[] = [
   HeaderComponent,
   FooterComponent,
   UndernavComponent,
   BottomnavComponent,
+  LoadingComponent
 ];
 
 const exports: any[] = [
@@ -21,6 +23,7 @@ const exports: any[] = [
   FooterComponent,
   UndernavComponent,
   BottomnavComponent,
+  LoadingComponent
 ];
 
 const imports: any[] = [

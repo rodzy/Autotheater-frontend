@@ -2,12 +2,12 @@
   <div class="gridDiv">
     <div class="container-located">
       <div class="locatedDiv">
-        <h1 class="heading">We are <span>located</span> at</h1>
-        <p>
-          Visit one of our auto cinemas, check the billboard available down
-          below
-        </p>
         <div *ngIf="data">
+          <h1 class="heading">We are <span>located</span> at</h1>
+          <p>
+            Visit one of our auto cinemas, check the billboard available down
+            below
+          </p>
           <div class="locations-container" *ngFor="let item of data">
             <div class="location">
               <div class="location-preview"></div>
@@ -26,11 +26,10 @@
         </div>
         <div *ngIf="!data">
           <div class="locations-container">
-            <div class="location">
-              <div class="location-preview"></div>
-              <div class="location-info"></div>
-            </div>
-          </div>
+
+                <app-loading></app-loading>
+              </div>
+
         </div>
       </div>
       <div>
@@ -54,9 +53,14 @@
       </div>
     </div>
     <div class="locationsDiv">
-      <h1>Most<span> liked</span> movies</h1>
-      <p>Find the most upvoted movies rated by our clients</p>
+      <div *ngIf="data">
+        <h1>Most<span> liked</span> movies</h1>
+        <p>Find the most upvoted movies rated by our clients</p>
+      </div>
       <app-likedmovies></app-likedmovies>
+      <div *ngIf="!data">
+          <app-loading></app-loading>
+      </div>
     </div>
   </div>
 </div>
