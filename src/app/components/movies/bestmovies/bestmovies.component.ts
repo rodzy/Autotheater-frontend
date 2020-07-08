@@ -1,23 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { TmdbService } from '../../../services/tmdb.service';
-import { NotficationService } from '../../../services/notfication.service';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { GenericService } from '../../../services/generic.service';
+import { NotficationService } from '../../../services/notfication.service';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-upcomingmovies',
-  templateUrl: './upcomingmovies.component.html',
-  styleUrls: ['./upcomingmovies.component.scss'],
+  selector: 'app-bestmovies',
+  templateUrl: './bestmovies.component.html',
+  styleUrls: ['./bestmovies.component.scss']
 })
-export class UpcomingmoviesComponent implements OnInit {
+export class BestmoviesComponent implements OnInit {
   data: any;
   errors: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     private gService: GenericService,
-    private tmbdService: TmdbService,
     private notification: NotficationService
   ) {}
 
@@ -40,19 +38,25 @@ export class UpcomingmoviesComponent implements OnInit {
       );
   }
 
-  // @TODO: KEY env call
-  listUpcoming() {
-    this.tmbdService
-      .RetrieveData('upcoming', '7', 'en-US', '1')
+  // Listing most popular movies
+  listingPopularMovies() {
+    this.gService
+      .List('movies/popular')
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         (data: any) => {
           this.data = data;
         },
         (error: any) => {
-          this.notification.message(error.name, error.message, 'error');
+          this.notification.message(error.name, error.messge, 'error');
         }
       );
-    console.log(this.data);
   }
+
+  // tslint:disable-next-line: use-lifecycle-interface
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
+
 }
