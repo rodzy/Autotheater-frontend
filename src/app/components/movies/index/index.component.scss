@@ -1,22 +1,32 @@
 $primary: #fffb00;
 $secondary: #7109ad;
+$secondary-dual:#45036b;
+
+section{
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+}
 
 .container {
   display: flex;
   border: none;
   width: 90%;
-  height: 300px;
+  height: 400px;
   overflow: scroll;
+  overflow-y: hidden;
+  border-radius: 0.5rem;
 }
 .container::-webkit-scrollbar {
   width: 0.5rem;
-  
+
 }
 .container::-webkit-scrollbar-track {
   background: $secondary;
+  border-radius: 0.5rem;
 }
 .container::-webkit-scrollbar-thumb {
-  background: #45036b;
+  background:$secondary-dual;
   border-radius: 0.5rem;
 }
 
@@ -30,6 +40,7 @@ $secondary: #7109ad;
 
 .card {
   margin: 30px auto;
+  margin-left: 25px;
   width: 170px;
   height: 250px;
   border-radius: 0.5rem;
@@ -42,6 +53,7 @@ $secondary: #7109ad;
   width: inherit;
   height: inherit;
   border-radius: 0.5rem;
+
 }
 
 .card .card_image img {

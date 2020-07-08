@@ -1,25 +1,69 @@
-  <div>
-    <h1>Movies on show</h1>
-  </div>
-  <div>
+<div class="breadcrumb">
+  <h1>Movies on show</h1>
+</div>
+<div>
+  <section>
     <div *ngIf="data" class="container">
-          <div class="card 2" *ngFor="let item of data">
-            <div class="card_image">
-              <img
-              src='{{"https://image.tmdb.org/t/p/w600_and_h900_bestv2"+item.image}}'
-              alt="MovieCover"
-              />
-            </div>
-            <div class="card_title title-white">
-              <p></p>
+      <div class="card" *ngFor="let item of data">
+        <div class="card_image">
+          <img
+            src="{{
+              'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + item.image
+            }}"
+            alt="MovieCover"
+          />
+        </div>
+        <div>
+          <h3>{{ item.name }}</h3>
+          <div *ngIf="item.genres" class="genres-container">
+            <div *ngFor="let gen of item.genres">
+              <span class="material-icons gen-icon">
+                fiber_manual_record
+                </span>
+              <span class="genres-tag">
+                {{gen.name}}
+              </span>
             </div>
           </div>
         </div>
-
-
-
-    <div *ngIf="!data">
-      <app-loading></app-loading>
+      </div>
     </div>
+  </section>
+  <section>
+    <div *ngIf="data" class="container">
+      <div class="card 2" *ngFor="let item of data">
+        <div class="card_image">
+          <img
+            src="{{
+              'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + item.image
+            }}"
+            alt="MovieCover"
+          />
+        </div>
+        <div class="card_title title-white">
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div *ngIf="data" class="container">
+      <div class="card 2" *ngFor="let item of data">
+        <div class="card_image">
+          <img
+            src="{{
+              'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + item.image
+            }}"
+            alt="MovieCover"
+          />
+        </div>
+        <div class="card_title title-white">
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div *ngIf="!data">
+    <app-loading></app-loading>
   </div>
-
+</div>
