@@ -1,10 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import "custom-theme.scss";
 
+$primary:#fffb00;
+$secondary:#7109ad;
+$bg-color:#404040;
+
 html,
 body {
   height: 100%;
-  background-color: #404040;
+  background-color:$bg-color;
 }
 body {
   margin: 0;
@@ -15,18 +19,18 @@ body {
 
 ::-moz-selection{
   color:#ffffff;
-  background:#7109ad;
+  background:$secondary
 }
 ::selection{
-  color:#fffb00;
-  background:#7109ad;
+  color:$primary;
+  background:$secondary;
 }
 
 body::-webkit-scrollbar {
   width: 0.5rem;
 }
 body::-webkit-scrollbar-track {
-  background: #7109ad;
+  background: $secondary;
 }
 body::-webkit-scrollbar-thumb {
   background: #45036b;

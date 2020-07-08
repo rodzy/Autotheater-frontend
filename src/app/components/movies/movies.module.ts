@@ -4,8 +4,8 @@ import { MoviesRoutingModule } from './movies-routing.module';
 import { IndexComponent } from './index/index.component';
 import { UpcomingmoviesComponent } from './upcomingmovies/upcomingmovies.component';
 import { SharedModule } from '../shared/shared.module';
-import { NgImageSliderModule } from 'ng-image-slider';
 import { SwiperComponent } from './swiper/swiper.component';
+import {NgxUsefulSwiperModule} from 'ngx-useful-swiper';
 
 const declarations: any[] = [
   IndexComponent,
@@ -16,7 +16,7 @@ const imports: any[] = [
   CommonModule,
   MoviesRoutingModule,
   SharedModule,
-  NgImageSliderModule,
+  NgxUsefulSwiperModule
 ];
 
 @NgModule({

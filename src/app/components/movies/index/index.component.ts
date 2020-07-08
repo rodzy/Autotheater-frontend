@@ -3,7 +3,7 @@ import { GenericService } from '../../../services/generic.service';
 import { NotficationService } from '../../../services/notfication.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-
+import { SwiperOptions } from 'swiper';
 
 @Component({
   selector: 'app-movies-index',

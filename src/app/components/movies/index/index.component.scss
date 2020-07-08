@@ -1,0 +1,84 @@
+$primary: #fffb00;
+$secondary: #7109ad;
+
+.container {
+  display: flex;
+  border: none;
+  width: 90%;
+  height: 300px;
+  overflow: scroll;
+}
+.container::-webkit-scrollbar {
+  width: 0.5rem;
+  
+}
+.container::-webkit-scrollbar-track {
+  background: $secondary;
+}
+.container::-webkit-scrollbar-thumb {
+  background: #45036b;
+  border-radius: 0.5rem;
+}
+
+.cards-list {
+  z-index: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin: 30px auto;
+  width: 170px;
+  height: 250px;
+  border-radius: 0.5rem;
+  box-shadow: 0 15px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.card .card_image {
+  width: inherit;
+  height: inherit;
+  border-radius: 0.5rem;
+}
+
+.card .card_image img {
+  width: inherit;
+  height: inherit;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+.card .card_title {
+  text-align: center;
+  border-radius: 0px 0px 40px 40px;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: -80px;
+  height: 40px;
+  background-color: white;
+}
+
+.card:hover {
+  transform: scale(1, 1);
+  box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.25),
+    0px 15px 15px 0px rgba(0, 0, 0, 0.22);
+}
+
+.title-white {
+  color: white;
+}
+
+.title-black {
+  color: black;
+}
+
+@media all and (max-width: 500px) {
+  .card-list {
+    /* On small screens, we are no longer using row direction but column */
+    flex-direction: column;
+  }
+}
