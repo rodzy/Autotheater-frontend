@@ -20,7 +20,7 @@ export class IndexComponent implements OnInit {
 
   ngOnInit(): void {
     this.listingProducts();
-    this.listingMostRatedProducts();
+    // this.listingMostRatedProducts();
   }
 
   // Listing products

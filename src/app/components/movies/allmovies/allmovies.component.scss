@@ -1,6 +1,7 @@
 $primary: #fffb00;
 $secondary: #7109ad;
 $secondary-dual: #45036b;
+$misc:#9203e6;
 $bg-secondary:#333333;
 
 .breadcrumb {
@@ -104,17 +105,19 @@ section {
   font-size: 20px;
 }
 .genres-tag {
-  background: $secondary-dual;
+  background: transparent;
+  box-shadow: 0 0 2px $primary;
   width: 90px;
   display: flex;
   margin: 2px;
   border-radius: 0.7rem;
 }
+
 .genres-container {
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(2, 1fr);
-  color: $primary;
+  color: #ffff;
 }
 
 .heading {

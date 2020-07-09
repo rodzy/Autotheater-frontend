@@ -110,18 +110,19 @@ section {
   font-size: 20px;
 }
 .genres-tag {
-  background: $secondary-dual;
+  background: transparent;
+  box-shadow: 0 0 2px $primary;
   width: 90px;
   display: flex;
   margin: 2px;
-  margin-top: 5px;
   border-radius: 0.7rem;
 }
+
 .genres-container {
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(2, 1fr);
-  color: $primary;
+  color: #ffff;
 }
 
 .heading {
