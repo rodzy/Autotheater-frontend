@@ -1,13 +1,27 @@
 $primary: #fffb00;
 $secondary: #7109ad;
-$secondary-dual:#45036b;
+$secondary-dual: #45036b;
+$bg-secondary:#333333;
 
-section{
-  display: flex;
-  justify-content: center;
-  padding: 50px;
+.breadcrumbs {
+  position: absolute;
+}
+.btitle {
+  font-weight: 600;
+  text-shadow: 3px 3px #3c045c;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.spanx {
+  color: $primary;
+}
+
+section {
+  display: grid;
+  justify-items: center;
+  padding: 50px;
+  background: $bg-secondary;
+}
 .container {
   display: flex;
   border: none;
@@ -19,14 +33,13 @@ section{
 }
 .container::-webkit-scrollbar {
   width: 0.5rem;
-
 }
 .container::-webkit-scrollbar-track {
   background: $secondary;
   border-radius: 0.5rem;
 }
 .container::-webkit-scrollbar-thumb {
-  background:$secondary-dual;
+  background: $secondary-dual;
   border-radius: 0.5rem;
 }
 
@@ -53,7 +66,6 @@ section{
   width: inherit;
   height: inherit;
   border-radius: 0.5rem;
-
 }
 
 .card .card_image img {
@@ -76,8 +88,6 @@ section{
 
 .card:hover {
   transform: scale(1, 1);
-  box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.25),
-    0px 15px 15px 0px rgba(0, 0, 0, 0.22);
 }
 
 .title-white {
@@ -88,27 +98,25 @@ section{
   color: black;
 }
 
-
-.gen-icon{
-  color:$secondary;
+.gen-icon {
+  color: $secondary;
   font-size: 20px;
 }
-.genres-tag{
+.genres-tag {
   background: $secondary-dual;
   width: 90px;
   display: flex;
   margin: 2px;
   border-radius: 0.7rem;
 }
-.genres-container{
+.genres-container {
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(2, 1fr);
-  color:$primary;
-
+  color: $primary;
 }
 
-.heading{
+.heading {
   font-size: 20px;
   margin-top: 30px;
   margin-bottom: 10px;

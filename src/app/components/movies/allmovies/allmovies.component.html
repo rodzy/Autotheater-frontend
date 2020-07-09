@@ -1,5 +1,8 @@
-<section>
-  <div *ngIf="data" class="container">
+<section *ngIf="data">
+  <div class="breadcrumb">
+    <h1 class="btitle">Current<span class="spanx"> releases</span></h1>
+  </div>
+  <div class="container">
     <div class="card" *ngFor="let item of data">
       <div class="card_image">
         <img
@@ -11,24 +14,25 @@
       </div>
       <div>
         <div class="heading">
-          {{item.name}}
+          {{ item.name }}
         </div>
         <div *ngIf="item.genres" class="genres-container">
           <div *ngFor="let gen of item.genres">
             <div class="genres-tag">
-
-                <span
+              <span
                 class="material-icons gen-icon"
                 style="vertical-align: middle; display: inline-flex;"
-                >
+              >
                 fiber_manual_record
               </span>
               {{ gen.name }}
-
-          </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+<div *ngIf="!data">
+  <app-loading></app-loading>
+</div>
