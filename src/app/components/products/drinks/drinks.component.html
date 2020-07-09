@@ -1,1 +1,17 @@
-<p>drinks works!</p>
+<section *ngIf="dataprop">
+  <div>
+      <div *ngFor="let item of dataprop">
+        <div *ngIf="item.type_id===2">
+          <h1>Name: {{ item.name }}</h1>
+          <p>{{ item.sinopsis }}</p>
+          <div *ngIf="item?.genres">
+            <ul>
+              <li *ngFor="let gen of item.genres">
+                {{ gen.name }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>

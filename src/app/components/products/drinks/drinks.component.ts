@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-drinks',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./drinks.component.scss']
 })
 export class DrinksComponent implements OnInit {
-
+  @Input() dataprop;
   constructor() { }
 
   ngOnInit(): void {

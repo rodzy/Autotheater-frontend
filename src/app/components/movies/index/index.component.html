@@ -1,6 +1,9 @@
-<div>
-  
+<div *ngIf="data">
   <app-allmovies></app-allmovies>
   <app-bestmovies></app-bestmovies>
   <app-upcomingmovies></app-upcomingmovies>
 </div>
+<div *ngIf="!data">
+  <app-loading></app-loading>
+</div>
+

@@ -1,16 +1,8 @@
 <div>
   <div *ngIf="data">
-    <div *ngFor="let item of data">
-      <h1>Name: {{ item.name }}</h1>
-      <p>{{ item.sinopsis }}</p>
-      <div *ngIf="item?.genres">
-        <ul>
-          <li *ngFor="let gen of item.genres">
-            {{ gen.name }}
-          </li>
-        </ul>
-      </div>
-    </div>
+    <app-popcorn [dataprop]="data"></app-popcorn>
+    <app-drinks [dataprop]="data"></app-drinks>
+    <app-snacks [dataprop]="data"></app-snacks>
   </div>
   <div *ngIf="!data">
     <app-loading></app-loading>
