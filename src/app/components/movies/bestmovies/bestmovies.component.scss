@@ -33,7 +33,7 @@ section {
   display: flex;
   border: none;
   width: 90%;
-  height: 480px;
+  height: 500px;
   overflow: scroll;
   overflow-y: hidden;
   border-radius: 0.5rem;
@@ -120,6 +120,7 @@ section {
 
 .genres-container {
   display: grid;
+  padding-top: 20px;
   justify-content: center;
   grid-template-columns: repeat(2, 1fr);
   color: #ffff;
@@ -129,6 +130,8 @@ section {
   font-size: 20px;
   margin-top: 30px;
   margin-bottom: 10px;
+  font-weight: 500;
+  text-shadow: 3px 3px #3c045c;
 }
 
 @media all and (max-width: 500px) {

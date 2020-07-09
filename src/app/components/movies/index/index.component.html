@@ -1,7 +1,7 @@
 <div *ngIf="data">
-  <app-allmovies></app-allmovies>
-  <app-bestmovies></app-bestmovies>
-  <app-upcomingmovies></app-upcomingmovies>
+  <app-allmovies [data]="data"></app-allmovies>
+  <app-bestmovies [data]="data"></app-bestmovies>
+  <app-upcomingmovies [dataprops]="dmdb"></app-upcomingmovies>
 </div>
 <div *ngIf="!data">
   <app-loading></app-loading>

@@ -1,62 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
-import { GenericService } from '../../../services/generic.service';
-import { NotficationService } from '../../../services/notfication.service';
-import { takeUntil } from 'rxjs/operators';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-bestmovies',
   templateUrl: './bestmovies.component.html',
-  styleUrls: ['./bestmovies.component.scss']
+  styleUrls: ['./bestmovies.component.scss'],
 })
 export class BestmoviesComponent implements OnInit {
-  data: any;
-  errors: any;
-  destroy$: Subject<boolean> = new Subject<boolean>();
+  @Input() data;
 
-  constructor(
-    private gService: GenericService,
-    private notification: NotficationService
-  ) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.listingMovies();
-  }
-
-  // Listing movies using the generic service and the notifying service
-  listingMovies() {
-    this.gService
-      .List('movies/')
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (data: any) => {
-          this.data = data;
-        },
-        (error: any) => {
-          this.notification.message(error.name, error.messge, 'error');
-        }
-      );
-  }
-
-  // Listing most popular movies
-  listingPopularMovies() {
-    this.gService
-      .List('movies/popular')
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (data: any) => {
-          this.data = data;
-        },
-        (error: any) => {
-          this.notification.message(error.name, error.messge, 'error');
-        }
-      );
-  }
-
-  // tslint:disable-next-line: use-lifecycle-interface
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
-  }
-
+  ngOnInit(): void {}
 }

@@ -1,32 +1,40 @@
 $primary: #fffb00;
 $secondary: #7109ad;
 $secondary-dual: #45036b;
-$bg-secondary:#333333;
+$bg-secondary: #333333;
 
 .breadcrumbs {
   position: absolute;
 }
+
 .btitle {
   font-weight: 600;
   text-shadow: 3px 3px #3c045c;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-
 .spanx {
   color: $primary;
 }
 
+.like-count {
+  display: flex;
+  font-size: 15px;
+  margin-left: 5px;
+  font-weight: 500;
+  text-shadow: 3px 3px #3c045c;
+}
 section {
   display: grid;
   justify-items: center;
   padding: 50px;
   background: $bg-secondary;
 }
+
 .container {
   display: flex;
   border: none;
   width: 90%;
-  height: 450px;
+  height: 500px;
   overflow: scroll;
   overflow-y: hidden;
   border-radius: 0.5rem;
@@ -112,9 +120,9 @@ section {
 }
 
 .genres-container {
-  display: grid;
+  display: flex;
   justify-content: center;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   color: #ffff;
 }
 
@@ -122,6 +130,8 @@ section {
   font-size: 20px;
   margin-top: 30px;
   margin-bottom: 10px;
+  font-weight: 500;
+  text-shadow: 3px 3px #3c045c;
 }
 
 @media all and (max-width: 500px) {

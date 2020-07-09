@@ -1,20 +1,42 @@
-<section *ngIf="data">
+<section *ngIf="dataprops">
   <div class="breadcrumb">
     <h1 class="btitle">Upcoming <span class="spanx">releases</span></h1>
   </div>
   <div class="container">
-    <div class="card" *ngFor="let item of data">
+    <div class="card" *ngFor="let item of dataprops.results">
       <div class="card_image">
         <img
           src="{{
-            'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + item.image
+            'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + item.poster_path
           }}"
           alt="MovieCover"
         />
       </div>
       <div>
         <div class="heading">
-          {{ item.name }}
+          {{ item.title }}
+        </div>
+        <div>
+          <div class="heading">
+            {{ item.name }}
+          </div>
+          <div class="like-count">
+            <span
+              class="material-icons"
+              style="
+                vertical-align: middle;
+
+                font-size: 20px;
+              "
+            >
+            thumbs_up_down </span
+            ><span style="padding-left: 7px;"
+              >{{ item.vote_average }}</span
+            >
+          </div>
+          <div class="like-count"><br>
+          Release date:<br> {{item.release_date}}
+        </div>
         </div>
         <div *ngIf="item.genres" class="genres-container">
           <div *ngFor="let gen of item.genres">
