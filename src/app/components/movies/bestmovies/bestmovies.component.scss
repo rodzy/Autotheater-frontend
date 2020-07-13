@@ -1,6 +1,7 @@
 $primary: #fffb00;
 $secondary: #7109ad;
 $secondary-dual: #45036b;
+$misc: #9203e6;
 $bg-secondary: #333333;
 
 .breadcrumbs {
@@ -90,11 +91,43 @@ section {
   font-size: 30px;
   margin-top: -80px;
   height: 40px;
-  background-color: white;
+  opacity: 0;
 }
 
-.card:hover {
-  transform: scale(1, 1);
+.card_image:hover {
+  .card_title {
+    transition: 0.5s;
+    opacity: 1;
+    display: block;
+    position: relative;
+  }
+  img {
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+    position: static;
+  }
+}
+
+.btn {
+  background-color: $secondary;
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 25px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.btn:hover{
+  .btitle{
+    text-shadow: 3px 3px $misc;
+  transition: ease 1s;
+  }
+  background-color: $secondary-dual;
+  transition: ease 1s;
 }
 
 .title-white {
