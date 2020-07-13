@@ -7,12 +7,14 @@ import { SharedModule } from '../shared/shared.module';
 import {NgxUsefulSwiperModule} from 'ngx-useful-swiper';
 import { AllmoviesComponent } from './allmovies/allmovies.component';
 import { BestmoviesComponent } from './bestmovies/bestmovies.component';
+import { DetailsComponent } from './details/details.component';
 
 const declarations: any[] = [
   IndexComponent,
   UpcomingmoviesComponent,
   AllmoviesComponent,
-  BestmoviesComponent
+  BestmoviesComponent,
+  DetailsComponent
 ];
 const imports: any[] = [
   CommonModule,
