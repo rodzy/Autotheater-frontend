@@ -1,4 +1,6 @@
 <div *ngIf="data">
   <p>{{data.name}}</p>
 </div>
-
+<div *ngIf="!data">
+  <app-loading></app-loading>
+</div>
