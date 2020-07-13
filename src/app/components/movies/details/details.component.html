@@ -1,6 +1,16 @@
 <div *ngIf="data">
-  <p>{{data.name}}</p>
-</div>
+  <div class="bannerContainer">
+    <div class="mainCover mainContent">
+      <img
+      src="{{
+        'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces'+data.banner
+      }}"
+      alt="MovieCover"
+      class="banner"
+      />
+    </div>
+  </div>
+    </div>
 <div *ngIf="!data">
   <app-loading></app-loading>
 </div>
