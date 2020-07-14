@@ -10,6 +10,28 @@
       />
     </div>
   </div>
+  <section>
+    <div class="mainContainer">
+      <img
+      src="{{
+        'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + data.image
+      }}"
+      alt="MovieCover"
+      class="avatar"
+      />
+      <div class="details">
+        <div class="detailsHead">
+          <h1 class="detailsTitle btitle">{{data.name}}</h1>
+          <div class="subtitles">
+            
+            <div *ngFor="let item of data.genres">
+              <p class="genres">{{item.name}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
     </div>
 <div *ngIf="!data">
   <app-loading></app-loading>

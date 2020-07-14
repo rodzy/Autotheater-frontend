@@ -9,6 +9,7 @@ $bg-secondary: #333333;
 }
 .btitle {
   font-weight: 600;
+  font-size: 60px;
   text-shadow: 3px 3px #3c045c;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
@@ -18,10 +19,19 @@ $bg-secondary: #333333;
 }
 
 section {
-  display: grid;
-  justify-items: center;
-  padding: 50px;
+  display: flex;
+  flex-wrap: nowrap;
   background: $bg-secondary;
+}
+
+.mainContainer {
+  display: flex;
+  padding: 50px;
+  width: 100%;
+}
+.avatar {
+  border-radius: 1rem;
+  width: 300px;
 }
 
 .bannerContainer {
@@ -53,4 +63,38 @@ section {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: center;
+  box-sizing: border-box;
+  padding-left: 40px;
+}
+
+.detailsHead{
+  width: 100%;
+    margin-bottom: 24px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.detailsTitle{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 10px;
+  font-size: 3rem;
+}
+.subtitles{
+  display: flex;
+}
+
+.genres{
+  font-weight: 600;
+  text-shadow: 3px 3px #3c045c;
+  padding-left: 10px;
+
 }
