@@ -2,37 +2,41 @@
   <div class="bannerContainer">
     <div class="mainCover mainContent">
       <img
-      src="{{
-        'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces'+data.banner
-      }}"
-      alt="MovieCover"
-      class="banner"
+        src="{{
+          'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces' + data.banner
+        }}"
+        alt="MovieCover"
+        class="banner"
       />
     </div>
   </div>
   <section>
     <div class="mainContainer">
       <img
-      src="{{
-        'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + data.image
-      }}"
-      alt="MovieCover"
-      class="avatar"
+        src="{{
+          'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + data.image
+        }}"
+        alt="MovieCover"
+        class="avatar"
       />
       <div class="details">
         <div class="detailsHead">
-          <h1 class="detailsTitle btitle">{{data.name}}</h1>
+          <h1 class="detailsTitle btitle">{{ data.name }}</h1>
           <div class="subtitles">
-            
+            <span class="classification">{{ classification[data.classification_id - 1] }}</span>
             <div *ngFor="let item of data.genres">
-              <p class="genres">{{item.name}}</p>
+              <p class="genres">{{ item.name }}</p>
             </div>
           </div>
+        </div>
+        <div class="detailsbody">
+          <h3 class="contentTitle">Synopsis</h3>
+          <p class="synopsis">{{data.sinopsis}}</p>
         </div>
       </div>
     </div>
   </section>
-    </div>
+</div>
 <div *ngIf="!data">
   <app-loading></app-loading>
 </div>

@@ -5,6 +5,7 @@
   background:transparent;
   display: flex;
   justify-content: center;
+  margin: 0;
 
 }
 .logo {
@@ -15,16 +16,16 @@
 
 .nav-links {
   display: flex;
-  width: 60%;
+  margin: 0;
+  padding: 0;
+  width: 80%;
   justify-content: space-around;
 }
 .gridDiv{
-
   flex-direction: row;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  min-width: 1vh;
   height: 10vh;
   background-color: #333333;
   top: 0;
@@ -33,6 +34,3 @@
   z-index: 2;
 }
 
-nav {
-
-}

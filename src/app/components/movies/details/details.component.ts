@@ -14,6 +14,7 @@ export class DetailsComponent implements OnInit {
   data: any;
   errors: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
+  public classification = ['G', 'PG', 'M', 'MA 15+', 'R 18+', 'X 18+'];
   constructor(
     private gService: GenericService,
     private notification: NotficationService,
