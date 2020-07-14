@@ -8,6 +8,7 @@ import {NgxUsefulSwiperModule} from 'ngx-useful-swiper';
 import { AllmoviesComponent } from './allmovies/allmovies.component';
 import { BestmoviesComponent } from './bestmovies/bestmovies.component';
 import { DetailsComponent } from './details/details.component';
+import {TooltipModule} from 'ng2-tooltip-directive';
 
 const declarations: any[] = [
   IndexComponent,
@@ -20,7 +21,8 @@ const imports: any[] = [
   CommonModule,
   MoviesRoutingModule,
   SharedModule,
-  NgxUsefulSwiperModule
+  NgxUsefulSwiperModule,
+  TooltipModule
 ];
 
 @NgModule({

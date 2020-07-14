@@ -23,7 +23,9 @@
         <div class="detailsHead">
           <h1 class="detailsTitle btitle">{{ data.name }}</h1>
           <div class="subtitles">
-            <span class="classification">{{ classification[data.classification_id - 1] }}</span>
+            <span class="classification">{{
+              classification[data.classification_id - 1]
+            }}</span>
             <div *ngFor="let item of data.genres">
               <p class="genres">{{ item.name }}</p>
             </div>
@@ -31,7 +33,19 @@
         </div>
         <div class="detailsbody">
           <h3 class="contentTitle">Synopsis</h3>
-          <p class="synopsis">{{data.sinopsis}}</p>
+          <p class="synopsis">{{ data.sinopsis }}</p>
+          <a class="likeBtn" tooltip="Like this movie" placement="bottom">
+            <span
+              class="material-icons"
+              style="
+                vertical-align: middle;
+                display: inline-flex;
+                padding: 20px;
+              "
+            >
+              thumb_up
+            </span>
+          </a>
         </div>
       </div>
     </div>
