@@ -53,11 +53,11 @@ section {
 }
 
 .mainCover {
-  background-image: linear-gradient(
-    to right,
-    rgb(51, 1, 75) 10px,
-    rgba(49, 0, 95, 0.84) 10%
-  );
+  // background-image: linear-gradient(
+  //   to right,
+  //   rgb(51, 1, 75) 10px,
+  //   rgba(49, 0, 95, 0.84) 10%
+  // );
   background-color: transparentize($color: $primary, $amount: 1);
 }
 

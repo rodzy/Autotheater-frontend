@@ -4,7 +4,6 @@ import { MoviesRoutingModule } from './movies-routing.module';
 import { IndexComponent } from './index/index.component';
 import { UpcomingmoviesComponent } from './upcomingmovies/upcomingmovies.component';
 import { SharedModule } from '../shared/shared.module';
-import {NgxUsefulSwiperModule} from 'ngx-useful-swiper';
 import { AllmoviesComponent } from './allmovies/allmovies.component';
 import { BestmoviesComponent } from './bestmovies/bestmovies.component';
 import { DetailsComponent } from './details/details.component';
@@ -21,7 +20,6 @@ const imports: any[] = [
   CommonModule,
   MoviesRoutingModule,
   SharedModule,
-  NgxUsefulSwiperModule,
   TooltipModule
 ];
 
