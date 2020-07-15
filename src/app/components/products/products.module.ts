@@ -7,12 +7,14 @@ import { SharedModule } from '../shared/shared.module';
 import { DrinksComponent } from './drinks/drinks.component';
 import { SnacksComponent } from './snacks/snacks.component';
 import { PopcornComponent } from './popcorn/popcorn.component';
+import { DetailsComponent } from './details/details.component';
 
 const declarations: any[] = [
   IndexComponent,
   DrinksComponent,
   SnacksComponent,
   PopcornComponent,
+  DetailsComponent,
 ];
 const imports: any[] = [CommonModule, ProductsRoutingModule, SharedModule];
 
