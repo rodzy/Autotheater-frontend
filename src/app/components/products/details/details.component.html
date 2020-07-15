@@ -1,1 +1,9 @@
-<p>details works!</p>
+<div *ngIf="data">
+  <div style="display: flex;align-items: center;padding: 400px;">
+      {{data.name}}
+      {{data.price}}
+  </div>
+</div>
+<div *ngIf="!data">
+  <app-loading></app-loading>
+</div>
