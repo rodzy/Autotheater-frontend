@@ -1,9 +1,16 @@
 <section *ngIf="dataprop">
-  <div>
+  <div class="container">
       <div *ngFor="let item of dataprop">
-        <div *ngIf="item.type_id===1">
-          <h1>Name: {{ item.name }}</h1>
-          <p>{{ item.sinopsis }}</p>
+        <div class="card" *ngIf="item.type_id===1">
+          <div class="card_image">
+            <img
+            src=
+              "https://images.unsplash.com/photo-1585647347483-22b66260dfff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+            alt="ProductCover"
+          />
+          </div>
+          <h1>{{ item.name }}</h1>
+          <p>{{ item.description }}</p>
           <div *ngIf="item?.genres">
             <ul>
               <li *ngFor="let gen of item.genres">
@@ -13,5 +20,5 @@
           </div>
         </div>
       </div>
-    </div>
+  </div>
 </section>
