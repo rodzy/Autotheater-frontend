@@ -5,11 +5,20 @@
           <div class="card_image">
             <img
             src=
-              "https://images.unsplash.com/photo-1585647347483-22b66260dfff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+              "https://images.unsplash.com/photo-1550674640-edeb406d94bc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
             alt="ProductCover"
           />
+          <div class="card_title">
+            <a [routerLink]="['/products/', item.id]" class="btn"
+              ><span class="btitle">View details</span></a
+            >
           </div>
-          <h1>Name: {{ item.name }}</h1>
+          </div>
+          <div>
+            <div class="heading">
+              {{ item.name }}
+            </div>
+          </div>
           <p>{{ item.sinopsis }}</p>
           <div *ngIf="item?.genres">
             <ul>
