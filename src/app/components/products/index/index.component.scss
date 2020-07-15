@@ -1,0 +1,43 @@
+$primary: #fffb00;
+$secondary: #7109ad;
+$secondary-dual: #45036b;
+$misc: #9203e6;
+$bg-secondary: #333333;
+
+.breadcrumbs {
+  display: flex;
+  width: 100%;
+  padding-top: 20px;
+  background-color: $bg-secondary;
+  box-shadow: 1px 5px $secondary;
+  position: relative;
+}
+
+.btitle {
+  font-weight: 600;
+  padding-left: 80px;
+  text-shadow: 3px 3px #3c045c;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.headings {
+  font-weight: 600;
+  text-shadow: 3px 3px #3c045c;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.spanx {
+  color: $primary;
+}
+
+.like-count {
+  display: flex;
+  font-size: 15px;
+  margin-left: 5px;
+  font-weight: 500;
+  text-shadow: 3px 3px #3c045c;
+}
+section {
+  display: grid;
+  justify-items: center;
+  padding: 50px;
+}

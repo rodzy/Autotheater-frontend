@@ -1,3 +1,9 @@
+$primary: #fffb00;
+$secondary: #7109ad;
+$secondary-dual: #45036b;
+$misc: #9203e6;
+$bg-secondary: #333333;
+
 .container {
   width: 100%;
   padding-top: 5em;
@@ -6,7 +12,9 @@
   display: flex;
   justify-content: center;
   margin: 0;
-
+  border-top: solid;
+  border-color: $secondary;
+  position: relative;
 }
 .logo {
   width: 60px;
@@ -27,7 +35,7 @@
   justify-content: space-around;
   align-items: center;
   height: 10vh;
-  background-color: #333333;
+  background-color: $bg-secondary;
   top: 0;
   left: 0;
   right: 0;
