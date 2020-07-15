@@ -18,8 +18,15 @@
           <div>
             <div class="heading">
               {{ item.name }}
+              <p style="padding-top: 5px;">${{item.price}}</p>
             </div>
           </div>
+          <ng-container *ngIf="item.status===true; else elseTemplate">
+            <span style="font-weight: 600;color: green;">On stock</span>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <span style="font-weight: 600;color: red;">Out of stock</span>
+          </ng-template>
           <p>{{ item.sinopsis }}</p>
           <div *ngIf="item?.genres">
             <ul>

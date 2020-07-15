@@ -23,6 +23,7 @@ $bg-secondary: #333333;
 .headings {
   font-weight: 600;
   text-shadow: 3px 3px #3c045c;
+  letter-spacing: 1px;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 .spanx {
@@ -40,5 +41,6 @@ section {
   display: grid;
   justify-items: center;
   padding: 50px;
+  padding-bottom: 100px;
 }
 
