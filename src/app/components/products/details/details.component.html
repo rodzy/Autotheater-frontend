@@ -1,7 +1,15 @@
 <div *ngIf="data">
-  <div style="display: flex;align-items: center;padding: 400px;">
-      {{data.name}}
-      {{data.price}}
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 400px;
+    "
+  >
+    {{ data.name }}
+    {{ data.price }}
+    <p>{{ data.description }}</p>
   </div>
 </div>
 <div *ngIf="!data">
