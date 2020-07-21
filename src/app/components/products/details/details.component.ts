@@ -4,6 +4,7 @@ import { GenericService } from '../../../services/generic.service';
 import { NotficationService } from '../../../services/notfication.service';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
+import { Products } from '../../../models/Products.interface';
 
 @Component({
   selector: 'app-details',
@@ -11,7 +12,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent implements OnInit {
-  data: any;
+  data: Products;
   errors: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
@@ -28,10 +29,10 @@ export class DetailsComponent implements OnInit {
   // Listing movies using the generic service and the notifying service
   ObtainProductDetails(id: any) {
     this.gService
-      .Obtain('products', id)
+      .Obtain<Products>('products', this.data, id)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
-        (data: any) => {
+        (data: Products) => {
           this.data = data;
         },
         (error: any) => {

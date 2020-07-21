@@ -4,6 +4,7 @@ import { GenericService } from '../../../services/generic.service';
 import { NotficationService } from '../../../services/notfication.service';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
+import { Movie } from '../../../models/Movies.interface';
 
 @Component({
   selector: 'app-details',
@@ -11,7 +12,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent implements OnInit {
-  data: any;
+  data: Movie;
   errors: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
   public classification = ['G', 'PG', 'M', 'MA 15+', 'R 18+', 'X 18+'];
@@ -30,10 +31,10 @@ export class DetailsComponent implements OnInit {
   // Listing movies using the generic service and the notifying service
   ObtainMovieDetails(id: any) {
     this.gService
-      .Obtain('movies', id)
+      .Obtain<Movie>('movies', this.data, id)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
-        (data: any) => {
+        (data: Movie) => {
           this.data = data;
         },
         (error: any) => {

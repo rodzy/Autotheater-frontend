@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { GenericService } from '../../../services/generic.service';
 import { NotficationService } from '../../../services/notfication.service';
 import { takeUntil, map } from 'rxjs/operators';
+import { Movie } from '../../../models/Movies.interface';
 
 @Component({
   selector: 'app-likedmovies',
@@ -10,7 +11,7 @@ import { takeUntil, map } from 'rxjs/operators';
   styleUrls: ['./likedmovies.component.scss'],
 })
 export class LikedmoviesComponent implements OnInit {
-  data: any;
+  data: Movie[];
   error: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
@@ -24,15 +25,15 @@ export class LikedmoviesComponent implements OnInit {
 
   listPopular() {
     this.gService
-      .List('movies/')
+      .List<Movie>('movies/', this.data)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
-        (data: any) => {
+        (data: Movie[]) => {
           this.data = data;
         },
         (error: any) => {
           this.notification.message(error.name, error.messge, 'error');
         }
       );
-    }
+  }
 }

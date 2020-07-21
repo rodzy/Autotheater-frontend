@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { GenericService } from '../../../services/generic.service';
 import { NotficationService } from '../../../services/notfication.service';
 import { takeUntil } from 'rxjs/operators';
+import { Locations } from '../../../models/Locations.interface';
 
 @Component({
   selector: 'app-locations',
@@ -10,7 +11,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./locations.component.scss'],
 })
 export class LocationsComponent implements OnInit {
-  data: any;
+  data: Locations[];
   error: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
@@ -24,10 +25,10 @@ export class LocationsComponent implements OnInit {
 
   listingLocations() {
     this.gService
-      .List('locations/')
+      .List<Locations>('locations/',this.data)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
-        (data: any) => {
+        (data: Locations[]) => {
           this.data = data;
         },
         (error: any) => {

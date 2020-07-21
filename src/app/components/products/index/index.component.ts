@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { GenericService } from '../../../services/generic.service';
 import { NotficationService } from '../../../services/notfication.service';
 import { takeUntil } from 'rxjs/operators';
+import { Products } from '../../../models/Products.interface';
 
 @Component({
   selector: 'app-index',
@@ -10,7 +11,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./index.component.scss'],
 })
 export class IndexComponent implements OnInit {
-  data: any;
+  data: Products[];
   errors: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
@@ -24,39 +25,38 @@ export class IndexComponent implements OnInit {
   }
 
   // Listing products
-  listingProducts(){
+  listingProducts() {
     this.gService
-    .List('products/')
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(
-      (data: any) => {
-        this.data = data;
-      },
-      (error: any) => {
-        this.notification.message(error.name, error.messge, 'error');
-      }
-    );
+      .List<Products>('products/', this.data)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (data: Products[]) => {
+          this.data = data;
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.messge, 'error');
+        }
+      );
   }
 
   // Listing most popular products
-  listingMostRatedProducts(){
-    this.gService
-    .List('products/popular/')
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(
-      (data: any) => {
-        this.data = data;
-      },
-      (error: any) => {
-        this.notification.message(error.name, error.messge, 'error');
-      }
-    );
-  }
+  // listingMostRatedProducts(){
+  //   this.gService
+  //   .List('products/popular/')
+  //   .pipe(takeUntil(this.destroy$))
+  //   .subscribe(
+  //     (data: any) => {
+  //       this.data = data;
+  //     },
+  //     (error: any) => {
+  //       this.notification.message(error.name, error.messge, 'error');
+  //     }
+  //   );
+  // }
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy(): void {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
-
   }
 }
