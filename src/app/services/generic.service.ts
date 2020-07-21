@@ -37,31 +37,43 @@ export class GenericService {
   }
 
   // Listing
-  List(endpoint: string): Observable<any> {
+  List<T>(endpoint: string, model: T | any): Observable<T | T[]> {
     return this.http
-      .get<any>(this.server + endpoint, { headers: this.headers })
+      .get<T | T[]>(this.server + endpoint, { headers: this.headers })
       .pipe(catchError(this.handler.handleErrors.bind(this)));
   }
 
   // Obtain a resource
-  Obtain(endpoint: string, filter: any): Observable<any | any[]> {
+  Obtain<T>(
+    endpoint: string,
+    model: T | any,
+    filter: any
+  ): Observable<T | T[]> {
     return this.http
-      .get<any | any[]>(this.server + endpoint + `/${filter}`, {
+      .get<T | T[]>(this.server + endpoint + `/${filter}`, {
         headers: this.headers,
       })
       .pipe(catchError(this.handler.handleErrors.bind(this)));
   }
 
   // Create a resource
-  Create(endpoint: string, object: any | any): Observable<any | any[]> {
-    return this.http.post<any | any[]>(this.server + endpoint, object, {
+  Create<T>(
+    endpoint: string,
+    model: T | any,
+    object: T | any
+  ): Observable<T | T[]> {
+    return this.http.post<T | T[]>(this.server + endpoint, object, {
       headers: this.headers,
     });
   }
 
   // Patch a resource
-  Update(endpoint: string, object: any | any[]): Observable<any | any[]> {
-    return this.http.patch<any | any[]>(
+  Update<T>(
+    endpoint: string,
+    model: T | any,
+    object: T | any
+  ): Observable<T | T[]> {
+    return this.http.patch<T | T[]>(
       this.server + endpoint + `/${object.id}`,
       object,
       { headers: this.headers }

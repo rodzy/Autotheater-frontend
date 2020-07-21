@@ -4,6 +4,7 @@ import { NotficationService } from '../../../services/notfication.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { TmdbService } from '../../../services/tmdb.service';
+import { Movie } from '../../../models/Movies.interface';
 
 @Component({
   selector: 'app-movies-index',
@@ -11,7 +12,8 @@ import { TmdbService } from '../../../services/tmdb.service';
   styleUrls: ['./index.component.scss'],
 })
 export class IndexComponent implements OnInit {
-  data: any;
+  data: Movie[];
+  liked: Movie[];
   dmdb: any;
   errors: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
@@ -24,15 +26,16 @@ export class IndexComponent implements OnInit {
   ngOnInit(): void {
     this.listingMovies();
     this.listUpcoming();
+    this.listingPopularMovies();
   }
 
   // Listing movies using the generic service and the notifying service
   listingMovies() {
     this.gService
-      .List('movies/')
+      .List<Movie>('movies/', this.data)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
-        (data: any) => {
+        (data: Movie[]) => {
           this.data = data;
         },
         (error: any) => {
@@ -44,11 +47,13 @@ export class IndexComponent implements OnInit {
   // Listing most popular movies
   listingPopularMovies() {
     this.gService
-      .List('movies/popular')
+      .List<Movie>('movies/', this.data)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
-        (data: any) => {
-          this.data = data;
+        (data: Movie[]) => {
+          this.liked = data
+            .filter((x) => x.likes_count)
+            .sort((a, b) => b.likes_count - a.likes_count);
         },
         (error: any) => {
           this.notification.message(error.name, error.messge, 'error');

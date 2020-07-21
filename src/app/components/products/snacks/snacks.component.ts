@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Products } from '../../../models/Products.interface';
 
 @Component({
   selector: 'app-snacks',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./snacks.component.scss'],
 })
 export class SnacksComponent implements OnInit {
-  @Input() dataprop;
+  @Input() dataprop: Products[];
   constructor() {}
 
   ngOnInit(): void {}

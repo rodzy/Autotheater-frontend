@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Movie } from '../../../models/Movies.interface';
 
 @Component({
   selector: 'app-allmovies',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./allmovies.component.scss'],
 })
 export class AllmoviesComponent implements OnInit {
-  @Input() data;
+  @Input() data: Movie[];
   constructor() {}
 
   ngOnInit(): void {}
