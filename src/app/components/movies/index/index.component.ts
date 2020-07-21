@@ -46,8 +46,19 @@ export class IndexComponent implements OnInit {
 
   // Listing most popular movies
   listingPopularMovies() {
-    this.liked = this.data.filter((x) => x.likes_count >= 2);
-    console.log(this.liked);
+    this.gService
+      .List<Movie>('movies/', this.data)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (data: Movie[]) => {
+          this.liked = data
+            .filter((x) => x.likes_count)
+            .sort((a, b) => b.likes_count - a.likes_count);
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.messge, 'error');
+        }
+      );
   }
 
   // @TODO: KEY env call

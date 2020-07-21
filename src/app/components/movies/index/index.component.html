@@ -3,7 +3,7 @@
     <h1 class="btitle">Movies & Upcoming releases<span alt="emoji"> 🎬</span></h1>
   </div>
   <app-allmovies [data]="data"></app-allmovies>
-  <app-bestmovies [data]="data"></app-bestmovies>
+  <app-bestmovies [data]="liked"></app-bestmovies>
   <app-upcomingmovies [dataprops]="dmdb"></app-upcomingmovies>
 </div>
 <div *ngIf="!data">

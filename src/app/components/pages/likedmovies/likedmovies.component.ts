@@ -20,20 +20,24 @@ export class LikedmoviesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.listPopular();
+    this.listingPopularMovies();
   }
 
-  listPopular() {
+   // Listing most popular movies
+   listingPopularMovies() {
     this.gService
       .List<Movie>('movies/', this.data)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         (data: Movie[]) => {
-          this.data = data;
+          this.data = data
+            .filter((x) => x.likes_count)
+            .sort((a, b) => b.likes_count - a.likes_count);
         },
         (error: any) => {
           this.notification.message(error.name, error.messge, 'error');
         }
       );
   }
+
 }
