@@ -1,6 +1,6 @@
 <div style="display: flex; flex-direction: column; align-items: center;">
   <h1 class="heading">Log in</h1>
-  <div class="container">
+  <form [formGroup]="LoginForm" class="container">
     <div class="insideContainer">
       <div class="insideForm">
         <label for="email_id" class="labels">Email</label>
@@ -11,6 +11,7 @@
           aria-describedby="email_error"
           class="inputs"
           placeholder="Your email here"
+
         />
         <label for="password_id" class="labels">Password</label>
         <input
@@ -20,15 +21,17 @@
           aria-describedby="password_error"
           class="inputs"
           placeholder="Your password here"
+
         />
         <div class="forgetLink">
           <a href="#">Forgot your credentials?</a>
         </div>
-        <button class="submitBtn">Log in</button>
+        <button class="submitBtn" (click)="updateValues()">Log in</button>
         <div class="noAccount">
+         
             Don't have an account?<a> Register here</a>
         </div>
       </div>
     </div>
-  </div>
+  </form>
 </div>
