@@ -80,4 +80,10 @@ export class GenericService {
       { headers: this.headers }
     );
   }
+
+  Like(endpoint: string, id: number): Observable<any | any[]> {
+    return this.http.post<any | any[]>(this.server + endpoint + `/${id}`, {
+      headers: this.headers,
+    });
+  }
 }

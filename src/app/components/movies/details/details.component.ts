@@ -43,6 +43,11 @@ export class DetailsComponent implements OnInit {
       );
   }
 
+  // Like the current movie
+  LikeMovie(id: any) {
+    this.gService.Like('movies', id).pipe(takeUntil(this.destroy$));
+  }
+
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy(): void {
     this.destroy$.next(true);
