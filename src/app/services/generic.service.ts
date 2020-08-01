@@ -5,7 +5,7 @@ import { CustomErrorHandlerService } from './custom-error-handler.service';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Token } from '../models/Token.interaface';
+import { Token } from '../models/Token.interface';
 
 @Injectable({
   providedIn: 'root',
