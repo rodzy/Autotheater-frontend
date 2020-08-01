@@ -5,13 +5,14 @@ import { CustomErrorHandlerService } from './custom-error-handler.service';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Token } from '../models/Token.interaface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GenericService {
   server: string = environment.SERVER_URL;
-  currentUser: any;
+  currentUser: Token;
   headers = new HttpHeaders();
 
   constructor(

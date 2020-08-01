@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   SERVER_URL: 'http://127.0.0.1:8000/api/v1/',
-  MOVIES_API: 'https://api.themoviedb.org/3/movie/'
+  MOVIES_API: 'https://api.themoviedb.org/3/movie/',
+  TMDB_KEY: '7173b32ff3e2adf2e13d28656b0cf89c',
 };
 
 /*

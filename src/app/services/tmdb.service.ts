@@ -10,6 +10,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class TmdbService {
   api: string = environment.MOVIES_API;
+  key: string = environment.TMDB_KEY;
   headers = new HttpHeaders();
   constructor(
     private http: HttpClient,
@@ -25,13 +26,12 @@ export class TmdbService {
   // Getting the data from TMDB API for forms injection
   RetrieveData(
     endpoint: string,
-    key: string,
     language: string,
-    page: string,
+    page: string
   ): Observable<any> {
     return this.http
       .get<any>(
-        `${this.api + endpoint}?api_key=${key}&${language}&page=${page}`,
+        `${this.api + endpoint}?api_key=${this.key}&${language}&page=${page}`,
         {
           headers: this.headers,
         }

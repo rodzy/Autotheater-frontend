@@ -66,7 +66,6 @@ export class IndexComponent implements OnInit {
     this.tmbdService
       .RetrieveData(
         'upcoming',
-        '7173b32ff3e2adf2e13d28656b0cf89c',
         'en-US',
         '1'
       )

@@ -34,18 +34,16 @@ export class AuthService {
   }
 
   // Create/Register users
-  // @TODO REWRITE DOCS FOR THE ROUTING IN THE SERVER
-  CreateUser(user: any): Observable<any> {
+  CreateUser<T>(user: T): Observable<T> {
     return this.http
-      .post<any>(this.server + 'app/auth/register', user, this.httpOptions)
+      .post<T>(this.server + 'auth/register', user, this.httpOptions)
       .pipe(catchError(this.handler.handleErrors.bind(this)));
   }
 
   // Login registered users
-  // @TODO REWRITE DOCS FOR THE ROUTING IN THE SERVER
-  LoginUser(user: any): Observable<any> {
+  LoginUser<T>(user: T): Observable<T> {
     return this.http
-      .post<any>(this.server + 'app/auth/login', user, this.httpOptions)
+      .post<T>(this.server + 'auth/login', user, this.httpOptions)
       .pipe(
         // tslint:disable-next-line: no-shadowed-variable
         map((user) => {
@@ -57,7 +55,6 @@ export class AuthService {
   }
 
   // Logout
-  // @TODO REWRITE DOCS FOR THE ROUTING IN THE SERVER
   Logout() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
