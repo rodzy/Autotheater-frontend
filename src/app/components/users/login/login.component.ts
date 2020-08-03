@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
   login: Login;
   LoginForm: FormGroup;
+  isSubmited = false;
   constructor(
     public formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -31,10 +32,11 @@ export class LoginComponent implements OnInit {
     if (!this.authService.currentUser) {
       this.router.navigate(['/']);
     }
-    this.reactiveForm();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.reactiveForm();
+  }
 
   reactiveForm() {
     this.LoginForm = this.formBuilder.group({
@@ -50,8 +52,12 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  get formControls() {
+    return this.LoginForm.controls;
+  }
+
   onSubmited() {
-    this.reactiveForm();
+    this.isSubmited = true;
     if (this.LoginForm.invalid) {
       return;
     }

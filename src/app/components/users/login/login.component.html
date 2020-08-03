@@ -14,8 +14,8 @@
           required
           formControlName="email"
         />
-        <div *ngIf="!LoginForm.valid">
-          <h1>Hola</h1>
+        <div *ngIf="isSubmited && formControls.email.errors">
+          <p>The email is required</p>
         </div>
         <label for="password_id" class="labels">Password</label>
         <input
@@ -28,6 +28,9 @@
           required
           formControlName="password"
         />
+        <div *ngIf="isSubmited && formControls.password.errors">
+          <p>The password is required</p>
+        </div>
         <div class="forgetLink">
           <a href="#">Forgot your credentials?</a>
         </div>
