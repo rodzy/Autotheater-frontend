@@ -51,12 +51,21 @@ export class RegisterComponent implements OnInit {
   passwordVerification() {
     const password = this.RegisterForm.get('password').value;
     const confirmedPassword = this.RegisterForm.get('confirmPassword').value;
-    return password === confirmedPassword ? null : !this.equals;
+    return password === confirmedPassword
+      ? (this.equals = false)
+      : (this.equals = true);
+  }
+
+  get formControls() {
+    return this.RegisterForm.controls;
   }
 
   onSubmited() {
     this.isSubmited = true;
     if (this.RegisterForm.invalid) {
+      return;
+    }
+    if (this.passwordVerification()) {
       return;
     }
   }

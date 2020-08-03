@@ -1,7 +1,7 @@
 <div style="display: flex; flex-direction: column; align-items: center;">
   <h1 class="heading">Create your account</h1>
   <h2>Register to AutoTheater and make your reservations easier</h2>
-  <div class="container">
+  <form [formGroup]="RegisterForm" (ngSubmit)="onSubmited()" class="container">
     <div class="insideContainer">
       <div class="insideForm">
         <label for="email_id" class="labels">Email</label>
@@ -12,7 +12,11 @@
           aria-describedby="email_error"
           class="inputs"
           placeholder="Your email here"
+          formControlName="email"
         />
+        <div *ngIf="isSubmited && formControls.email.errors">
+          <p>The email is required</p>
+        </div>
         <label for="username_id" class="labels">Username</label>
         <input
           type="text"
@@ -21,7 +25,11 @@
           aria-describedby="username_error"
           class="inputs"
           placeholder="Your username here"
+          formControlName="userName"
         />
+        <div *ngIf="isSubmited && formControls.userName.errors">
+          <p>The email is required</p>
+        </div>
         <label for="password_id" class="labels">Password</label>
         <input
           type="password"
@@ -30,7 +38,11 @@
           aria-describedby="password_error"
           class="inputs"
           placeholder="Your password here"
+          formControlName="password"
         />
+        <div *ngIf="isSubmited && formControls.password.errors">
+          <p>The email is required</p>
+        </div>
         <label for="confirm_password_id" class="labels">Confirm password</label>
         <input
           type="password"
@@ -39,9 +51,16 @@
           aria-describedby="confirm_password_error"
           class="inputs"
           placeholder="Confirm your password here"
+          formControlName="confirmPassword"
         />
-        <button class="submitBtn">Register</button>
+        <div *ngIf="isSubmited && formControls.confirmPassword.errors">
+          <p>The email is required</p>
+        </div>
+        <div *ngIf="equals">
+          <p>Password must be equals</p>
+        </div>
+        <button type="submit" class="submitBtn">Register</button>
       </div>
     </div>
-  </div>
+  </form>
 </div>
