@@ -8,8 +8,8 @@ import {
 import { Login } from '../../../models/Login.interface';
 import { AuthService } from '../../../services/auth.service';
 import { Subject } from 'rxjs';
-import { Users } from '../../../models/Users.interface';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NotficationService } from '../../../services/notfication.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  user: Users;
   error: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
   login: Login;
@@ -27,7 +26,8 @@ export class LoginComponent implements OnInit {
     public formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private notification: NotficationService
   ) {
     if (!this.authService.currentUser) {
       this.router.navigate(['/']);
@@ -35,6 +35,12 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.login === undefined) {
+      this.login = {
+        email: '',
+        password: '',
+      };
+    }
     this.reactiveForm();
   }
 
@@ -61,8 +67,19 @@ export class LoginComponent implements OnInit {
     if (this.LoginForm.invalid) {
       return;
     }
-    this.authService
-      .LoginUser(this.LoginForm.value)
-      .subscribe((res: any) => {});
+    this.login = {
+      email: this.LoginForm.get('email').value,
+      password: this.LoginForm.get('password').value,
+    };
+
+    this.authService.LoginUser<Login>(this.login).subscribe(
+      (res: any) => {
+        (this.login = res), this.router.navigate(['/']);
+      },
+      (errors: any) => {
+        this.error = errors;
+        this.notification.msgValidate(this.error);
+      }
+    );
   }
 }
