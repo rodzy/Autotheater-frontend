@@ -4,6 +4,32 @@
   <form [formGroup]="RegisterForm" (ngSubmit)="onSubmited()" class="container">
     <div class="insideContainer">
       <div class="insideForm">
+        <label for="firstName_id" class="labels">First name</label>
+        <input
+          type="text"
+          id="firstName_id"
+          name="firstName"
+          aria-describedby="username_error"
+          class="inputs"
+          placeholder="Your first name here"
+          formControlName="firstName"
+        />
+        <div *ngIf="isSubmited && formControls.firstName.errors">
+          <p>Your first name is required</p>
+        </div>
+        <label for="lastName_id" class="labels">Last name</label>
+        <input
+          type="text"
+          id="lastName_id"
+          name="lastName"
+          aria-describedby="username_error"
+          class="inputs"
+          placeholder="Your last name here"
+          formControlName="lastName"
+        />
+        <div *ngIf="isSubmited && formControls.lastName.errors">
+          <p>Your last name is required</p>
+        </div>
         <label for="email_id" class="labels">Email</label>
         <input
           type="text"
@@ -15,19 +41,6 @@
           formControlName="email"
         />
         <div *ngIf="isSubmited && formControls.email.errors">
-          <p>The email is required</p>
-        </div>
-        <label for="username_id" class="labels">Username</label>
-        <input
-          type="text"
-          id="username_id"
-          name="username"
-          aria-describedby="username_error"
-          class="inputs"
-          placeholder="Your username here"
-          formControlName="userName"
-        />
-        <div *ngIf="isSubmited && formControls.userName.errors">
           <p>The email is required</p>
         </div>
         <label for="password_id" class="labels">Password</label>

@@ -1,11 +1,12 @@
 export interface Users {
-  id: number;
+  id?: number;
   name: string;
-  lastname: null;
+  lastname?: string;
   email: string;
-  email_verified_at: null;
-  status: boolean;
+  email_verified_at?: null;
+  password: string;
+  status?: boolean;
   role_id: number;
-  created_at: string;
-  updated_at: string;
+  created_at?: string;
+  updated_at?: string;
 }

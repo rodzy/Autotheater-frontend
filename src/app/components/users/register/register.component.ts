@@ -6,6 +6,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
+import { Users } from '../../../models/Users.interface';
+import { NotficationService } from '../../../services/notfication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -16,26 +19,44 @@ export class RegisterComponent implements OnInit {
   RegisterForm: FormGroup;
   isSubmited = false;
   equals = false;
+  errors: any;
+  user: Users;
 
   constructor(
     public fromBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router,
+    private notification: NotficationService
   ) {}
 
   ngOnInit(): void {
+    if (this.user === undefined) {
+      this.user = {
+        id: 0,
+        email: '',
+        name: '',
+        lastname: '',
+        password: '',
+        role_id: 0,
+      };
+    }
     this.reactiveForm();
   }
 
   reactiveForm() {
     this.RegisterForm = this.fromBuilder.group({
+      firstName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+      ]),
+      lastName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+      ]),
       email: new FormControl('', [
         Validators.required,
         Validators.minLength(10),
         Validators.email,
-      ]),
-      userName: new FormControl('', [
-        Validators.required,
-        Validators.minLength(5),
       ]),
       password: new FormControl('', [
         Validators.required,
@@ -68,5 +89,22 @@ export class RegisterComponent implements OnInit {
     if (this.passwordVerification()) {
       return;
     }
+    this.user = {
+      email: this.RegisterForm.get('email').value,
+      name: this.RegisterForm.get('firstName').value,
+      lastname: this.RegisterForm.get('lastName').value,
+      password: this.RegisterForm.get('password').value,
+      role_id: 2,
+    };
+    this.authService.CreateUser<Users>(this.user).subscribe(
+      (data: Users) => {
+        (this.user = data), this.router.navigate(['/']);
+        console.log(this.user);
+      },
+      (error: any) => {
+        this.errors = error;
+        this.notification.msgValidate(this.errors);
+      }
+    );
   }
 }
