@@ -26,7 +26,7 @@ export class IndexComponent implements OnInit {
   ngOnInit(): void {
     this.listingMovies();
     this.listUpcoming();
-    this.listingPopularMovies();
+    // this.listingPopularMovies();
   }
 
   // Listing movies using the generic service and the notifying service
@@ -37,20 +37,6 @@ export class IndexComponent implements OnInit {
       .subscribe(
         (data: Movie[]) => {
           this.data = data;
-        },
-        (error: any) => {
-          this.notification.message(error.name, error.messge, 'error');
-        }
-      );
-  }
-
-  // Listing most popular movies
-  listingPopularMovies() {
-    this.gService
-      .List<Movie>('movies/', this.data)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (data: Movie[]) => {
           this.liked = data
             .filter((x) => x.likes_count)
             .sort((a, b) => b.likes_count - a.likes_count);
@@ -61,14 +47,9 @@ export class IndexComponent implements OnInit {
       );
   }
 
-  // @TODO: KEY env call
   listUpcoming() {
     this.tmbdService
-      .RetrieveData(
-        'upcoming',
-        'en-US',
-        '1'
-      )
+      .RetrieveData('upcoming', 'en-US', '1')
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         (dmdb: any) => {

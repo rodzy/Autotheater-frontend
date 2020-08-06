@@ -7,20 +7,20 @@ import { SharedModule } from '../shared/shared.module';
 import { AllmoviesComponent } from './allmovies/allmovies.component';
 import { BestmoviesComponent } from './bestmovies/bestmovies.component';
 import { DetailsComponent } from './details/details.component';
-import {TooltipModule} from 'ng2-tooltip-directive';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 const declarations: any[] = [
   IndexComponent,
   UpcomingmoviesComponent,
   AllmoviesComponent,
   BestmoviesComponent,
-  DetailsComponent
+  DetailsComponent,
 ];
 const imports: any[] = [
   CommonModule,
   MoviesRoutingModule,
   SharedModule,
-  TooltipModule
+  TooltipModule,
 ];
 
 @NgModule({
