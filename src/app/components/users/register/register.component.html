@@ -54,7 +54,7 @@
           formControlName="password"
         />
         <div *ngIf="isSubmited && formControls.password.errors">
-          <p>The email is required</p>
+          <p>The password is required & must be 9 characters long</p>
         </div>
         <label for="confirm_password_id" class="labels">Confirm password</label>
         <input
@@ -67,7 +67,7 @@
           formControlName="confirmPassword"
         />
         <div *ngIf="isSubmited && formControls.confirmPassword.errors">
-          <p>The email is required</p>
+          <p>The password is required & must be 9 characters long</p>
         </div>
         <div *ngIf="equals">
           <p>Password must be equals</p>

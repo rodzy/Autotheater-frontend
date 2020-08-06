@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
       ]),
       password: new FormControl('', [
         Validators.required,
-        Validators.minLength(12),
+        Validators.minLength(9),
       ]),
     });
   }
@@ -72,14 +72,23 @@ export class LoginComponent implements OnInit {
       password: this.LoginForm.get('password').value,
     };
 
-    this.authService.LoginUser<Login>(this.login).subscribe(
-      (res: any) => {
-        (this.login = res), this.router.navigate(['/']);
-      },
-      (errors: any) => {
-        this.error = errors;
-        this.notification.msgValidate(this.error);
-      }
-    );
+    try {
+      this.authService.LoginUser<Login>(this.login).subscribe(
+        (res: any) => {
+          (this.login = res),
+            this.router
+              .navigateByUrl('/', { skipLocationChange: true })
+              .then(() => {
+                this.router.navigate(['IndexComponent']);
+              });
+        },
+        (errors: any) => {
+          this.notification.msgValidate(errors.message);
+        }
+      );
+    } catch (error) {
+      console.log(error);
+      return;
+    }
   }
 }

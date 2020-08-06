@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import undernav from './undernav';
 
 @Component({
@@ -13,7 +13,7 @@ export class UndernavComponent implements OnInit {
   buttonlogout: string;
   profiletag: string;
 
-  show = false;
+  @Input() show;
 
   constructor() {
     this.setVars();

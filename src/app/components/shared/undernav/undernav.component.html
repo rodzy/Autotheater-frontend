@@ -14,10 +14,10 @@
           <a routerLink="/register" routerLinkActive="active" class="signbtn">{{ buttonsignin }}</a>
         </li>
         <li *ngIf="show">
-          <a href="#" class="signbtn">{{ profiletag }}</a>
+          <a routerLink="/dashboard" routerLinkActive="active" class="signbtn">{{ profiletag }}</a>
         </li>
         <li *ngIf="show">
-          <a href="#" class="loginbtn">{{ buttonlogout }}</a>
+          <a routerLink="/logout" routerLinkActive="active" class="signbtn">{{ buttonlogout }}</a>
         </li>
       </ul>
     </div>

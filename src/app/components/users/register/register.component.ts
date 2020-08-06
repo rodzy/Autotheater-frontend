@@ -60,11 +60,11 @@ export class RegisterComponent implements OnInit {
       ]),
       password: new FormControl('', [
         Validators.required,
-        Validators.minLength(12),
+        Validators.minLength(9),
       ]),
       confirmPassword: new FormControl('', [
         Validators.required,
-        Validators.minLength(12),
+        Validators.minLength(9),
       ]),
     });
   }
