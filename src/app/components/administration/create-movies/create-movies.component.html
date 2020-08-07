@@ -1,56 +1,67 @@
 <div>
   <h1 class="heading">Register new movies</h1>
   <h2>Let the world know about the new releases added to AutoTheater</h2>
-  <form>
-    <label for="movie-name">
-      Movie
-    </label>
-    <select name="movie-name" id="movie-name">
-      <option value="">Select a movie from the listing</option>
-      <option *ngFor="let item">Filled by the API</option>
-    </select>
-    <label for="movie-synopsis">
-      Synopsis
-    </label>
-    <textarea
-      name="movie-synopsis"
-      id="movie-synopsis"
-      readonly
-      aria-readonly="true"
-    >
-      Synopsis goes here
-    </textarea>
-    <label for="movie-classification">
-      Classification
-    </label>
-    <select name="movie-classification" id="movie-classification">
-      <option value="">Add the recommended classification</option>
-      <option *ngFor="let item">Classifications from the local API</option>
-    </select>
-    <div>
-      <label for="movie-genre">
-        Genres
-      </label>
-      <div id="movie-genre" *ngFor="let item">
-        <input type="checkbox" id="genre" name="genre" value="" />
-        <label for="genre">Value</label>
-      </div>
-    </div>
-    <div>
-      <label for="movie-cover">
-        Movie cover
-      </label>
-      <img
-        id="movie-cover"
-        alt="movie-cover"
-        aria-label="movie-cover"
-        src="
+  <form class="container">
+    <div class="insideContainer">
+      <div class="insideForm">
+        <label for="movie-name" class="labels">
+          Movie
+        </label>
+        <select name="movie-name" id="movie-name" class="inputs">
+          <option value="">Select a movie from the listing</option>
+          <option *ngFor="let item">Filled by the API</option>
+        </select>
+        <label for="movie-synopsis" class="labels">
+          Synopsis
+        </label>
+        <textarea
+          name="movie-synopsis"
+          id="movie-synopsis"
+          readonly
+          aria-readonly="true"
+          class="textbox-content"
+        >
+          Synopsis goes here
+        </textarea>
+        <label for="movie-classification" class="labels">
+          Classification
+        </label>
+        <select
+          name="movie-classification"
+          id="movie-classification"
+          class="inputs"
+        >
+          <option value="">Add the recommended classification</option>
+          <option *ngFor="let item">Classifications from the local API</option>
+        </select>
+        <div>
+          <label for="movie-genre" class="labels">
+            Genres
+          </label>
+          <div id="movie-genre" class="list-container">
+            <label for="genre" class="check-inputs">
+              <input type="checkbox" id="genre" name="genre" value="" />
+              Value</label
+            >
+          </div>
+        </div>
+        <div>
+          <label for="movie-cover" class="labels">
+            Movie cover
+          </label>
+          <img
+            id="movie-cover"
+            alt="movie-cover"
+            aria-label="movie-cover"
+            src="
       'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + "
-      />
-    </div>
-    <div>
-      <input type="submit" value="Submit changes"/>
-      <input type="reset" value="Reset changes"/>
+          />
+        </div>
+        <div class="btnContainer">
+          <input type="submit" value="Submit changes" class="submit-button" />
+          <input type="reset" value="Reset changes" class="submit-button"/>
+        </div>
+      </div>
     </div>
   </form>
 </div>
