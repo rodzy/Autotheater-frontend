@@ -71,7 +71,7 @@ h2 {
   color: #ffffff;
 }
 
-.textbox-content{
+.textbox-content {
   margin-top: 8px;
   margin-bottom: 32px;
   height: 48px;
@@ -85,29 +85,82 @@ h2 {
   color: #ffffff;
 }
 
-.list-container{
-  margin-top: 8px;
-  margin-bottom: 32px;
+.genres-container {
+  width: 100%;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 10em 10em 10em 10em 10em;
+  grid-template-rows: 25% 100px auto;
+}
+
+.list-container {
   display: flex;
-}
-
-.check-inputs{
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
+  position: sticky;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  input {
+    position: absolute;
+    opacity: 0;
     cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    height: 0;
+    width: 0;
+  }
+}
+
+.checkmark {
+  position: absolute;
+  border-radius: 1rem;
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background-color: rgba(97, 97, 97, 0.972);
+}
+
+.list-container:hover input ~ .checkmark {
+  background-color: $primary;
 }
 
 
-.submit-button{
+.list-container input:checked ~ .checkmark {
+  background-color: $primary;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.list-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+
+.check-inputs {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.submit-button {
   height: 56px;
   width: 100%;
   border-radius: 4px;
@@ -123,7 +176,7 @@ h2 {
   padding-top: 21px;
   padding-bottom: 21px;
   cursor: pointer;
-  margin-top:10px;
+  margin-top: 10px;
   margin-left: 5px;
 }
 
@@ -132,22 +185,42 @@ h2 {
   background-color: $secondary-dual;
 }
 
-.btnContainer{
+.btnContainer {
   display: flex;
   justify-content: space-between;
 }
 
-@media screen and (max-width:600px){
-  .heading{
+.image-port{
+  width: 100%;
+  display: flex;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  place-content: center;
+}
+
+.image-port img{
+  width: 20em;
+  border-radius: 1rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .heading {
     font-size: 30px;
   }
-  h2{
+  h2 {
     font-size: 18px;
   }
-  .container{
+  .container {
     width: 100%;
   }
-  .btnContainer{
+  .btnContainer {
     flex-direction: column;
+  }
+  .genres-container {
+    width: 100%;
+    padding: 30px;
+    display: grid inline-grid;
+    grid-template-columns: 0 ;
+    grid-template-rows: 0;
   }
 }
