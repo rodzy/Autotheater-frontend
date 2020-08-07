@@ -11,12 +11,14 @@ import { UsersModule } from './components/users/users.module';
 import { BillboardModule } from './components/billboard/billboard.module';
 import { MoviesModule } from './components/movies/movies.module';
 import { ProductsModule } from './components/products/products.module';
+import { AdministrationModule } from './components/administration/administration.module';
 
 const declarations: any[] = [AppComponent];
 
 const imports: any[] = [
   BrowserModule,
   AppRoutingModule,
+  AdministrationModule,
   BrowserAnimationsModule,
   HttpClientModule,
   SharedModule,

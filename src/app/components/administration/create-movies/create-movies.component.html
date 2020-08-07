@@ -1,1 +1,70 @@
-<p>create-movies works!</p>
+<div>
+  <h1 class="heading">Register new movies</h1>
+  <h2>Let the world know about the new releases added to AutoTheater</h2>
+  <form class="container">
+    <div class="insideContainer">
+      <div class="insideForm">
+        <label for="movie-name" class="labels">
+          Movie
+        </label>
+        <select name="movie-name" id="movie-name" class="inputs">
+          <option value="">Select a movie from the listing</option>
+          <option *ngFor="let item">Filled by the API</option>
+        </select>
+        <label for="movie-synopsis" class="labels">
+          Synopsis
+        </label>
+        <textarea
+          name="movie-synopsis"
+          id="movie-synopsis"
+          readonly
+          aria-readonly="true"
+          class="textbox-content"
+        >
+          Synopsis goes here
+        </textarea>
+        <label for="movie-classification" class="labels">
+          Classification
+        </label>
+        <select
+          name="movie-classification"
+          id="movie-classification"
+          class="inputs"
+        >
+          <option value="">Add the recommended classification</option>
+          <option *ngFor="let item">Classifications from the local API</option>
+        </select>
+        <div>
+          <label for="movie-genre" class="labels">
+            Genres
+          </label>
+          <div id="movie-genre" class="genres-container">
+            <label class="list-container"
+              >Value
+              <input type="checkbox" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+        <div>
+          <label for="movie-cover" class="labels">
+            Movie cover
+          </label>
+          <div class="image-port">
+            <img
+              id="movie-cover"
+              alt="movie-cover"
+              aria-label="movie-cover"
+              src="
+            https://image.tmdb.org/t/p/w600_and_h900_bestv2/rOuGm07PxBhEsK9TaGPRQVJQm1X.jpg"
+            />
+          </div>
+        </div>
+        <div class="btnContainer">
+          <input type="submit" value="Submit changes" class="submit-button" />
+          <input type="reset" value="Reset changes" class="submit-button" />
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
