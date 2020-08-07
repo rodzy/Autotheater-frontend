@@ -7,19 +7,19 @@ import { UpdateProductsComponent } from './update-products/update-products.compo
 
 const routes: Routes = [
   {
-    path: '/create-movies',
+    path: 'create-movies',
     component: CreateMoviesComponent,
   },
   {
-    path: '/create-products',
+    path: 'create-products',
     component: CreateProductsComponent,
   },
   {
-    path: '/update-movies',
+    path: 'update-movies',
     component: UpdateMoviesComponent,
   },
   {
-    path: '/update-products',
+    path: 'update-products',
     component: UpdateProductsComponent,
   },
 ];
