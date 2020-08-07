@@ -14,6 +14,7 @@ export class IndexComponent implements OnInit {
   data: Products[];
   errors: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
+  show = null;
   constructor(
     private gService: GenericService,
     private notification: NotficationService
@@ -21,7 +22,9 @@ export class IndexComponent implements OnInit {
 
   ngOnInit(): void {
     this.listingProducts();
-    // this.listingMostRatedProducts();
+    if (localStorage.getItem('currentUser')) {
+      this.show = localStorage.getItem('currentUser');
+    }
   }
 
   // Listing products
@@ -38,21 +41,6 @@ export class IndexComponent implements OnInit {
         }
       );
   }
-
-  // Listing most popular products
-  // listingMostRatedProducts(){
-  //   this.gService
-  //   .List('products/popular/')
-  //   .pipe(takeUntil(this.destroy$))
-  //   .subscribe(
-  //     (data: any) => {
-  //       this.data = data;
-  //     },
-  //     (error: any) => {
-  //       this.notification.message(error.name, error.messge, 'error');
-  //     }
-  //   );
-  // }
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy(): void {

@@ -5,6 +5,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./index.component.scss'],
 })
 export class IndexComponent implements OnInit {
+  show = null;
   public slides = [
     {
       src:
@@ -22,5 +23,9 @@ export class IndexComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (localStorage.getItem('currentUser')) {
+      this.show = localStorage.getItem('currentUser');
+    }
+  }
 }

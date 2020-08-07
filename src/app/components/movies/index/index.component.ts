@@ -17,6 +17,7 @@ export class IndexComponent implements OnInit {
   dmdb: any;
   errors: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
+  show = null;
   constructor(
     private gService: GenericService,
     private tmbdService: TmdbService,
@@ -26,7 +27,9 @@ export class IndexComponent implements OnInit {
   ngOnInit(): void {
     this.listingMovies();
     this.listUpcoming();
-    // this.listingPopularMovies();
+    if (localStorage.getItem('currentUser')) {
+      this.show = localStorage.getItem('currentUser');
+    }
   }
 
   // Listing movies using the generic service and the notifying service

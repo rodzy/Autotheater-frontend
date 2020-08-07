@@ -9,9 +9,6 @@ import { LoginComponent } from './components/users/login/login.component';
 })
 export class AppComponent {
   title = 'autotheater-frontend';
-  show = localStorage.getItem('currentUser');
 
-  constructor(public router: Router) {
-
-  }
+  constructor(public router: Router) {}
 }

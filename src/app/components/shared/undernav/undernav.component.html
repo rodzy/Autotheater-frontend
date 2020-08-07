@@ -17,7 +17,7 @@
           <a routerLink="/dashboard" routerLinkActive="active" class="signbtn">{{ profiletag }}</a>
         </li>
         <li *ngIf="show">
-          <a routerLink="/logout" routerLinkActive="active" class="signbtn">{{ buttonlogout }}</a>
+          <a (click)="logout()" class="signbtn">{{ buttonlogout }}</a>
         </li>
       </ul>
     </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import undernav from './undernav';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-undernav',
@@ -12,10 +13,11 @@ export class UndernavComponent implements OnInit {
   buttonsignin: string;
   buttonlogout: string;
   profiletag: string;
+  message: string;
 
   @Input() show;
 
-  constructor() {
+  constructor(public authService: AuthService) {
     this.setVars();
   }
 
@@ -27,5 +29,9 @@ export class UndernavComponent implements OnInit {
     this.buttonsignin = undernav.undernav.buttonsignin;
     this.buttonlogout = undernav.undernav.buttonlogout;
     this.profiletag = undernav.undernav.profiletag;
+  }
+
+  logout() {
+    this.authService.Logout();
   }
 }

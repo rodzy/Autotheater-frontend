@@ -7,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BillboardindexComponent implements OnInit {
   data: any;
+  show = null;
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (localStorage.getItem('currentUser')) {
+      this.show = localStorage.getItem('currentUser');
+    }
+  }
 }

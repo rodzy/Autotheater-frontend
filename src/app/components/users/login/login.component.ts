@@ -75,12 +75,8 @@ export class LoginComponent implements OnInit {
     try {
       this.authService.LoginUser<Login>(this.login).subscribe(
         (res: any) => {
-          (this.login = res),
-            this.router
-              .navigateByUrl('/', { skipLocationChange: true })
-              .then(() => {
-                this.router.navigate(['IndexComponent']);
-              });
+          this.login = res;
+          this.router.navigate(['/']);
         },
         (errors: any) => {
           this.notification.msgValidate(errors.message);
