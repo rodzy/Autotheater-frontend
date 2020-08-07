@@ -5,8 +5,14 @@ import { AdministrationRoutingModule } from './administration-routing.module';
 import { CreateMoviesComponent } from './create-movies/create-movies.component';
 import { CreateProductsComponent } from './create-products/create-products.component';
 import { UpdateMoviesComponent } from './update-movies/update-movies.component';
+import { UpdateProductsComponent } from './update-products/update-products.component';
 
-const declarations: any = [CreateMoviesComponent, CreateProductsComponent, UpdateMoviesComponent];
+const declarations: any = [
+  CreateMoviesComponent,
+  CreateProductsComponent,
+  UpdateMoviesComponent,
+  UpdateProductsComponent,
+];
 const imports: any = [CommonModule, AdministrationRoutingModule];
 
 @NgModule({
