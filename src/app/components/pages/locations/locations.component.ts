@@ -25,7 +25,7 @@ export class LocationsComponent implements OnInit {
 
   listingLocations() {
     this.gService
-      .List<Locations>('locations/',this.data)
+      .List<Locations>('locations/', this.data)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         (data: Locations[]) => {
