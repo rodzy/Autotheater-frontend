@@ -6,6 +6,8 @@ import { NotficationService } from '../../../services/notfication.service';
 import { TmdbService } from '../../../services/tmdb.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Results } from '../../../models/Results.interface';
+import { Result } from '../../../models/Result.interface';
 
 @Component({
   selector: 'app-create-movies',
@@ -15,7 +17,8 @@ import { Subject } from 'rxjs';
 export class CreateMoviesComponent implements OnInit {
   CreateForm: FormGroup;
   isSubmited = false;
-  tmdbData: any;
+  dmdb: Result;
+  dmd: Results;
   movie: Movie;
   destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -23,35 +26,23 @@ export class CreateMoviesComponent implements OnInit {
     public formBuilder: FormBuilder,
     private router: Router,
     private notification: NotficationService,
-    private tmdbService: TmdbService
+    private tmbdService: TmdbService
   ) {}
 
   ngOnInit(): void {
-    if (this.movie === undefined) {
-      this.movie = null;
-    }
+    this.listUpcoming();
+    console.log(this.dmdb);
   }
 
-  // reactiveForm() {
-  //   this.CreateForm = this.formBuilder.group({
-  //     movie: new FormControl
-  //     classification: new FormControl
-
-  //   })
-  // }
-
-  loadMovieData() {
-    this.tmdbService
-      .RetrieveData('upcoming', 'en-US', '1')
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (dmdb: any) => {
-          this.tmdbData = dmdb;
-        },
-        (error: any) => {
-          this.notification.message(error.name, error.message, 'error');
-        }
-      );
+  listUpcoming() {
+    this.tmbdService.executeQuery<Result>('upcoming').subscribe(
+      (d: Result) => {
+        this.dmdb = d;
+      },
+      (error: any) => {
+        this.notification.message(error.name, error.message, 'error');
+      }
+    );
   }
 
   // tslint:disable-next-line: use-lifecycle-interface

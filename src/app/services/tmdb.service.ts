@@ -38,4 +38,13 @@ export class TmdbService {
       )
       .pipe(catchError(this.handler.handleErrors.bind(this)));
   }
+
+  executeQuery<T>( query: string) {
+    query = this.api + query;
+    query += `?api_key=${ this.key }&language=es&include_image_language=es`;
+    // console.log(query);
+
+    return this.http.get<T>(query);
+
+  }
 }
