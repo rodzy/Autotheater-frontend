@@ -36,7 +36,7 @@ export class CreateMoviesComponent implements OnInit {
   ngOnInit(): void {
     if (this.dmd === undefined) {
       this.dmd = {
-        results : [],
+        results: [],
       };
     }
     this.listUpcoming();
@@ -61,7 +61,6 @@ export class CreateMoviesComponent implements OnInit {
       .subscribe(
         (gen: Genre[]) => {
           this.genres = gen;
-          console.log(this.dmd);
         },
         (error: any) => {
           this.notification.message(error.name, error.message, 'error');
