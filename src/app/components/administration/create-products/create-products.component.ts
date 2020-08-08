@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { NotficationService } from '../../../services/notfication.service';
 import { GenericService } from '../../../services/generic.service';
 import { Products } from '../../../models/Products.interface';
@@ -23,6 +28,7 @@ export class CreateProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.defaultValuesCheck();
+    this.reactiveForm();
   }
 
   defaultValuesCheck() {
@@ -48,5 +54,21 @@ export class CreateProductsComponent implements OnInit {
     }
   }
 
-  reactiveForm() {}
+  reactiveForm() {
+    this.CreateForm = this.formBuilder.group({
+      name: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      description: new FormControl('', [
+        Validators.required,
+        Validators.minLength(15),
+      ]),
+      price: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[0-9]*$'),
+      ]),
+      type_id: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[0-9]*$'),
+      ])
+    });
+  }
 }
