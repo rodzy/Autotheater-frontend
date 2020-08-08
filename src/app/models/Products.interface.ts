@@ -4,7 +4,7 @@ export interface Products {
   id?: number;
   name: string;
   description: string;
-  price: string;
+  price: number;
   status: boolean;
   type_id: number;
   created_at?: string;
