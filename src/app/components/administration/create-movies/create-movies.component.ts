@@ -19,7 +19,6 @@ import { Genre } from '../../../models/Genre.interface';
 export class CreateMoviesComponent implements OnInit {
   CreateForm: FormGroup;
   isSubmited = false;
-  dmdb: Result;
   dmd: Results;
   movie: Movie;
   genres: Genre[];
@@ -34,13 +33,37 @@ export class CreateMoviesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.defaultValuesCheck();
+    this.listUpcoming();
+    this.listGenres();
+  }
+
+  defaultValuesCheck() {
     if (this.dmd === undefined) {
       this.dmd = {
         results: [],
       };
     }
-    this.listUpcoming();
-    this.listGenres();
+    if (this.movie === undefined) {
+      this.movie = {
+        name: '',
+        sinopsis: '',
+        image: '',
+        banner: '',
+        classification_id: 0,
+        genres: [],
+        status: true,
+      };
+    }
+    if (this.genres === undefined) {
+      this.genres = [
+        {
+          id: 0,
+          name: '',
+          description: '',
+        },
+      ];
+    }
   }
 
   listUpcoming() {
