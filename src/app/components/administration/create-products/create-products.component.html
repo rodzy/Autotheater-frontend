@@ -1,1 +1,67 @@
-<p>create-products works!</p>
+<div>
+  <h1 class="heading">Register new <span class="spanx">products</span></h1>
+  <h2>Add new tasty suprises for the customers at AutoTheater</h2>
+  <form class="container">
+    <div class="insideContainer">
+      <div class="insideForm">
+        <label for="product-name" class="labels">
+          Product name
+        </label>
+        <input
+          type="text"
+          name="product-name"
+          id="product-name"
+          class="inputs"
+          placeholder="Awesome product name"
+        />
+        <div *ngIf="">
+          <p>The name for the product is required</p>
+        </div>
+        <label for="product-description" class="labels">
+          Description
+        </label>
+        <textarea
+          name="product-description"
+          id="product-description"
+          class="textbox-content"
+          placeholder="The product description goes here"
+          rows="4"
+          cols="14"
+        >
+        </textarea>
+        <div *ngIf="">
+          <p>The product description is a must</p>
+        </div>
+        <label for="product-type" class="labels">
+          Product type
+        </label>
+        <select name="product-type" id="product-type" class="inputs">
+          <option value="">What kind of product is it?</option>
+          <option *ngFor="let item">Classifications from the local API</option>
+        </select>
+        <div *ngIf="">
+          <p>The type for the product is required</p>
+        </div>
+        <div>
+          <label for="product-classification" class="labels">
+            Classifications
+          </label>
+          <div id="product-classification" class="genres-container">
+            <label class="list-container"
+              >Value
+              <input type="checkbox" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+        <div *ngIf="">
+          <p>The recommended classifications are required</p>
+        </div>
+        <div class="btnContainer">
+          <input type="submit" value="Submit changes" class="submit-button" />
+          <input type="reset" value="Reset changes" class="submit-button" />
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
