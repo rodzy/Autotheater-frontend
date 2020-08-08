@@ -11,6 +11,9 @@
           <option value="">Select a movie from the listing</option>
           <option *ngFor="let item">Filled by the API</option>
         </select>
+        <div *ngIf="">
+          <p>The name of the movie is required</p>
+        </div>
         <label for="movie-synopsis" class="labels">
           Synopsis
         </label>
@@ -34,6 +37,9 @@
           <option value="">Add the recommended classification</option>
           <option *ngFor="let item">Classifications from the local API</option>
         </select>
+        <div *ngIf="">
+          <p>The recommended classification is required</p>
+        </div>
         <div>
           <label for="movie-genre" class="labels">
             Genres
@@ -44,6 +50,9 @@
               <input type="checkbox" />
               <span class="checkmark"></span>
             </label>
+          </div>
+          <div *ngIf="">
+            <p>The genre for each movie is required</p>
           </div>
         </div>
         <div>
