@@ -15,6 +15,7 @@ import { Results } from '../../../models/Results.interface';
 import { GenericService } from '../../../services/generic.service';
 import { Genre } from '../../../models/Genre.interface';
 import { MovieClassification } from '../../../models/MovieClasification.interface';
+import { Result } from '../../../models/Result.interface';
 
 @Component({
   selector: 'app-create-movies',
@@ -25,6 +26,7 @@ export class CreateMoviesComponent implements OnInit {
   CreateForm: FormGroup;
   isSubmited = false;
   dmd: Results;
+  selectedMovie: Result;
   movie: Movie;
   genres: Genre[];
   classifications: MovieClassification[];
@@ -81,10 +83,37 @@ export class CreateMoviesComponent implements OnInit {
         },
       ];
     }
+    if (this.selectedMovie === undefined) {
+      this.selectedMovie = {
+        popularity: 0,
+        vote_count: 0,
+        video: false,
+        poster_path: '',
+        id: 0,
+        adult: false,
+        backdrop_path: '',
+        original_language: '',
+        original_title: '',
+        genre_ids: [],
+        title: '',
+        vote_average: 0,
+        overview: '',
+        release_date: '',
+      };
+    }
   }
 
   onMovieNameChange() {
-    console.log(this.CreateForm.get('name').value);
+    this.tmbdService
+      .executeQuery<Result>(`${this.CreateForm.get('name').value}`)
+      .subscribe(
+        (movieSelected: Result) => {
+          this.selectedMovie = movieSelected;
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.message, 'error');
+        }
+      );
   }
 
   reactiveForm() {
