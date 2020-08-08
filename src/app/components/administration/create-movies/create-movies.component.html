@@ -30,8 +30,9 @@
           readonly
           aria-readonly="true"
           class="textbox-content"
+          *ngIf="selectedMovie"
         >
-          Synopsis goes here
+          {{ selectedMovie.overview }}
         </textarea>
         <label for="movie-classification" class="labels">
           Classification
@@ -42,7 +43,6 @@
           class="inputs"
           formControlName="classifications"
         >
-          <option value="">Add the recommended classification</option>
           <ng-container *ngFor="let i of classifications">
             <option value="{{ i.id }}"
               >{{ i.type }} - {{ i.description }}</option
@@ -75,15 +75,22 @@
           <label for="movie-cover" class="labels">
             Movie cover
           </label>
-          <div class="image-port">
-            <img
-              id="movie-cover"
-              alt="movie-cover"
-              aria-label="movie-cover"
-              src="
-            https://image.tmdb.org/t/p/w600_and_h900_bestv2/rOuGm07PxBhEsK9TaGPRQVJQm1X.jpg"
-            />
-          </div>
+          <ng-container *ngIf="selectedMovie.id !== 0; else elseTemplate">
+            <div class="image-port">
+              <img
+                id="movie-cover"
+                alt="movie-cover"
+                aria-label="movie-cover"
+                src="{{
+                  'https://image.tmdb.org/t/p/w600_and_h900_bestv2' +
+                    selectedMovie.poster_path
+                }}"
+              />
+            </div>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <div class="image-port"></div>
+          </ng-template>
         </div>
         <div class="btnContainer">
           <input type="submit" value="Submit changes" class="submit-button" />
