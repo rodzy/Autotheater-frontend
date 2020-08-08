@@ -22,6 +22,10 @@ export class CreateProductsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.defaultValuesCheck();
+  }
+
+  defaultValuesCheck() {
     if (this.product === undefined) {
       this.product = {
         name: '',
@@ -31,6 +35,16 @@ export class CreateProductsComponent implements OnInit {
         status: false,
         classificationproducts: [],
       };
+    }
+    if (this.classifications === undefined) {
+      this.classifications = [
+        {
+          id: 0,
+          description: '',
+          pricetotal: '',
+          type: '',
+        },
+      ];
     }
   }
 
