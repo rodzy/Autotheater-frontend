@@ -83,6 +83,10 @@ export class CreateMoviesComponent implements OnInit {
     }
   }
 
+  onMovieNameChange() {
+    console.log(this.CreateForm.get('name').value);
+  }
+
   reactiveForm() {
     this.CreateForm = this.formBuilder.group({
       name: new FormControl('', [Validators.required]),

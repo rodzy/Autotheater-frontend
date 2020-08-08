@@ -12,11 +12,11 @@
           id="movie-name"
           class="inputs"
           formControlName="name"
+          (ngModelChange)="onMovieNameChange()"
         >
-          <option value="">Select a movie from the upcomming releases</option>
-          <ng-container *ngFor="let item of dmd.results">
-            <option value="{{ item.id }}">{{ item.title }}</option>
-          </ng-container>
+          <option *ngFor="let item of dmd.results" [ngValue]="item.id">{{
+            item.title
+          }}</option>
         </select>
         <div *ngIf="">
           <p>The name of the movie is required</p>
