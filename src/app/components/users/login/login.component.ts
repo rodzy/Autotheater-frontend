@@ -8,7 +8,7 @@ import {
 import { Login } from '../../../models/Login.interface';
 import { AuthService } from '../../../services/auth.service';
 import { Subject } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NotficationService } from '../../../services/notfication.service';
 
 @Component({
@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   isSubmited = false;
   constructor(
     public formBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
     private notification: NotficationService
@@ -78,8 +77,8 @@ export class LoginComponent implements OnInit {
           this.login = res;
           this.router.navigate(['/']);
         },
-        (errors: any) => {
-          this.notification.msgValidate(errors.message);
+        (error: any) => {
+          this.notification.message(error.name, error.message, 'error');
         }
       );
     } catch (error) {

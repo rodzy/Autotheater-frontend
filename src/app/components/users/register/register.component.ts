@@ -102,8 +102,7 @@ export class RegisterComponent implements OnInit {
         console.log(this.user);
       },
       (error: any) => {
-        this.errors = error;
-        this.notification.msgValidate(this.errors);
+        this.notification.message(error.name, error.message, 'error');
       }
     );
   }
