@@ -14,6 +14,7 @@ import { Subject } from 'rxjs';
 import { Results } from '../../../models/Results.interface';
 import { GenericService } from '../../../services/generic.service';
 import { Genre } from '../../../models/Genre.interface';
+import { MovieClassification } from '../../../models/MovieClasification.interface';
 
 @Component({
   selector: 'app-create-movies',
@@ -26,6 +27,7 @@ export class CreateMoviesComponent implements OnInit {
   dmd: Results;
   movie: Movie;
   genres: Genre[];
+  classifications: MovieClassification[];
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
@@ -40,6 +42,7 @@ export class CreateMoviesComponent implements OnInit {
     this.defaultValuesCheck();
     this.listUpcoming();
     this.listGenres();
+    this.listClassifications();
     this.reactiveForm();
   }
 
@@ -104,6 +107,19 @@ export class CreateMoviesComponent implements OnInit {
       );
   }
 
+  listClassifications() {
+    this.genericService
+      .List<MovieClassification>('movies/classification', this.classifications)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (classy: MovieClassification[]) => {
+          this.classifications = classy;
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.message, 'error');
+        }
+      );
+  }
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy(): void {
     this.destroy$.next(true);
