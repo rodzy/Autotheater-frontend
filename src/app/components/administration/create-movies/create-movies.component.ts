@@ -8,6 +8,8 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Results } from '../../../models/Results.interface';
 import { Result } from '../../../models/Result.interface';
+import { GenericService } from '../../../services/generic.service';
+import { Genre } from '../../../models/Genre.interface';
 
 @Component({
   selector: 'app-create-movies',
@@ -20,29 +22,51 @@ export class CreateMoviesComponent implements OnInit {
   dmdb: Result;
   dmd: Results;
   movie: Movie;
+  genres: Genre[];
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     public formBuilder: FormBuilder,
     private router: Router,
     private notification: NotficationService,
+    private genericService: GenericService,
     private tmbdService: TmdbService
   ) {}
 
   ngOnInit(): void {
+    if (this.dmd === undefined) {
+      this.dmd = {
+        results : [],
+      };
+    }
     this.listUpcoming();
-    console.log(this.dmdb);
+    this.listGenres();
   }
 
   listUpcoming() {
-    this.tmbdService.executeQuery<Result>('upcoming').subscribe(
-      (d: Result) => {
-        this.dmdb = d;
+    this.tmbdService.executeQuery<Results>('upcoming').subscribe(
+      (d: Results) => {
+        this.dmd = d;
       },
       (error: any) => {
         this.notification.message(error.name, error.message, 'error');
       }
     );
+  }
+
+  listGenres() {
+    this.genericService
+      .List<Genre>('genres', this.genres)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (gen: Genre[]) => {
+          this.genres = gen;
+          console.log(this.dmd);
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.message, 'error');
+        }
+      );
   }
 
   // tslint:disable-next-line: use-lifecycle-interface

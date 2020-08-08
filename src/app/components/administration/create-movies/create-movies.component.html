@@ -8,8 +8,9 @@
           Movie
         </label>
         <select name="movie-name" id="movie-name" class="inputs">
-          <option value="">Select a movie from the listing</option>
-          <option *ngFor="let item">Filled by the API</option>
+          <ng-container *ngFor="let item of dmd.results">
+            <option value="{{item.id}}">{{item.title}}</option>
+          </ng-container>
         </select>
         <div *ngIf="">
           <p>The name of the movie is required</p>
@@ -44,9 +45,9 @@
           <label for="movie-genre" class="labels">
             Genres
           </label>
-          <div id="movie-genre" class="genres-container">
+          <div id="movie-genre" class="genres-container" *ngFor="let item of genres">
             <label class="list-container"
-              >Value
+              >{{item.name}}
               <input type="checkbox" />
               <span class="checkmark"></span>
             </label>
