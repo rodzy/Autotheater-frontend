@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { Movie } from '../../../models/Movies.interface';
 import { Router } from '@angular/router';
 import { NotficationService } from '../../../services/notfication.service';
@@ -7,7 +12,6 @@ import { TmdbService } from '../../../services/tmdb.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Results } from '../../../models/Results.interface';
-import { Result } from '../../../models/Result.interface';
 import { GenericService } from '../../../services/generic.service';
 import { Genre } from '../../../models/Genre.interface';
 
@@ -36,6 +40,7 @@ export class CreateMoviesComponent implements OnInit {
     this.defaultValuesCheck();
     this.listUpcoming();
     this.listGenres();
+    this.reactiveForm();
   }
 
   defaultValuesCheck() {
@@ -64,6 +69,14 @@ export class CreateMoviesComponent implements OnInit {
         },
       ];
     }
+  }
+
+  reactiveForm() {
+    this.CreateForm = this.formBuilder.group({
+      name: new FormControl('', [Validators.required]),
+      classifications: new FormControl('', [Validators.required]),
+      genres: new FormControl('', [Validators.required]),
+    });
   }
 
   listUpcoming() {
