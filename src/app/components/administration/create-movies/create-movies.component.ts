@@ -72,6 +72,15 @@ export class CreateMoviesComponent implements OnInit {
         },
       ];
     }
+    if (this.classifications === undefined) {
+      this.classifications = [
+        {
+          id: 0,
+          description: '',
+          type: '',
+        },
+      ];
+    }
   }
 
   reactiveForm() {

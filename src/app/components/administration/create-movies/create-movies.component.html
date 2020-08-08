@@ -1,15 +1,21 @@
 <div>
   <h1 class="heading">Register new <span class="spanx">movies</span></h1>
   <h2>Let the world know about the new releases added to AutoTheater</h2>
-  <form class="container">
+  <form [formGroup]="CreateForm" class="container">
     <div class="insideContainer">
       <div class="insideForm">
         <label for="movie-name" class="labels">
           Movie
         </label>
-        <select name="movie-name" id="movie-name" class="inputs">
+        <select
+          name="movie-name"
+          id="movie-name"
+          class="inputs"
+          formControlName="name"
+        >
+          <option value="">Select a movie from the upcomming releases</option>
           <ng-container *ngFor="let item of dmd.results">
-            <option value="{{item.id}}">{{item.title}}</option>
+            <option value="{{ item.id }}">{{ item.title }}</option>
           </ng-container>
         </select>
         <div *ngIf="">
@@ -34,9 +40,14 @@
           name="movie-classification"
           id="movie-classification"
           class="inputs"
+          formControlName="classifications"
         >
           <option value="">Add the recommended classification</option>
-          <option *ngFor="let item">Classifications from the local API</option>
+          <ng-container *ngFor="let i of classifications">
+            <option value="{{ i.id }}"
+              >{{ i.type }} - {{ i.description }}</option
+            >
+          </ng-container>
         </select>
         <div *ngIf="">
           <p>The recommended classification is required</p>
@@ -45,10 +56,14 @@
           <label for="movie-genre" class="labels">
             Genres
           </label>
-          <div id="movie-genre" class="genres-container" *ngFor="let item of genres">
-            <label class="list-container"
-              >{{item.name}}
-              <input type="checkbox" />
+          <div id="movie-genre" class="genres-container">
+            <label class="list-container" *ngFor="let item of genres"
+              >{{ item.name }}
+              <input
+                type="checkbox"
+                formControlName="genres"
+                value="{{ item.id }}"
+              />
               <span class="checkmark"></span>
             </label>
           </div>
