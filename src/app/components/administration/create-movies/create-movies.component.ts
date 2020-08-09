@@ -213,6 +213,25 @@ export class CreateMoviesComponent implements OnInit {
       );
   }
 
+  onResetMovie() {
+    this.selectedMovie = {
+      popularity: 0,
+      vote_count: 0,
+      video: false,
+      poster_path: '',
+      id: 0,
+      adult: false,
+      backdrop_path: '',
+      original_language: '',
+      original_title: '',
+      genre_ids: [],
+      title: '',
+      vote_average: 0,
+      overview: '',
+      release_date: '',
+    };
+  }
+
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy(): void {
     this.destroy$.next(true);

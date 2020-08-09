@@ -1,7 +1,11 @@
 <div>
   <h1 class="heading">Register new <span class="spanx">products</span></h1>
   <h2>Add new tasty suprises for the customers at AutoTheater</h2>
-  <form class="container">
+  <form
+    [formGroup]="CreateForm"
+    (ngSubmit)="onSubmitedProduct()"
+    class="container"
+  >
     <div class="insideContainer">
       <div class="insideForm">
         <label for="product-name" class="labels">
@@ -13,9 +17,21 @@
           id="product-name"
           class="inputs"
           placeholder="Awesome product name"
+          formControlName="name"
         />
-        <div *ngIf="">
-          <p>The name for the product is required</p>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && createForm.name.errors"
+        >
+          <p class="erroMsgs">
+            The name for the product is required
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
         </div>
         <label for="product-description" class="labels">
           Description
@@ -25,37 +41,107 @@
           id="product-description"
           class="textbox-content"
           placeholder="The product description goes here"
-          rows="4"
-          cols="14"
+          formControlName="description"
+          rows="5"
+          cols="40"
         >
         </textarea>
-        <div *ngIf="">
-          <p>The product description is a must</p>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && createForm.description.errors"
+        >
+          <p class="erroMsgs">
+            The product description is a must
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
+        </div>
+        <label for="product-price" class="labels">
+          Product price
+        </label>
+        <input
+          type="number"
+          name="product-price"
+          id="product-price"
+          class="inputs"
+          formControlName="price"
+          placeholder="$"
+        />
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && createForm.price.errors"
+        >
+          <p class="erroMsgs">
+            The price for the product must be an integer & is required
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
         </div>
         <label for="product-type" class="labels">
           Product type
         </label>
-        <select name="product-type" id="product-type" class="inputs">
-          <option value="">What kind of product is it?</option>
-          <option *ngFor="let item">Classifications from the local API</option>
+        <select
+          name="product-type"
+          id="product-type"
+          class="inputs"
+          formControlName="type_id"
+        >
+          <option value="">----- What kind of product is it? ------</option>
+          <option *ngFor="let i of pTypes" [ngValue]="i.id">{{
+            i.name
+          }}</option>
         </select>
-        <div *ngIf="">
-          <p>The type for the product is required</p>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && createForm.type_id.errors"
+        >
+          <p class="erroMsgs">
+            The type for the product is required
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
         </div>
         <div>
           <label for="product-classification" class="labels">
             Classifications
           </label>
           <div id="product-classification" class="genres-container">
-            <label class="list-container"
-              >Value
-              <input type="checkbox" />
+            <label class="list-container" *ngFor="let item of classifications"
+              >{{ item.type }}
+              <input
+                type="checkbox"
+                [value]="item.id"
+                (change)="onCheckChecked($event)"
+              />
               <span class="checkmark"></span>
             </label>
           </div>
         </div>
-        <div *ngIf="">
-          <p>The recommended classifications are required</p>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && createForm.classifications.errors"
+        >
+          <p class="erroMsgs">
+            The recommended classifications are required
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
         </div>
         <div class="btnContainer">
           <input type="submit" value="Submit changes" class="submit-button" />

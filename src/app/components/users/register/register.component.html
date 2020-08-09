@@ -14,8 +14,19 @@
           placeholder="Your first name here"
           formControlName="firstName"
         />
-        <div *ngIf="isSubmited && formControls.firstName.errors">
-          <p>Your first name is required</p>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && formControls.firstName.errors"
+        >
+          <p class="erroMsgs">
+            Your first name is required
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
         </div>
         <label for="lastName_id" class="labels">Last name</label>
         <input
@@ -27,8 +38,19 @@
           placeholder="Your last name here"
           formControlName="lastName"
         />
-        <div *ngIf="isSubmited && formControls.lastName.errors">
-          <p>Your last name is required</p>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && formControls.lastName.errors"
+        >
+          <p class="erroMsgs">
+            Your last name is required
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
         </div>
         <label for="email_id" class="labels">Email</label>
         <input
@@ -40,8 +62,19 @@
           placeholder="Your email here"
           formControlName="email"
         />
-        <div *ngIf="isSubmited && formControls.email.errors">
-          <p>The email is required</p>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && formControls.email.errors"
+        >
+          <p class="erroMsgs">
+            The email is required
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
         </div>
         <label for="password_id" class="labels">Password</label>
         <input
@@ -53,8 +86,19 @@
           placeholder="Your password here"
           formControlName="password"
         />
-        <div *ngIf="isSubmited && formControls.password.errors">
-          <p>The password is required & must be 9 characters long</p>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && formControls.password.errors"
+        >
+          <p class="erroMsgs">
+            The password is required & must be 9 characters long
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
         </div>
         <label for="confirm_password_id" class="labels">Confirm password</label>
         <input
@@ -66,11 +110,30 @@
           placeholder="Confirm your password here"
           formControlName="confirmPassword"
         />
-        <div *ngIf="isSubmited && formControls.confirmPassword.errors">
-          <p>The password is required & must be 9 characters long</p>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && formControls.confirmPassword.errors"
+        >
+          <p class="erroMsgs">
+            The password is required & must be 9 characters long
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
         </div>
-        <div *ngIf="equals">
-          <p>Password must be equals</p>
+        <div class="errorContainer" *ngIf="equals">
+          <p class="erroMsgs">
+            Password must be equals
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              error
+            </span>
+          </p>
         </div>
         <button type="submit" class="submitBtn">Register</button>
       </div>

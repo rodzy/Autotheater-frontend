@@ -86,13 +86,15 @@ h2 {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: 14px;
   padding-top: 10px;
+  padding-left: 10px;
   color: #ffffff;
 }
 
 .genres-container {
   width: 100%;
   padding: 30px;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   grid-template-columns: 10em 10em 10em 10em 10em;
   grid-template-rows: 25% 100px auto;
 }
@@ -212,6 +214,17 @@ h2 {
 .inputs,.textbox-content{
   font-size: 18px;
   font-weight: 400;
+}
+
+.errorContainer{
+  position: relative;
+  top:-12px;
+}
+
+.erroMsgs{
+  color: $primary;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 @media screen and (max-width: 1200px) {

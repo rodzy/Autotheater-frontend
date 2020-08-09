@@ -14,12 +14,26 @@
           formControlName="name"
           (ngModelChange)="onMovieNameChange()"
         >
+          <option value=""
+            >----- Select a movie from upcoming releases ------</option
+          >
           <option *ngFor="let item of dmd.results" [ngValue]="item.id">{{
             item.title
           }}</option>
         </select>
-        <div *ngIf="isSubmited && createForm.name.errors">
-          <p>The name of the movie is required</p>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && createForm.name.errors"
+        >
+          <p class="erroMsgs">
+            The name of the movie is required
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
         </div>
         <label for="movie-synopsis" class="labels">
           Synopsis
@@ -45,12 +59,26 @@
           class="inputs"
           formControlName="classifications"
         >
+          <option value=""
+            >----- Select a recommended classification ------</option
+          >
           <option *ngFor="let i of classifications" [ngValue]="i.id"
             >{{ i.type }} - {{ i.description }}</option
           >
         </select>
-        <div *ngIf="">
-          <p>The recommended classification is required</p>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && createForm.classifications.errors"
+        >
+          <p class="erroMsgs">
+            The recommended classification is required
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
         </div>
         <div>
           <label for="movie-genre" class="labels">
@@ -67,8 +95,19 @@
               <span class="checkmark"></span>
             </label>
           </div>
-          <div *ngIf="">
-            <p>The genre for each movie is required</p>
+          <div
+            class="errorContainer"
+            *ngIf="isSubmited && createForm.genres.errors"
+          >
+            <p class="erroMsgs">
+              The genre for each movie is required
+              <span
+                class="material-icons"
+                style="vertical-align: middle; display: inline-flex;"
+              >
+                warning
+              </span>
+            </p>
           </div>
         </div>
         <div>
@@ -94,7 +133,12 @@
         </div>
         <div class="btnContainer">
           <input type="submit" value="Submit changes" class="submit-button" />
-          <input type="reset" value="Reset changes" class="submit-button" />
+          <input
+            type="reset"
+            (click)="onResetMovie()"
+            value="Reset changes"
+            class="submit-button"
+          />
         </div>
       </div>
     </div>
