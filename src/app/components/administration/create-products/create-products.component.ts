@@ -83,7 +83,7 @@ export class CreateProductsComponent implements OnInit {
         Validators.required,
         Validators.pattern('^[0-9]*$'),
       ]),
-      type: new FormControl('', Validators.required),
+      type_id: new FormControl('', Validators.required),
       classifications: new FormArray([], Validators.required),
     });
   }
@@ -147,22 +147,21 @@ export class CreateProductsComponent implements OnInit {
       name: this.CreateForm.get('name').value,
       description: this.CreateForm.get('description').value,
       price: this.CreateForm.get('price').value,
-      type_id: this.CreateForm.get('type').value,
+      type_id: this.CreateForm.get('type_id').value,
       classificationproducts: this.CreateForm.get('classifications').value,
       status: true,
     };
-    console.log(this.product);
-    // this.genericService
-    //   .Create<Products>('products', this.product, this.product)
-    //   .pipe(takeUntil(this.destroy$))
-    //   .subscribe(
-    //     (product: Products) => {
-    //       (this.product = product), this.router.navigate(['/']);
-    //     },
-    //     (error: any) => {
-    //       this.notification.message(error.name, error.message, 'error');
-    //     }
-    //   );
+    this.genericService
+      .Create<Products>('products', this.product, this.product)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (product: Products) => {
+          (this.product = product), this.router.navigate(['/']);
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.message, 'error');
+        }
+      );
   }
 
   // tslint:disable-next-line: use-lifecycle-interface

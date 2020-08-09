@@ -1,7 +1,11 @@
 <div>
   <h1 class="heading">Register new <span class="spanx">products</span></h1>
   <h2>Add new tasty suprises for the customers at AutoTheater</h2>
-  <form [formGroup]="CreateForm" (ngSubmit)="onSubmitedProduct()" class="container">
+  <form
+    [formGroup]="CreateForm"
+    (ngSubmit)="onSubmitedProduct()"
+    class="container"
+  >
     <div class="insideContainer">
       <div class="insideForm">
         <label for="product-name" class="labels">
@@ -50,9 +54,16 @@
         <label for="product-type" class="labels">
           Product type
         </label>
-        <select name="product-type" id="product-type" class="inputs">
-          <option value="">What kind of product is it?</option>
-          <option *ngFor="let item">Classifications from the local API</option>
+        <select
+          name="product-type"
+          id="product-type"
+          class="inputs"
+          formControlName="type_id"
+        >
+          <option value="">----- What kind of product it is? ------</option>
+          <option *ngFor="let i of pTypes" [ngValue]="i.id">{{
+            i.name
+          }}</option>
         </select>
         <div *ngIf="">
           <p>The type for the product is required</p>
