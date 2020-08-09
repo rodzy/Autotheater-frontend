@@ -13,7 +13,7 @@
           id="product-name"
           class="inputs"
           placeholder="Awesome product name"
-          formControlName="type"
+          formControlName="name"
         />
         <div *ngIf="">
           <p>The name for the product is required</p>
@@ -37,9 +37,25 @@
         <label for="product-price" class="labels">
           Product price
         </label>
-        <input type="number" name="product-price" id="product-price" class="inputs" formControlName="price" />
+        <input
+          type="number"
+          name="product-price"
+          id="product-price"
+          class="inputs"
+          formControlName="price"
+        />
         <div *ngIf="">
           <p>The price for the product is required</p>
+        </div>
+        <label for="product-type" class="labels">
+          Product type
+        </label>
+        <select name="product-type" id="product-type" class="inputs">
+          <option value="">What kind of product is it?</option>
+          <option *ngFor="let item">Classifications from the local API</option>
+        </select>
+        <div *ngIf="">
+          <p>The type for the product is required</p>
         </div>
         <div>
           <label for="product-classification" class="labels">

@@ -63,7 +63,7 @@ export class CreateProductsComponent implements OnInit {
 
   reactiveForm() {
     this.CreateForm = this.formBuilder.group({
-      type: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      name: new FormControl('', [Validators.required, Validators.minLength(5)]),
       description: new FormControl('', [
         Validators.required,
         Validators.minLength(15),
@@ -72,6 +72,7 @@ export class CreateProductsComponent implements OnInit {
         Validators.required,
         Validators.pattern('^[0-9]*$'),
       ]),
+      type: new FormControl('', Validators.required),
       classifications: new FormArray([], Validators.required),
     });
   }
