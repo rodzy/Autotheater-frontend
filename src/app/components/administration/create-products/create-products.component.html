@@ -13,6 +13,7 @@
           id="product-name"
           class="inputs"
           placeholder="Awesome product name"
+          formControlName="type"
         />
         <div *ngIf="">
           <p>The name for the product is required</p>
@@ -25,22 +26,20 @@
           id="product-description"
           class="textbox-content"
           placeholder="The product description goes here"
-          rows="4"
-          cols="14"
+          formControlName="description"
+          rows="5"
+          cols="40"
         >
         </textarea>
         <div *ngIf="">
           <p>The product description is a must</p>
         </div>
-        <label for="product-type" class="labels">
-          Product type
+        <label for="product-price" class="labels">
+          Product price
         </label>
-        <select name="product-type" id="product-type" class="inputs">
-          <option value="">What kind of product is it?</option>
-          <option *ngFor="let item">Classifications from the local API</option>
-        </select>
+        <input type="number" name="product-price" id="product-price" class="inputs" formControlName="price" />
         <div *ngIf="">
-          <p>The type for the product is required</p>
+          <p>The price for the product is required</p>
         </div>
         <div>
           <label for="product-classification" class="labels">

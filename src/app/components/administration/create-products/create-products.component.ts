@@ -61,16 +61,12 @@ export class CreateProductsComponent implements OnInit {
 
   reactiveForm() {
     this.CreateForm = this.formBuilder.group({
-      name: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      type: new FormControl('', [Validators.required, Validators.minLength(5)]),
       description: new FormControl('', [
         Validators.required,
         Validators.minLength(15),
       ]),
       price: new FormControl('', [
-        Validators.required,
-        Validators.pattern('^[0-9]*$'),
-      ]),
-      type_id: new FormControl('', [
         Validators.required,
         Validators.pattern('^[0-9]*$'),
       ]),
