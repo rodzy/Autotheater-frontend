@@ -4,11 +4,14 @@ import {
   FormBuilder,
   FormControl,
   Validators,
+  FormArray,
 } from '@angular/forms';
 import { NotficationService } from '../../../services/notfication.service';
 import { GenericService } from '../../../services/generic.service';
 import { Products } from '../../../models/Products.interface';
 import { Classificationproduct } from '../../../models/Classificationproduct.interface';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-create-products',
@@ -20,6 +23,7 @@ export class CreateProductsComponent implements OnInit {
   isSubmited = false;
   product: Products;
   classifications: Classificationproduct[];
+  destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
     public formBuilder: FormBuilder,
     private notification: NotficationService,
@@ -68,7 +72,48 @@ export class CreateProductsComponent implements OnInit {
       type_id: new FormControl('', [
         Validators.required,
         Validators.pattern('^[0-9]*$'),
-      ])
+      ]),
+      classifications: new FormArray([], Validators.required);
     });
+  }
+
+  // Event checker for the reactive form
+  onCheckChecked(event) {
+    const classArray: FormArray = this.CreateForm.get('classifications') as FormArray;
+    if (event.target.checked) {
+      classArray.push(new FormControl(event.target.value));
+    } else {
+      let i = 0;
+      classArray.controls.forEach((control: FormControl) => {
+        if (control.value === event.target.value) {
+          classArray.removeAt(i);
+          return;
+        }
+        i++;
+      });
+    }
+  }
+
+  listClassifications() {
+    this.genericService
+      .List<Classificationproduct>(
+        'products/classification',
+        this.classifications
+      )
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (classy: Classificationproduct[]) => {
+          this.classifications = classy;
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.message, 'error');
+        }
+      );
+  }
+
+  // tslint:disable-next-line: use-lifecycle-interface
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }
