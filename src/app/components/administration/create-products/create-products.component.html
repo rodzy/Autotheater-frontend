@@ -47,6 +47,7 @@
           id="product-price"
           class="inputs"
           formControlName="price"
+          placeholder="$"
         />
         <div *ngIf="">
           <p>The price for the product is required</p>
@@ -60,7 +61,7 @@
           class="inputs"
           formControlName="type_id"
         >
-          <option value="">----- What kind of product it is? ------</option>
+          <option value="">----- What kind of product is it? ------</option>
           <option *ngFor="let i of pTypes" [ngValue]="i.id">{{
             i.name
           }}</option>
