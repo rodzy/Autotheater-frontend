@@ -1,7 +1,7 @@
 <div>
   <h1 class="heading">Register new <span class="spanx">movies</span></h1>
   <h2>Let the world know about the new releases added to AutoTheater</h2>
-  <form [formGroup]="CreateForm" class="container">
+  <form [formGroup]="CreateForm" (ngSubmit)="onSubmitMovie()" class="container">
     <div class="insideContainer">
       <div class="insideForm">
         <label for="movie-name" class="labels">
@@ -43,11 +43,9 @@
           class="inputs"
           formControlName="classifications"
         >
-          <ng-container *ngFor="let i of classifications">
-            <option value="{{ i.id }}"
-              >{{ i.type }} - {{ i.description }}</option
-            >
-          </ng-container>
+          <option *ngFor="let i of classifications" [ngValue]="i.id"
+            >{{ i.type }} - {{ i.description }}</option
+          >
         </select>
         <div *ngIf="">
           <p>The recommended classification is required</p>
@@ -61,8 +59,8 @@
               >{{ item.name }}
               <input
                 type="checkbox"
-                formControlName="genres"
-                value="{{ item.id }}"
+                [value]="item.id"
+                (change)="onCheckChecked($event)"
               />
               <span class="checkmark"></span>
             </label>

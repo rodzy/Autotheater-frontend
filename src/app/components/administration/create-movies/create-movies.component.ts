@@ -4,6 +4,7 @@ import {
   FormBuilder,
   FormControl,
   Validators,
+  FormArray,
 } from '@angular/forms';
 import { Movie } from '../../../models/Movies.interface';
 import { Router } from '@angular/router';
@@ -120,8 +121,25 @@ export class CreateMoviesComponent implements OnInit {
     this.CreateForm = this.formBuilder.group({
       name: new FormControl('', [Validators.required]),
       classifications: new FormControl('', [Validators.required]),
-      genres: new FormControl('', [Validators.required]),
+      genres: new FormArray([], [Validators.required]),
     });
+  }
+
+  // Event checker for the reactive form
+  onCheckChecked(event) {
+    const genresArray: FormArray = this.CreateForm.get('genres') as FormArray;
+    if (event.target.checked) {
+      genresArray.push(new FormControl(event.target.value));
+    } else {
+      let i = 0;
+      genresArray.controls.forEach((control: FormControl) => {
+        if (control.value === event.target.value) {
+          genresArray.removeAt(i);
+          return;
+        }
+        i++;
+      });
+    }
   }
 
   listUpcoming() {
@@ -162,6 +180,24 @@ export class CreateMoviesComponent implements OnInit {
         }
       );
   }
+
+  onSubmitMovie() {
+    this.isSubmited = true;
+    if (this.CreateForm.invalid) {
+      return;
+    }
+    this.movie = {
+      name: this.selectedMovie.title,
+      sinopsis: this.selectedMovie.overview,
+      image: this.selectedMovie.poster_path,
+      banner: this.selectedMovie.backdrop_path,
+      classification_id: this.CreateForm.get('classifications').value,
+      genres: [this.CreateForm.get('genres').value],
+      status: true,
+    };
+    console.log(this.movie);
+  }
+
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy(): void {
     this.destroy$.next(true);
