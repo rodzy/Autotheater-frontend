@@ -88,6 +88,10 @@ export class CreateProductsComponent implements OnInit {
     });
   }
 
+  get createForm() {
+    return this.CreateForm.controls;
+  }
+
   // Event checker for the reactive form
   onCheckChecked(event) {
     const classArray: FormArray = this.CreateForm.get(
