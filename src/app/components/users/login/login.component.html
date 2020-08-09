@@ -14,8 +14,13 @@
           required
           formControlName="email"
         />
-        <div *ngIf="isSubmited && formControls.email.errors">
-          <p>The email is required</p>
+        <div class="errorContainer" *ngIf="isSubmited && formControls.email.errors">
+          <p class="erroMsgs">The email is required <span
+            class="material-icons"
+            style="vertical-align: middle; display: inline-flex;"
+          >
+            warning
+          </span></p>
         </div>
         <label for="password_id" class="labels">Password</label>
         <input
@@ -28,8 +33,13 @@
           required
           formControlName="password"
         />
-        <div *ngIf="isSubmited && formControls.password.errors">
-          <p>The password is required</p>
+        <div class="errorContainer" *ngIf="isSubmited && formControls.password.errors">
+          <p class="erroMsgs">The password is required <span
+            class="material-icons"
+            style="vertical-align: middle; display: inline-flex;"
+          >
+            warning
+          </span></p>
         </div>
         <div class="forgetLink">
           <a href="#">Forgot your credentials?</a>

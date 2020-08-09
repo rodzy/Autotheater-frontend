@@ -108,6 +108,17 @@ $bg-secondary: #333333;
   font-weight: 400;
 }
 
+.errorContainer{
+  position: relative;
+  top:-12px;
+}
+
+.erroMsgs{
+  color: $primary;
+  font-size: 16px;
+  font-weight: 500;
+}
+
 @media screen and (max-width: 1200px) {
   .heading {
     font-size: 30px;
