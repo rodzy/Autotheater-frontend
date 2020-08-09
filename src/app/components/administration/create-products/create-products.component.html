@@ -19,8 +19,19 @@
           placeholder="Awesome product name"
           formControlName="name"
         />
-        <div *ngIf="isSubmited && createForm.name.errors">
-          <p>The name for the product is required</p>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && createForm.name.errors"
+        >
+          <p class="erroMsgs">
+            The name for the product is required
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
         </div>
         <label for="product-description" class="labels">
           Description
@@ -35,8 +46,19 @@
           cols="40"
         >
         </textarea>
-        <div *ngIf="isSubmited && createForm.description.errors">
-          <p>The product description is a must</p>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && createForm.description.errors"
+        >
+          <p class="erroMsgs">
+            The product description is a must
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
         </div>
         <label for="product-price" class="labels">
           Product price
@@ -49,8 +71,19 @@
           formControlName="price"
           placeholder="$"
         />
-        <div *ngIf="isSubmited && createForm.price.errors">
-          <p>The price for the product must be an integer & is required</p>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && createForm.price.errors"
+        >
+          <p class="erroMsgs">
+            The price for the product must be an integer & is required
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
         </div>
         <label for="product-type" class="labels">
           Product type
@@ -66,8 +99,19 @@
             i.name
           }}</option>
         </select>
-        <div *ngIf="isSubmited && createForm.type_id.errors">
-          <p>The type for the product is required</p>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && createForm.type_id.errors"
+        >
+          <p class="erroMsgs">
+            The type for the product is required
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
         </div>
         <div>
           <label for="product-classification" class="labels">
@@ -85,8 +129,19 @@
             </label>
           </div>
         </div>
-        <div *ngIf="isSubmited && createForm.classifications.errors">
-          <p>The recommended classifications are required</p>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && createForm.classifications.errors"
+        >
+          <p class="erroMsgs">
+            The recommended classifications are required
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
         </div>
         <div class="btnContainer">
           <input type="submit" value="Submit changes" class="submit-button" />
