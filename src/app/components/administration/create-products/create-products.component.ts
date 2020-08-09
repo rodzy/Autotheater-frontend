@@ -12,6 +12,7 @@ import { Products } from '../../../models/Products.interface';
 import { Classificationproduct } from '../../../models/Classificationproduct.interface';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-products',
@@ -26,6 +27,7 @@ export class CreateProductsComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
     public formBuilder: FormBuilder,
+    private router: Router,
     private notification: NotficationService,
     private genericService: GenericService
   ) {}
@@ -103,6 +105,32 @@ export class CreateProductsComponent implements OnInit {
       .subscribe(
         (classy: Classificationproduct[]) => {
           this.classifications = classy;
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.message, 'error');
+        }
+      );
+  }
+
+  onSubmitedProduct() {
+    this.isSubmited = true;
+    if (this.CreateForm.invalid) {
+      return;
+    }
+    this.product = {
+      name: this.CreateForm.get('name').value,
+      description: this.CreateForm.get('description').value,
+      price: this.CreateForm.get('price').value,
+      type_id: this.CreateForm.get('type').value,
+      classificationproducts: this.CreateForm.get('classifications').value,
+      status: true,
+    };
+    this.genericService
+      .Create<Products>('products', this.product, this.product)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (product: Products) => {
+          (this.product = product), this.router.navigate(['/']);
         },
         (error: any) => {
           this.notification.message(error.name, error.message, 'error');
