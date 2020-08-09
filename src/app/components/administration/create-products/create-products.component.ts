@@ -13,6 +13,7 @@ import { Classificationproduct } from '../../../models/Classificationproduct.int
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { ProductTypes } from 'src/app/models/ProductTypes.interface';
 
 @Component({
   selector: 'app-create-products',
@@ -24,6 +25,7 @@ export class CreateProductsComponent implements OnInit {
   isSubmited = false;
   product: Products;
   classifications: Classificationproduct[];
+  pTypes: ProductTypes[];
   destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
     public formBuilder: FormBuilder,
@@ -36,6 +38,7 @@ export class CreateProductsComponent implements OnInit {
     this.defaultValuesCheck();
     this.reactiveForm();
     this.listClassifications();
+    this.listProductTypes();
   }
 
   defaultValuesCheck() {
@@ -56,6 +59,14 @@ export class CreateProductsComponent implements OnInit {
           description: '',
           pricetotal: '',
           type: '',
+        },
+      ];
+    }
+    if (this.pTypes === undefined) {
+      this.pTypes = [
+        {
+          name: '',
+          description: '',
         },
       ];
     }
@@ -106,6 +117,20 @@ export class CreateProductsComponent implements OnInit {
       .subscribe(
         (classy: Classificationproduct[]) => {
           this.classifications = classy;
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.message, 'error');
+        }
+      );
+  }
+
+  listProductTypes() {
+    this.genericService
+      .List<ProductTypes>('products/types', this.pTypes)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (types: ProductTypes[]) => {
+          this.pTypes = types;
         },
         (error: any) => {
           this.notification.message(error.name, error.message, 'error');
