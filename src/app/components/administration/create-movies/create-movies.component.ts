@@ -192,10 +192,20 @@ export class CreateMoviesComponent implements OnInit {
       image: this.selectedMovie.poster_path,
       banner: this.selectedMovie.backdrop_path,
       classification_id: this.CreateForm.get('classifications').value,
-      genres: [this.CreateForm.get('genres').value],
+      genres: this.CreateForm.get('genres').value,
       status: true,
     };
-    console.log(this.movie);
+    this.genericService
+      .Create<Movie>('movies', this.movie, this.movie)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (movie: Movie) => {
+          (this.movie = movie), this.router.navigate(['/']);
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.message, 'error');
+        }
+      );
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
