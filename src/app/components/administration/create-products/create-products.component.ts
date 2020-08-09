@@ -33,6 +33,7 @@ export class CreateProductsComponent implements OnInit {
   ngOnInit(): void {
     this.defaultValuesCheck();
     this.reactiveForm();
+    this.listClassifications();
   }
 
   defaultValuesCheck() {
@@ -73,13 +74,15 @@ export class CreateProductsComponent implements OnInit {
         Validators.required,
         Validators.pattern('^[0-9]*$'),
       ]),
-      classifications: new FormArray([], Validators.required);
+      classifications: new FormArray([], Validators.required),
     });
   }
 
   // Event checker for the reactive form
   onCheckChecked(event) {
-    const classArray: FormArray = this.CreateForm.get('classifications') as FormArray;
+    const classArray: FormArray = this.CreateForm.get(
+      'classifications'
+    ) as FormArray;
     if (event.target.checked) {
       classArray.push(new FormControl(event.target.value));
     } else {

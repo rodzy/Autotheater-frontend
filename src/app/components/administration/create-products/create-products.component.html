@@ -47,9 +47,13 @@
             Classifications
           </label>
           <div id="product-classification" class="genres-container">
-            <label class="list-container"
-              >Value
-              <input type="checkbox" />
+            <label class="list-container" *ngFor="let item of classifications"
+              >{{ item.type }}
+              <input
+                type="checkbox"
+                [value]="item.id"
+                (change)="onCheckChecked($event)"
+              />
               <span class="checkmark"></span>
             </label>
           </div>
