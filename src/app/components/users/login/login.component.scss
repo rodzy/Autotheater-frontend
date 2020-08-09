@@ -98,3 +98,34 @@ $bg-secondary: #333333;
   padding-top: 20px;
   text-align: center;
 }
+
+.inputs:focus,.textbox-content:focus{
+	border: 3px solid $primary;
+}
+
+.inputs,.textbox-content{
+  font-size: 18px;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 1200px) {
+  .heading {
+    font-size: 30px;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  .container {
+    width: 100%;
+  }
+  .btnContainer {
+    flex-direction: column;
+  }
+  .genres-container {
+    width: 100%;
+    padding: 30px;
+    display: grid inline-grid;
+    grid-template-columns: 0 ;
+    grid-template-rows: 0;
+  }
+}

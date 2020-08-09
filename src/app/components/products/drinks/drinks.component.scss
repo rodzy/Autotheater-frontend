@@ -6,12 +6,25 @@ $bg-secondary: #333333;
 
 .container{
   display: flex;
-  justify-content: space-around;
-  float: left;
-  padding-top: 2em;
-  padding-bottom: 2em;
+  border: none;
+  width: 1000px;
+  height: 440px;
+  overflow: scroll;
+  overflow-y: hidden;
+  border-radius: 0.5rem;
 }
 
+.container::-webkit-scrollbar {
+  width: 0.5rem;
+}
+.container::-webkit-scrollbar-track {
+  background: $secondary;
+  border-radius: 0.5rem;
+}
+.container::-webkit-scrollbar-thumb {
+  background: $secondary-dual;
+  border-radius: 0.5rem;
+}
 .btitle {
   font-weight: 600;
   text-shadow: 3px 3px #3c045c;
@@ -137,6 +150,10 @@ $bg-secondary: #333333;
 }
 
 @media all and (max-width: 500px) {
+  .container{
+    width: 250px;
+  }
+
   .card-list {
     /* On small screens, we are no longer using row direction but column */
     flex-direction: column;
