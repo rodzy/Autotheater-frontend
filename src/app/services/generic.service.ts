@@ -63,6 +63,7 @@ export class GenericService {
     model: T | any,
     object: T | any
   ): Observable<T | T[]> {
+    console.log(this.currentUser.access_token);
     return this.http.post<T | T[]>(this.server + endpoint, object, {
       headers: this.headers,
     });

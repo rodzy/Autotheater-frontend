@@ -76,7 +76,7 @@ h2 {
 }
 
 .textbox-content {
-  margin-top: 8px;
+  margin-top: 10px;
   margin-bottom: 32px;
   height: 48px;
   width: 100%;
@@ -87,14 +87,17 @@ h2 {
   font-size: 14px;
   padding-top: 10px;
   color: #ffffff;
+	height: 120px;
+	border: 3px solid #333333;
+	padding: 5px;
 }
 
 .genres-container {
   width: 100%;
   padding: 30px;
   display: grid;
-  grid-template-columns: 10em 10em 10em 10em 10em;
-  grid-template-rows: 25% 100px auto;
+  grid-template-columns: 10em 10em 10em 10em;
+  grid-template-rows: 18% 30px auto;
 }
 
 .list-container {
@@ -205,6 +208,15 @@ h2 {
 .image-port img{
   width: 20em;
   border-radius: 1rem;
+}
+
+.inputs:focus,.textbox-content:focus{
+	border: 3px solid $primary;
+}
+
+.inputs,.textbox-content{
+  font-size: 18px;
+  font-weight: 400;
 }
 
 @media screen and (max-width: 1200px) {

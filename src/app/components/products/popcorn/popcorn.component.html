@@ -25,13 +25,6 @@
         <ng-template #elseTemplate>
           <span style="font-weight: 600; color: red;">Out of stock</span>
         </ng-template>
-        <div *ngIf="item?.genres">
-          <ul>
-            <li *ngFor="let gen of item.genres">
-              {{ gen.name }}
-            </li>
-          </ul>
-        </div>
       </div>
     </div>
   </div>

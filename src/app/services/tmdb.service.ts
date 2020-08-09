@@ -41,9 +41,7 @@ export class TmdbService {
 
   executeQuery<T>( query: string) {
     query = this.api + query;
-    query += `?api_key=${ this.key }&language=es&include_image_language=es`;
-    // console.log(query);
-
+    query += `?api_key=${ this.key }&language=en-US&include_image_language=en-US`;
     return this.http.get<T>(query);
 
   }

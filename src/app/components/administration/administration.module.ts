@@ -6,6 +6,7 @@ import { CreateMoviesComponent } from './create-movies/create-movies.component';
 import { CreateProductsComponent } from './create-products/create-products.component';
 import { UpdateMoviesComponent } from './update-movies/update-movies.component';
 import { UpdateProductsComponent } from './update-products/update-products.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const declarations: any = [
   CreateMoviesComponent,
@@ -13,7 +14,11 @@ const declarations: any = [
   UpdateMoviesComponent,
   UpdateProductsComponent,
 ];
-const imports: any = [CommonModule, AdministrationRoutingModule];
+const imports: any = [
+  CommonModule,
+  AdministrationRoutingModule,
+  ReactiveFormsModule,
+];
 
 @NgModule({
   declarations: [...declarations],
