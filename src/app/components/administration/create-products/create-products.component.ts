@@ -126,17 +126,18 @@ export class CreateProductsComponent implements OnInit {
       classificationproducts: this.CreateForm.get('classifications').value,
       status: true,
     };
-    this.genericService
-      .Create<Products>('products', this.product, this.product)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (product: Products) => {
-          (this.product = product), this.router.navigate(['/']);
-        },
-        (error: any) => {
-          this.notification.message(error.name, error.message, 'error');
-        }
-      );
+    console.log(this.product);
+    // this.genericService
+    //   .Create<Products>('products', this.product, this.product)
+    //   .pipe(takeUntil(this.destroy$))
+    //   .subscribe(
+    //     (product: Products) => {
+    //       (this.product = product), this.router.navigate(['/']);
+    //     },
+    //     (error: any) => {
+    //       this.notification.message(error.name, error.message, 'error');
+    //     }
+    //   );
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
