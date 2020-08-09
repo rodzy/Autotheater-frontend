@@ -50,7 +50,7 @@
             >{{ i.type }} - {{ i.description }}</option
           >
         </select>
-        <div *ngIf="">
+        <div *ngIf="isSubmited && createForm.classifications.errors">
           <p>The recommended classification is required</p>
         </div>
         <div>
@@ -68,7 +68,7 @@
               <span class="checkmark"></span>
             </label>
           </div>
-          <div *ngIf="">
+          <div *ngIf="isSubmited && createForm.genres.errors">
             <p>The genre for each movie is required</p>
           </div>
         </div>

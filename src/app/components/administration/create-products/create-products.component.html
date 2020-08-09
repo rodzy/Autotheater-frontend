@@ -19,7 +19,7 @@
           placeholder="Awesome product name"
           formControlName="name"
         />
-        <div *ngIf="">
+        <div *ngIf="isSubmited && createForm.name.errors">
           <p>The name for the product is required</p>
         </div>
         <label for="product-description" class="labels">
@@ -35,7 +35,7 @@
           cols="40"
         >
         </textarea>
-        <div *ngIf="">
+        <div *ngIf="isSubmited && createForm.description.errors">
           <p>The product description is a must</p>
         </div>
         <label for="product-price" class="labels">
@@ -49,8 +49,8 @@
           formControlName="price"
           placeholder="$"
         />
-        <div *ngIf="">
-          <p>The price for the product is required</p>
+        <div *ngIf="isSubmited && createForm.price.errors">
+          <p>The price for the product must be an integer & is required</p>
         </div>
         <label for="product-type" class="labels">
           Product type
@@ -66,7 +66,7 @@
             i.name
           }}</option>
         </select>
-        <div *ngIf="">
+        <div *ngIf="isSubmited && createForm.type_id.errors">
           <p>The type for the product is required</p>
         </div>
         <div>
@@ -85,7 +85,7 @@
             </label>
           </div>
         </div>
-        <div *ngIf="">
+        <div *ngIf="isSubmited && createForm.classifications.errors">
           <p>The recommended classifications are required</p>
         </div>
         <div class="btnContainer">
