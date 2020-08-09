@@ -14,6 +14,7 @@
           formControlName="name"
           (ngModelChange)="onMovieNameChange()"
         >
+        <option value="">----- Select a movie from upcoming releases ------</option>
           <option *ngFor="let item of dmd.results" [ngValue]="item.id">{{
             item.title
           }}</option>
@@ -95,7 +96,7 @@
         </div>
         <div class="btnContainer">
           <input type="submit" value="Submit changes" class="submit-button" />
-          <input type="reset" value="Reset changes" class="submit-button" />
+          <input type="reset" (click)="onResetMovie()" value="Reset changes" class="submit-button" />
         </div>
       </div>
     </div>
