@@ -18,7 +18,7 @@
             item.title
           }}</option>
         </select>
-        <div *ngIf="">
+        <div *ngIf="isSubmited && createForm.name.errors">
           <p>The name of the movie is required</p>
         </div>
         <label for="movie-synopsis" class="labels">

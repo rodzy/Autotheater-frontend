@@ -125,6 +125,11 @@ export class CreateMoviesComponent implements OnInit {
     });
   }
 
+  // get method
+  get createForm() {
+    return this.CreateForm.controls;
+  }
+
   // Event checker for the reactive form
   onCheckChecked(event) {
     const genresArray: FormArray = this.CreateForm.get('genres') as FormArray;
