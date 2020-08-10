@@ -35,5 +35,6 @@ export class NotficationService {
         message += error.error + ' <br />';
       }
     }
+    this.toastr.show('', message, this.options, 'toast-warning');
   }
 }

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
+import { NotficationService } from '../../../services/notfication.service';
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -22,11 +25,39 @@ export class IndexComponent implements OnInit {
     },
   ];
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private notification: NotficationService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     if (localStorage.getItem('currentUser')) {
       this.show = this.authService.getCurrentUserInfo().user.status;
+    }
+    this.messages();
+  }
+
+  messages() {
+    let registered = false;
+    let auth = false;
+    this.route.queryParams.subscribe((params) => {
+      registered = params.registered || false;
+      auth = params.auth || false;
+    });
+    if (auth) {
+      this.notification.message(
+        'Hey, user!',
+        `You're not authorized to perform such action please register or contact us 🤖`,
+        'warning'
+      );
+    }
+    if (registered) {
+      this.notification.message(
+        'Success, thank you for sign on AutoTheater',
+        `Please specify your account credentials to start enjoying all of AutoTheater benefits 😄`,
+        'success'
+      );
     }
   }
 }

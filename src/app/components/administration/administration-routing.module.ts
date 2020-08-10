@@ -4,11 +4,13 @@ import { CreateMoviesComponent } from './create-movies/create-movies.component';
 import { CreateProductsComponent } from './create-products/create-products.component';
 import { UpdateMoviesComponent } from './update-movies/update-movies.component';
 import { UpdateProductsComponent } from './update-products/update-products.component';
+import { AuthGuardService } from '../../guards/auth-guard.service';
 
 const routes: Routes = [
   {
     path: 'create-movies',
     component: CreateMoviesComponent,
+    canActivate:[AuthGuardService]
   },
   {
     path: 'create-products',
