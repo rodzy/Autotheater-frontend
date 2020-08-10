@@ -1,2 +1,20 @@
 <app-undernav [show]="true"></app-undernav>
-<p>{{user.name}}</p>
+<section>
+  <h1 class="heading">Welcome <span class="spanx">{{user.name}}</span></h1>
+  <h2>Manage your account and transactions</h2>
+  <div class="container">
+      <div class="insideContainer">
+          <h3 class="inheadings">Your details:</h3>
+          <div class="flex-container">
+            <div class="flex-inside">
+              <label class="labels"><span>Name</span>: </label>
+              <input readonly class="inputs" value="{{user.name}} {{user.lastname}}"/>
+            </div>
+            <div class="flex-inside">
+              <label class="labels"><span>Account email</span>: </label>
+              <input readonly class="inputs" value="{{user.email}}"/>
+            </div>
+          </div>
+      </div>
+  </div>
+</section>
