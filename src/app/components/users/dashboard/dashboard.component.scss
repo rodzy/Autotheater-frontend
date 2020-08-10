@@ -101,3 +101,28 @@ h2 {
   padding: 56px;
   box-sizing: border-box;
 }
+
+@media screen and (max-width: 1200px) {
+  .heading {
+    font-size: 30px;
+    text-align: center;
+    margin-left: 0;
+    padding-left: 0;
+  }
+  h2 {
+    font-size: 18px;
+    text-align: center;
+    margin-left: 0;
+    padding-left: 0;
+  }
+  .container {
+    width: 100%;
+  }
+  .btnContainer {
+    flex-direction: column;
+  }
+  .flex-container{
+    flex-direction: column;
+  }
+}
+
