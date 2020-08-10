@@ -41,15 +41,24 @@ export class IndexComponent implements OnInit {
   messages() {
     let registered = false;
     let auth = false;
+    let role = false;
     this.route.queryParams.subscribe((params) => {
       registered = params.registered || false;
       auth = params.auth || false;
+      role = params.role || false;
     });
     if (auth) {
       this.notification.message(
         'Hey, user!',
         `You're not authorized to perform such action please register or contact us 🤖`,
         'warning'
+      );
+    }
+    if (role) {
+      this.notification.message(
+        'Unautorized!',
+        `👮‍♀️ You're not authorized to look at this page 👮‍♂️`,
+        'info'
       );
     }
     if (registered) {
