@@ -122,7 +122,32 @@ h2 {
   margin-left: 5px;
 }
 
+.submit-button2 {
+  height: 60px;
+  width: 100%;
+  border-radius: 4px;
+  border: 0;
+  background-color: $secondary;
+  color: #fff;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 15px;
+  text-align: center;
+  padding-top: 21px;
+  padding-bottom: 21px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
 .submit-button:hover {
+  transition: ease 0.5s;
+  background-color: $secondary-dual;
+}
+
+.submit-button2:hover {
   transition: ease 0.5s;
   background-color: $secondary-dual;
 }

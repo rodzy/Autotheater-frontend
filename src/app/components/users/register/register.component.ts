@@ -98,8 +98,8 @@ export class RegisterComponent implements OnInit {
     };
     this.authService.CreateUser<Users>(this.user).subscribe(
       (data: Users) => {
-        (this.user = data), this.router.navigate(['/']);
-        console.log(this.user);
+        (this.user = data),
+          this.router.navigate(['/'], { queryParams: { registered: true } });
       },
       (error: any) => {
         this.notification.message(error.name, error.message, 'error');
