@@ -7,6 +7,7 @@ import { CreateProductsComponent } from './create-products/create-products.compo
 import { UpdateMoviesComponent } from './update-movies/update-movies.component';
 import { UpdateProductsComponent } from './update-products/update-products.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 const declarations: any = [
   CreateMoviesComponent,
@@ -18,6 +19,7 @@ const imports: any = [
   CommonModule,
   AdministrationRoutingModule,
   ReactiveFormsModule,
+  SharedModule
 ];
 
 @NgModule({

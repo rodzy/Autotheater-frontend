@@ -56,7 +56,7 @@ export class IndexComponent implements OnInit {
     }
     if (role) {
       this.notification.message(
-        'Unautorized!',
+        'Unauthorized!',
         `👮‍♀️ You're not authorized to look at this page 👮‍♂️`,
         'info'
       );
