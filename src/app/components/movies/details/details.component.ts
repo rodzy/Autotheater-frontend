@@ -15,8 +15,9 @@ export class DetailsComponent implements OnInit {
   data: Movie;
   errors: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
-  public classification = ['G', 'PG', 'M', 'MA 15+', 'R 18+', 'X 18+'];
-
+  classification = ['G', 'PG', 'M', 'MA 15+', 'R 18+', 'X 18+'];
+  id = this.route.snapshot.paramMap.get('id');
+  liked;
   constructor(
     private gService: GenericService,
     private notification: NotficationService,
@@ -24,8 +25,7 @@ export class DetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.ObtainMovieDetails(id);
+    this.ObtainMovieDetails(this.id);
   }
 
   // Listing movies using the generic service and the notifying service
@@ -44,8 +44,14 @@ export class DetailsComponent implements OnInit {
   }
 
   // Like the current movie
-  LikeMovie(id: any) {
-    this.gService.Like('movies', id).pipe(takeUntil(this.destroy$));
+  likeMovie() {
+    this.gService
+      // tslint:disable-next-line: radix
+      .Like('movies', parseInt(this.id))
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((like: any) => {
+        this.liked = like;
+      });
   }
 
   // tslint:disable-next-line: use-lifecycle-interface

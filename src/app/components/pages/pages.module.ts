@@ -22,7 +22,7 @@ const exports: any[] = [
   LocationsComponent,
 ];
 
-const imports: any[] = [CommonModule, SharedModule,  PagesRoutingModule];
+const imports: any[] = [CommonModule, SharedModule, PagesRoutingModule];
 
 @NgModule({
   declarations: [...declarations],

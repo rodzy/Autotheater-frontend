@@ -34,7 +34,7 @@
         <div class="detailsbody">
           <h3 class="contentTitle">Synopsis</h3>
           <p class="synopsis">{{ data.sinopsis }}</p>
-          <a class="likeBtn" tooltip="Like this movie" placement="bottom">
+          <a class="likeBtn" (click)="likeMovie()" tooltip="Like this movie" placement="bottom">
             <span
               class="material-icons"
               style="
