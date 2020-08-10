@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { CustomErrorHandlerService } from './custom-error-handler.service';
+import { Token } from '../models/Token.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -22,14 +23,14 @@ export class AuthService {
     private http: HttpClient,
     private handler: CustomErrorHandlerService
   ) {
-    this.currentUserSubject = new BehaviorSubject<any>(
+    this.currentUserSubject = new BehaviorSubject<Token>(
       JSON.parse(localStorage.getItem('currentUser'))
     );
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
   // Getting the current user information
-  public getCurrentUserInfo(): any {
+  public getCurrentUserInfo(): Token {
     return this.currentUserSubject.value;
   }
 

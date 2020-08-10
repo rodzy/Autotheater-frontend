@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../services/auth.service';
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -21,11 +22,11 @@ export class IndexComponent implements OnInit {
     },
   ];
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     if (localStorage.getItem('currentUser')) {
-      this.show = localStorage.getItem('currentUser');
+      this.show = this.authService.getCurrentUserInfo().user.status;
     }
   }
 }
