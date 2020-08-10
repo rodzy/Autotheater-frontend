@@ -8,13 +8,10 @@ export class NotficationService {
   options: IndividualConfig;
   constructor(private toastr: ToastrService) {
     this.options = this.toastr.toastrConfig;
-    /* Top Right, Bottom Right, Bottom Left, Top Left, Top Full Width, Bottom Full Width, Top Center, Bottom
-  Center */
-    this.options.positionClass = 'toast-top-full-width';
-
-    this.options.timeOut = 5000;
-
     this.options.enableHtml = true;
+    this.options.positionClass = 'toast-top-full-width';
+    this.options.disableTimeOut = true;
+    this.options.closeButton = true;
   }
 
   public message(title: string, message: string, type: string) {

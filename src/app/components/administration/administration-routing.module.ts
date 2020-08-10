@@ -10,19 +10,22 @@ const routes: Routes = [
   {
     path: 'create-movies',
     component: CreateMoviesComponent,
-    canActivate:[AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: 'create-products',
     component: CreateProductsComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'update-movies',
     component: UpdateMoviesComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'update-products',
     component: UpdateProductsComponent,
+    canActivate: [AuthGuardService],
   },
 ];
 
