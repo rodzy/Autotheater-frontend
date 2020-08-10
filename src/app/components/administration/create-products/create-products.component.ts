@@ -160,7 +160,10 @@ export class CreateProductsComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         (product: Products) => {
-          (this.product = product), this.router.navigate(['/']);
+          (this.product = product),
+            this.router.navigate(['/dashboard'], {
+              queryParams: { productSuccess: true },
+            });
         },
         (error: any) => {
           this.notification.message(error.name, error.message, 'error');
