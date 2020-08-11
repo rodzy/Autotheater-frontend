@@ -15,9 +15,8 @@ export class AuthService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
   server = environment.SERVER_URL;
-
   private currentUserSubject: BehaviorSubject<any>;
-  public currentUser: Observable<any>;
+  public currentUser: Observable<Token>;
 
   constructor(
     private http: HttpClient,
@@ -56,13 +55,12 @@ export class AuthService {
   }
 
   // Logout
-  Logout() {
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
-    return this.http.post(
-      this.server + 'auth/logout',
-      this.currentUser,
-      this.httpOptions
+  Logout<T>() {
+    this.httpOptions.headers.append(
+      'Authorization',
+      'Bearer' + this.getCurrentUserInfo().access_token
     );
+    this.currentUserSubject.next(null);
+    return this.http.post<T>(this.server + 'auth/logout', this.httpOptions);
   }
 }

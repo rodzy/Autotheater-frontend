@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
     let movieSuccess = false;
     let productSuccess = false;
     this.route.queryParams.subscribe((params) => {
-      movieSuccess = params.succeed || false;
+      movieSuccess = params.movieSuccess || false;
       productSuccess = params.productSuccess || false;
     });
     if (movieSuccess) {

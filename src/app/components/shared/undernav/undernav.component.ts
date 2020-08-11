@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import undernav from './undernav';
 import { AuthService } from '../../../services/auth.service';
+import { Token } from '../../../models/Token.interface';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-undernav',
@@ -17,7 +19,7 @@ export class UndernavComponent implements OnInit {
 
   @Input() show;
 
-  constructor(public authService: AuthService) {
+  constructor(public authService: AuthService, private route: Router) {
     this.setVars();
   }
 
@@ -32,6 +34,9 @@ export class UndernavComponent implements OnInit {
   }
 
   logout() {
-    this.authService.Logout();
+    this.authService.Logout<Token>().subscribe(() => {
+      localStorage.removeItem('currentUser');
+      this.route.navigate(['/'], { queryParams: { auth: true } });
+    });
   }
 }
