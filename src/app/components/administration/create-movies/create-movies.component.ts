@@ -205,7 +205,10 @@ export class CreateMoviesComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         (movie: Movie) => {
-          (this.movie = movie), this.router.navigate(['/']);
+          (this.movie = movie),
+            this.router.navigate(['/dashboard'], {
+              queryParams: { movieSuccess: true },
+            });
         },
         (error: any) => {
           this.notification.message(error.name, error.message, 'error');

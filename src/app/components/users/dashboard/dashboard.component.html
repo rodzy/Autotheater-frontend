@@ -1,1 +1,64 @@
-<p>dashboard works!</p>
+<app-undernav [show]="true"></app-undernav>
+<section>
+  <h1 class="heading">
+    Welcome <span class="spanx">{{ user.name }}</span>
+  </h1>
+  <h2>Manage your account and transactions</h2>
+  <div class="container">
+    <div class="insideContainer">
+      <h3 class="inheadings">Your details:</h3>
+      <div class="flex-container">
+        <div class="flex-inside">
+          <label class="labels"><span>Name</span>: </label>
+          <input
+            readonly
+            class="inputs"
+            value="{{ user.name }} {{ user.lastname }}"
+          />
+        </div>
+        <div class="flex-inside">
+          <label class="labels"><span>Account email</span>: </label>
+          <input readonly class="inputs" value="{{ user.email }}" />
+        </div>
+      </div>
+      <ng-container *ngIf="user.role_id !== 1; else elseTemplate">
+        <h3 class="inheadings">Your Reservations:</h3>
+        <div class="btnContainer">
+          <input
+            type="submit"
+            value="Load reservations history"
+            class="submit-button2"
+          />
+        </div>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <h3 class="inheadings">Manage movies:</h3>
+        <div class="btnContainer">
+          <a
+            routerLink="/create-movies"
+            routerLinkActive="true"
+            class="submit-button"
+          >Register the latest releases</a>
+          <a
+            routerLink="/update-movies"
+            routerLinkActive="true"
+            class="submit-button"
+          >Check the listing</a>
+        </div>
+        <h3 class="inheadings">Manage products:</h3>
+        <div class="btnContainer">
+          <a
+            routerLink="/create-products"
+            routerLinkActive="true"
+            class="submit-button"
+          >Register new products</a>
+          <a
+            routerLink="/update-products"
+            routerLinkActive="true"
+            class="submit-button"
+          >Check the listing</a>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</section>

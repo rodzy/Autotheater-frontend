@@ -5,6 +5,7 @@ import { UsersRoutingModule } from './users-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { SharedModule } from '../shared/shared.module';
 
 const declarations: any[] = [
   DashboardComponent,
@@ -13,7 +14,12 @@ const declarations: any[] = [
 ];
 const exports: any[] = [DashboardComponent, RegisterComponent, LoginComponent];
 
-const imports: any[] = [CommonModule, UsersRoutingModule, ReactiveFormsModule];
+const imports: any[] = [
+  CommonModule,
+  UsersRoutingModule,
+  ReactiveFormsModule,
+  SharedModule,
+];
 
 @NgModule({
   declarations: [...declarations],
