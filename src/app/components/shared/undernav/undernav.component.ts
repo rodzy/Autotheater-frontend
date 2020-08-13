@@ -3,6 +3,7 @@ import undernav from './undernav';
 import { AuthService } from '../../../services/auth.service';
 import { Token } from '../../../models/Token.interface';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NotficationService } from '../../../services/notfication.service';
 
 @Component({
   selector: 'app-undernav',
@@ -16,10 +17,15 @@ export class UndernavComponent implements OnInit {
   buttonlogout: string;
   profiletag: string;
   message: string;
+  logdOff: Token;
 
   @Input() show;
 
-  constructor(public authService: AuthService, private route: Router) {
+  constructor(
+    public authService: AuthService,
+    private notification: NotficationService,
+    private route: Router
+  ) {
     this.setVars();
   }
 
@@ -34,9 +40,15 @@ export class UndernavComponent implements OnInit {
   }
 
   logout() {
-    this.authService.Logout<Token>().subscribe(() => {
-      localStorage.removeItem('currentUser');
-      this.route.navigate(['/'], { queryParams: { auth: true } });
-    });
+    this.authService.Logout<Token>().subscribe(
+      (logged: Token) => {
+        this.logdOff = logged;
+        this.route.navigate(['/'], { queryParams: { log: true } });
+      },
+      (error: any) => {
+        this.notification.message(error.name, error.messge, 'error');
+      }
+    );
+    localStorage.removeItem('currentUser');
   }
 }

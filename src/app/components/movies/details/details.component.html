@@ -34,19 +34,20 @@
         <div class="detailsbody">
           <h3 class="contentTitle">Synopsis</h3>
           <p class="synopsis">{{ data.sinopsis }}</p>
-          <a class="likeBtn" (click)="likeMovie($event)" tooltip="Like this movie" placement="bottom">
-            <span
-              class="material-icons"
-              style="
-                vertical-align: middle;
-                display: inline-flex;
-                padding: 20px;
-              "
-            >
-              thumb_up
-            </span>
-          </a>
         </div>
+        <a
+          class="likeBtn"
+          (click)="likeMovie($event)"
+          tooltip="Like this movie"
+          placement="bottom"
+        >
+          <span
+            class="material-icons"
+            style="vertical-align: middle; display: inline-flex; padding: 20px;"
+          >
+            thumb_up
+          </span>
+        </a>
       </div>
     </div>
   </section>

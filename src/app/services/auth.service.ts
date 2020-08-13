@@ -56,11 +56,11 @@ export class AuthService {
 
   // Logout
   Logout<T>() {
-    this.httpOptions.headers.append(
+    const loggedHeaders = this.httpOptions.headers.append(
       'Authorization',
       'Bearer' + this.getCurrentUserInfo().access_token
     );
     this.currentUserSubject.next(null);
-    return this.http.post<T>(this.server + 'auth/logout', this.httpOptions);
+    return this.http.post<T>(this.server + 'auth/logout', loggedHeaders);
   }
 }
