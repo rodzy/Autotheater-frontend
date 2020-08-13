@@ -44,14 +44,20 @@ export class DetailsComponent implements OnInit {
   }
 
   // Like the current movie
-  likeMovie() {
+  likeMovie(e) {
+    e.preventDefault();
     this.gService
       // tslint:disable-next-line: radix
       .Like('movies', parseInt(this.id))
       .pipe(takeUntil(this.destroy$))
-      .subscribe((like: any) => {
-        this.liked = like;
-      });
+      .subscribe(
+        (like: any) => {
+          this.liked = like;
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.messge, 'error');
+        }
+      );
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
