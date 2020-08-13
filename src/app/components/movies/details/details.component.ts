@@ -48,7 +48,7 @@ export class DetailsComponent implements OnInit {
     e.preventDefault();
     this.gService
       // tslint:disable-next-line: radix
-      .Like('movies', parseInt(this.id))
+      .Like('likes', parseInt(this.id))
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         (like: any) => {
