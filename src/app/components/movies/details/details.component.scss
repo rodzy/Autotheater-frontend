@@ -163,3 +163,12 @@ section {
 .stars{
   margin:20px;
 }
+.stars {
+  margin: 20px;
+}
+.star-unselected {
+  color: #656D78;
+}
+.star-selected {
+  color: $primary;
+}
