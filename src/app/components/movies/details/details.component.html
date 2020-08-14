@@ -64,9 +64,49 @@
             thumb_up
           </span>
         </a>
-        <div class="stars">
+        <div class="stars" *ngIf="data.likes_count === 0">
           <span class="material-icons star-unselected">
             star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+        </div>
+        <div
+          class="stars"
+          *ngIf="data.likes_count >= 1 && data.likes_count <= 3"
+        >
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+        </div>
+        <div
+          class="stars"
+          *ngIf="data.likes_count >= 4 && data.likes_count <= 7"
+        >
+          <span class="material-icons star-selected">
+            star
           </span>
           <span class="material-icons star-selected">
             star
@@ -74,23 +114,65 @@
           <span class="material-icons star-unselected">
             star_border
           </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+        </div>
+        <div
+          class="stars"
+          *ngIf="data.likes_count >= 8 && data.likes_count <= 15"
+        >
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
           <span class="material-icons star-selected">
             star
           </span>
           <span class="material-icons star-unselected">
             star_border
           </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+        </div>
+        <div
+          class="stars"
+          *ngIf="data.likes_count >= 16 && data.likes_count <= 25"
+        >
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
           <span class="material-icons star-selected">
             star
           </span>
           <span class="material-icons star-unselected">
             star_border
           </span>
+        </div>
+        <div class="stars" *ngIf="data.likes_count >= 26">
           <span class="material-icons star-selected">
             star
           </span>
-          <span class="material-icons star-unselected">
-            star_border
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
           </span>
           <span class="material-icons star-selected">
             star

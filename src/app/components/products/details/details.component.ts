@@ -57,7 +57,6 @@ export class DetailsComponent implements OnInit {
       .subscribe(
         (rate: any) => {
           this.rating = rate;
-          console.log(this.rating);
           if (this.rating === 'Product succesfully rated!') {
             this.ObtainProductDetails(this.id);
           }

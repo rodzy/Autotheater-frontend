@@ -57,6 +57,9 @@ export class DetailsComponent implements OnInit {
       .subscribe(
         (like: any) => {
           this.liked = like;
+          if (this.liked === 'Movie liked!') {
+            this.ObtainMovieDetails(this.id);
+          }
         },
         (error: any) => {
           this.notification.message(error.name, error.messge, 'error');
