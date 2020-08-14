@@ -132,7 +132,7 @@ section {
 }
 
 .synopsis {
-  font-size: 16px;
+  font-size: 17px;
 }
 
 .likeBtn {
@@ -149,4 +149,34 @@ section {
   color: $primary;
   background-color: $secondary;
   transition: ease 1s;
+}
+
+.gen-icon {
+  color: $secondary;
+  font-size: 20px;
+}
+.genres-tag {
+  background: transparent;
+  box-shadow: 0 0 2px $primary;
+  width: 90px;
+  display: flex;
+  margin: 2px;
+  border-radius: 0.7rem;
+}
+.genres-container{
+  margin-top: 20px;
+}
+
+.listing{
+  padding: 0;
+  margin: 0;
+  margin-bottom: 50px;
+}
+
+.listing-item{
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 0;
+  margin-left: 50px;
 }

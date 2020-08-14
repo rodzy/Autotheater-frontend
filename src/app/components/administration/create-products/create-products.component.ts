@@ -57,7 +57,7 @@ export class CreateProductsComponent implements OnInit {
         {
           id: 0,
           description: '',
-          pricetotal: '',
+          pricetotal: 0,
           type: '',
         },
       ];

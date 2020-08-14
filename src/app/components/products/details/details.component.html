@@ -28,8 +28,16 @@
           <h1 class="detailsTitle btitle">{{ data.name }}</h1>
           <div class="subtitles">
             <span class="classification">${{ data.price }}</span>
-            <div *ngFor="let item of data.classificationproducts">
-              <p class="genres">{{ item.type }}</p>
+            <div *ngFor="let item of data.classificationproducts" class="genres-container">
+              <div class="genres-tag">
+                <span
+                  class="material-icons gen-icon"
+                  style="vertical-align: middle; display: inline-flex;"
+                >
+                  fiber_manual_record
+                </span>
+                {{ item.type }}
+              </div>
             </div>
           </div>
         </div>
@@ -37,6 +45,15 @@
           <h3 class="contentTitle">Product description</h3>
           <p class="synopsis">{{ data.description }}</p>
         </div>
+        <div class="detailsbody">
+          <h3 class="contentTitle">About this product</h3>
+          <p class="synopsis">The unitary price for this product is ${{data.price}}, the total price might vary depending on the classification: </p>
+        </div>
+            <div *ngFor="let item of data.classificationproducts" class="listbody">
+                <ul class="listing">
+                  <li class="listing-item">{{item.type}}: Extra price ${{item.pricetotal}}</li>
+                </ul>
+            </div>
         <div class="detailsbody">
           <h3 class="contentTitle">Rate this product</h3>
           <p class="synopsis">

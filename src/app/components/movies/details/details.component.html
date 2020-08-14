@@ -27,8 +27,16 @@
             <span class="classification">{{
               classification[data.classification_id - 1]
             }}</span>
-            <div *ngFor="let item of data.genres">
-              <p class="genres">{{ item.name }}</p>
+            <div *ngFor="let item of data.genres" class="genres-container">
+              <div class="genres-tag">
+                <span
+                  class="material-icons gen-icon"
+                  style="vertical-align: middle; display: inline-flex;"
+                >
+                  fiber_manual_record
+                </span>
+                {{ item.name }}
+              </div>
             </div>
           </div>
         </div>
