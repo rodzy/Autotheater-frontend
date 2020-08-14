@@ -18,6 +18,7 @@ export class DetailsComponent implements OnInit {
   classification = ['G', 'PG', 'M', 'MA 15+', 'R 18+', 'X 18+'];
   id = this.route.snapshot.paramMap.get('id');
   liked;
+  show = false;
   constructor(
     private gService: GenericService,
     private notification: NotficationService,
@@ -25,6 +26,9 @@ export class DetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (localStorage.getItem('currentUser')) {
+      this.show = true;
+    }
     this.ObtainMovieDetails(this.id);
   }
 

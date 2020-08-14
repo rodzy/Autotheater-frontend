@@ -1,29 +1,5 @@
+<app-undernav [show]="show"></app-undernav>
 <div *ngIf="data">
-  <div class="bannerContainer">
-    <div class="mainCover mainContent">
-      <div *ngIf="data.type_id === 1">
-        <img
-          src="https://images.unsplash.com/photo-1585647347483-22b66260dfff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-          alt="ProductCover"
-          class="banner"
-        />
-      </div>
-      <div *ngIf="data.type_id === 2">
-        <img
-          src="https://images.unsplash.com/photo-1583683433877-042a75ba47e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=687&q=80"
-          alt="ProductCover"
-          class="banner"
-        />
-      </div>
-      <div *ngIf="data.type_id === 3">
-        <img
-          src="https://images.unsplash.com/photo-1550674640-edeb406d94bc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-          alt="ProductCover"
-          class="banner"
-        />
-      </div>
-    </div>
-  </div>
   <section>
     <div class="mainContainer">
       <ng-container *ngIf="data.type_id === 1">
@@ -51,9 +27,7 @@
         <div class="detailsHead">
           <h1 class="detailsTitle btitle">{{ data.name }}</h1>
           <div class="subtitles">
-            <span class="classification">${{
-              data.price
-            }}</span>
+            <span class="classification">${{ data.price }}</span>
             <div *ngFor="let item of data.classificationproducts">
               <p class="genres">{{ item.type }}</p>
             </div>
@@ -63,23 +37,26 @@
           <h3 class="contentTitle">Product description</h3>
           <p class="synopsis">{{ data.description }}</p>
         </div>
-          <a
-            class="likeBtn"
-            (click)="likeProduct($event)"
-            tooltip="Rate this product"
-            placement="bottom"
+        <div class="detailsbody">
+          <h3 class="contentTitle">Rate this product</h3>
+          <p class="synopsis">
+            Rate this product based on your opinions on it, all users can vote
+            for it
+          </p>
+        </div>
+        <a
+          class="likeBtn"
+          (click)="likeProduct($event)"
+          tooltip="Rate this product"
+          placement="bottom"
+        >
+          <span
+            class="material-icons"
+            style="vertical-align: middle; display: inline-flex; padding: 20px;"
           >
-            <span
-              class="material-icons"
-              style="
-                vertical-align: middle;
-                display: inline-flex;
-                padding: 20px;
-              "
-            >
-              thumb_up
-            </span>
-          </a>
+            thumb_up
+          </span>
+        </a>
       </div>
     </div>
   </section>

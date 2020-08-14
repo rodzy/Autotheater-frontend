@@ -1,3 +1,4 @@
+<app-undernav [show]="show"></app-undernav>
 <div *ngIf="data">
   <div class="bannerContainer">
     <div class="mainCover mainContent">
@@ -34,6 +35,13 @@
         <div class="detailsbody">
           <h3 class="contentTitle">Synopsis</h3>
           <p class="synopsis">{{ data.sinopsis }}</p>
+        </div>
+        <div class="detailsbody">
+          <h3 class="contentTitle">Do you like this movie?</h3>
+          <p class="synopsis">
+            Rate this movie based on your opinions on it, all users can vote
+            for it
+          </p>
         </div>
         <a
           class="likeBtn"

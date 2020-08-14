@@ -17,6 +17,8 @@ export class DetailsComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
   id = this.route.snapshot.paramMap.get('id');
   rating;
+  show = false;
+
   constructor(
     private gService: GenericService,
     private notification: NotficationService,
@@ -24,8 +26,10 @@ export class DetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.ObtainProductDetails(id);
+    if (localStorage.getItem('currentUser')) {
+      this.show = true;
+    }
+    this.ObtainProductDetails(this.id);
   }
 
   // Listing movies using the generic service and the notifying service
