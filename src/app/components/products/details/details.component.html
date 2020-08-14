@@ -28,7 +28,10 @@
           <h1 class="detailsTitle btitle">{{ data.name }}</h1>
           <div class="subtitles">
             <span class="classification">${{ data.price }}</span>
-            <div *ngFor="let item of data.classificationproducts" class="genres-container">
+            <div
+              *ngFor="let item of data.classificationproducts"
+              class="genres-container"
+            >
               <div class="genres-tag">
                 <span
                   class="material-icons gen-icon"
@@ -47,13 +50,18 @@
         </div>
         <div class="detailsbody">
           <h3 class="contentTitle">About this product</h3>
-          <p class="synopsis">The unitary price for this product is ${{data.price}}, the total price might vary depending on the classification: </p>
+          <p class="synopsis">
+            The unitary price for this product is ${{ data.price }}, the total
+            price might vary depending on the classification:
+          </p>
         </div>
-            <div *ngFor="let item of data.classificationproducts" class="listbody">
-                <ul class="listing">
-                  <li class="listing-item">{{item.type}}: Extra price ${{item.pricetotal}}</li>
-                </ul>
-            </div>
+        <div *ngFor="let item of data.classificationproducts" class="listbody">
+          <ul class="listing">
+            <li class="listing-item">
+              {{ item.type }}: Extra price ${{ item.pricetotal }}
+            </li>
+          </ul>
+        </div>
         <div class="detailsbody">
           <h3 class="contentTitle">Rate this product</h3>
           <p class="synopsis">
@@ -74,6 +82,38 @@
             thumb_up
           </span>
         </a>
+        <div class="stars">
+          <span class="material-icons">
+            star_border
+          </span>
+          <span class="material-icons">
+            star
+          </span>
+          <span class="material-icons">
+            star_border
+          </span>
+          <span class="material-icons">
+            star
+          </span>
+          <span class="material-icons">
+            star_border
+          </span>
+          <span class="material-icons">
+            star
+          </span>
+          <span class="material-icons">
+            star_border
+          </span>
+          <span class="material-icons">
+            star
+          </span>
+          <span class="material-icons">
+            star_border
+          </span>
+          <span class="material-icons">
+            star
+          </span>
+        </div>
       </div>
     </div>
   </section>
