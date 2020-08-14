@@ -17,7 +17,7 @@ import { NotficationService } from '../../../services/notfication.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  error: any;
+  isError: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
   login: Login;
   LoginForm: FormGroup;
@@ -78,7 +78,8 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/']);
         },
         (error: any) => {
-          this.notification.message(error.name, error.message, 'error');
+          this.isError = error.error.message;
+          return;
         }
       );
     } catch (error) {
