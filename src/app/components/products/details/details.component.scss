@@ -35,7 +35,8 @@ section {
 }
 .avatar {
   border-radius: 1rem;
-  width: 300px;
+  width: 600px;
+  height: 600px;
 }
 
 .bannerContainer {
@@ -94,7 +95,8 @@ section {
   font-size: 3rem;
 }
 .subtitles {
-  display: flex;
+  display: inline-flex;
+  margin-top:30px;
 }
 
 .genres {
@@ -164,7 +166,7 @@ section {
   border-radius: 0.7rem;
 }
 .genres-container{
-  margin-top: 20px;
+  vertical-align: middle;
 }
 
 .listing{

@@ -53,11 +53,6 @@ section {
 }
 
 .mainCover {
-  // background-image: linear-gradient(
-  //   to right,
-  //   rgb(51, 1, 75) 10px,
-  //   rgba(49, 0, 95, 0.84) 10%
-  // );
   background-color: transparentize($color: $primary, $amount: 1);
 }
 
@@ -91,7 +86,8 @@ section {
   font-size: 3rem;
 }
 .subtitles {
-  display: flex;
+  display: inline-flex;
+  margin-top:30px;
 }
 
 .genres {
@@ -161,5 +157,5 @@ section {
   border-radius: 0.7rem;
 }
 .genres-container{
-  margin-top: 20px;
+  vertical-align: middle;
 }

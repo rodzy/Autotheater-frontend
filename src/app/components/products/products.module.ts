@@ -8,6 +8,7 @@ import { DrinksComponent } from './drinks/drinks.component';
 import { SnacksComponent } from './snacks/snacks.component';
 import { PopcornComponent } from './popcorn/popcorn.component';
 import { DetailsComponent } from './details/details.component';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 const declarations: any[] = [
   IndexComponent,
@@ -16,7 +17,12 @@ const declarations: any[] = [
   PopcornComponent,
   DetailsComponent,
 ];
-const imports: any[] = [CommonModule, ProductsRoutingModule, SharedModule];
+const imports: any[] = [
+  CommonModule,
+  ProductsRoutingModule,
+  SharedModule,
+  TooltipModule,
+];
 
 @NgModule({
   declarations: [...declarations],
