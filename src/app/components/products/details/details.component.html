@@ -1,16 +1,204 @@
+<app-undernav [show]="show"></app-undernav>
 <div *ngIf="data">
-  <div
-    style="
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 400px;
-    "
-  >
-    {{ data.name }}
-    {{ data.price }}
-    <p>{{ data.description }}</p>
-  </div>
+  <section>
+    <div class="mainContainer">
+      <ng-container *ngIf="data.type_id === 1">
+        <img
+          src="https://images.unsplash.com/photo-1585647347483-22b66260dfff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+          alt="ProductCover"
+          class="avatar"
+        />
+      </ng-container>
+      <ng-container *ngIf="data.type_id === 2">
+        <img
+          src="https://images.unsplash.com/photo-1583683433877-042a75ba47e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=687&q=80"
+          alt="ProductCover"
+          class="avatar"
+        />
+      </ng-container>
+      <ng-container *ngIf="data.type_id === 3">
+        <img
+          src="https://images.unsplash.com/photo-1550674640-edeb406d94bc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+          alt="ProductCover"
+          class="avatar"
+        />
+      </ng-container>
+      <div class="details">
+        <div class="detailsHead">
+          <h1 class="detailsTitle btitle">{{ data.name }}</h1>
+          <div class="subtitles">
+            <span class="classification">${{ data.price }}</span>
+            <div
+              *ngFor="let item of data.classificationproducts"
+              class="genres-container"
+            >
+              <div class="genres-tag">
+                <span
+                  class="material-icons gen-icon"
+                  style="vertical-align: middle; display: inline-flex;"
+                >
+                  fiber_manual_record
+                </span>
+                {{ item.type }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="detailsbody">
+          <h3 class="contentTitle">Product description</h3>
+          <p class="synopsis">{{ data.description }}</p>
+        </div>
+        <div class="detailsbody">
+          <h3 class="contentTitle">About this product</h3>
+          <p class="synopsis">
+            The unitary price for this product is ${{ data.price }}, the total
+            price might vary depending on the classification:
+          </p>
+        </div>
+        <div *ngFor="let item of data.classificationproducts" class="listbody">
+          <ul class="listing">
+            <li class="listing-item">
+              {{ item.type }}: Extra price ${{ item.pricetotal }}
+            </li>
+          </ul>
+        </div>
+        <div class="detailsbody">
+          <h3 class="contentTitle">Rate this product</h3>
+          <p class="synopsis">
+            Rate this product based on your opinions on it, all users can vote
+            for it
+          </p>
+        </div>
+        <a
+          class="likeBtn"
+          (click)="likeProduct($event)"
+          tooltip="Rate this product"
+          placement="bottom"
+        >
+          <span
+            class="material-icons"
+            style="vertical-align: middle; display: inline-flex; padding: 20px;"
+          >
+            thumb_up
+          </span>
+        </a>
+        <div class="stars" *ngIf="data.ratings_count === 0">
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+        </div>
+        <div
+          class="stars"
+          *ngIf="data.ratings_count >= 1 && data.ratings_count <= 3"
+        >
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+        </div>
+        <div
+          class="stars"
+          *ngIf="data.ratings_count >= 4 && data.ratings_count <= 7"
+        >
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+        </div>
+        <div
+          class="stars"
+          *ngIf="data.ratings_count >= 8 && data.ratings_count <= 15"
+        >
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+        </div>
+        <div
+          class="stars"
+          *ngIf="data.ratings_count >= 16 && data.ratings_count <= 25"
+        >
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+        </div>
+        <div class="stars" *ngIf="data.ratings_count >= 26">
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 <div *ngIf="!data">
   <app-loading></app-loading>

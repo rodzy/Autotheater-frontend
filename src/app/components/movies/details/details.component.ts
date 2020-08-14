@@ -18,6 +18,7 @@ export class DetailsComponent implements OnInit {
   classification = ['G', 'PG', 'M', 'MA 15+', 'R 18+', 'X 18+'];
   id = this.route.snapshot.paramMap.get('id');
   liked;
+  show = false;
   constructor(
     private gService: GenericService,
     private notification: NotficationService,
@@ -25,6 +26,9 @@ export class DetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (localStorage.getItem('currentUser')) {
+      this.show = true;
+    }
     this.ObtainMovieDetails(this.id);
   }
 
@@ -44,14 +48,23 @@ export class DetailsComponent implements OnInit {
   }
 
   // Like the current movie
-  likeMovie() {
+  likeMovie(e) {
+    e.preventDefault();
     this.gService
       // tslint:disable-next-line: radix
-      .Like('movies', parseInt(this.id))
+      .Like('likes', parseInt(this.id))
       .pipe(takeUntil(this.destroy$))
-      .subscribe((like: any) => {
-        this.liked = like;
-      });
+      .subscribe(
+        (like: any) => {
+          this.liked = like;
+          if (this.liked === 'Movie liked!') {
+            this.ObtainMovieDetails(this.id);
+          }
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.messge, 'error');
+        }
+      );
   }
 
   // tslint:disable-next-line: use-lifecycle-interface

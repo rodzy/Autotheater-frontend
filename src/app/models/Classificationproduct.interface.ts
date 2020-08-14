@@ -2,7 +2,7 @@ export interface Classificationproduct {
   id: number;
   type: string;
   description: string;
-  pricetotal: string;
+  pricetotal: number;
   created_at?: string;
   updated_at?: string;
   pivot?: Pivot;

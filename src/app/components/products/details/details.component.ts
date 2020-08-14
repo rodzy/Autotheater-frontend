@@ -15,6 +15,10 @@ export class DetailsComponent implements OnInit {
   data: Products;
   errors: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
+  id = this.route.snapshot.paramMap.get('id');
+  rating;
+  show = false;
+
   constructor(
     private gService: GenericService,
     private notification: NotficationService,
@@ -22,8 +26,10 @@ export class DetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.ObtainProductDetails(id);
+    if (localStorage.getItem('currentUser')) {
+      this.show = true;
+    }
+    this.ObtainProductDetails(this.id);
   }
 
   // Listing movies using the generic service and the notifying service
@@ -34,6 +40,26 @@ export class DetailsComponent implements OnInit {
       .subscribe(
         (data: Products) => {
           this.data = data;
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.messge, 'error');
+        }
+      );
+  }
+
+  // Like the current movie
+  likeProduct(e) {
+    e.preventDefault();
+    this.gService
+      // tslint:disable-next-line: radix
+      .Like('rating', parseInt(this.id))
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (rate: any) => {
+          this.rating = rate;
+          if (this.rating === 'Product succesfully rated!') {
+            this.ObtainProductDetails(this.id);
+          }
         },
         (error: any) => {
           this.notification.message(error.name, error.messge, 'error');

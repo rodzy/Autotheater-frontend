@@ -1,3 +1,4 @@
+<app-undernav [show]="show"></app-undernav>
 <div *ngIf="data">
   <div class="bannerContainer">
     <div class="mainCover mainContent">
@@ -26,26 +27,156 @@
             <span class="classification">{{
               classification[data.classification_id - 1]
             }}</span>
-            <div *ngFor="let item of data.genres">
-              <p class="genres">{{ item.name }}</p>
+            <div *ngFor="let item of data.genres" class="genres-container">
+              <div class="genres-tag">
+                <span
+                  class="material-icons gen-icon"
+                  style="vertical-align: middle; display: inline-flex;"
+                >
+                  fiber_manual_record
+                </span>
+                {{ item.name }}
+              </div>
             </div>
           </div>
         </div>
         <div class="detailsbody">
           <h3 class="contentTitle">Synopsis</h3>
           <p class="synopsis">{{ data.sinopsis }}</p>
-          <a class="likeBtn" (click)="likeMovie()" tooltip="Like this movie" placement="bottom">
-            <span
-              class="material-icons"
-              style="
-                vertical-align: middle;
-                display: inline-flex;
-                padding: 20px;
-              "
-            >
-              thumb_up
-            </span>
-          </a>
+        </div>
+        <div class="detailsbody">
+          <h3 class="contentTitle">Do you like this movie?</h3>
+          <p class="synopsis">
+            Rate this movie based on your opinions on it, all users can vote for
+            it
+          </p>
+        </div>
+        <a
+          class="likeBtn"
+          (click)="likeMovie($event)"
+          tooltip="Like this movie"
+          placement="bottom"
+        >
+          <span
+            class="material-icons"
+            style="vertical-align: middle; display: inline-flex; padding: 20px;"
+          >
+            thumb_up
+          </span>
+        </a>
+        <div class="stars" *ngIf="data.likes_count === 0">
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+        </div>
+        <div
+          class="stars"
+          *ngIf="data.likes_count >= 1 && data.likes_count <= 3"
+        >
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+        </div>
+        <div
+          class="stars"
+          *ngIf="data.likes_count >= 4 && data.likes_count <= 7"
+        >
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+        </div>
+        <div
+          class="stars"
+          *ngIf="data.likes_count >= 8 && data.likes_count <= 15"
+        >
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+        </div>
+        <div
+          class="stars"
+          *ngIf="data.likes_count >= 16 && data.likes_count <= 25"
+        >
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-unselected">
+            star_border
+          </span>
+        </div>
+        <div class="stars" *ngIf="data.likes_count >= 26">
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
+          <span class="material-icons star-selected">
+            star
+          </span>
         </div>
       </div>
     </div>

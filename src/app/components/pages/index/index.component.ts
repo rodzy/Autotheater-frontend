@@ -42,10 +42,12 @@ export class IndexComponent implements OnInit {
     let registered = false;
     let auth = false;
     let role = false;
+    let log = false;
     this.route.queryParams.subscribe((params) => {
       registered = params.registered || false;
       auth = params.auth || false;
       role = params.role || false;
+      log = params.log || false;
     });
     if (auth) {
       this.notification.message(
@@ -65,6 +67,13 @@ export class IndexComponent implements OnInit {
       this.notification.message(
         'Success, thank you for sign on AutoTheater',
         `Please specify your account credentials to start enjoying all of AutoTheater benefits 😄`,
+        'success'
+      );
+    }
+    if (log) {
+      this.notification.message(
+        'Success, we hope to have you soon',
+        `Successfully logged out of AutoTheater come back when ever you like 😄`,
         'success'
       );
     }

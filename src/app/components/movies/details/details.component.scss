@@ -53,11 +53,6 @@ section {
 }
 
 .mainCover {
-  // background-image: linear-gradient(
-  //   to right,
-  //   rgb(51, 1, 75) 10px,
-  //   rgba(49, 0, 95, 0.84) 10%
-  // );
   background-color: transparentize($color: $primary, $amount: 1);
 }
 
@@ -91,7 +86,8 @@ section {
   font-size: 3rem;
 }
 .subtitles {
-  display: flex;
+  display: inline-flex;
+  margin-top:30px;
 }
 
 .genres {
@@ -146,4 +142,33 @@ section {
   color: $primary;
   background-color: $secondary;
   transition: ease 1s;
+}
+
+.gen-icon {
+  color: $secondary;
+  font-size: 20px;
+}
+.genres-tag {
+  background: transparent;
+  box-shadow: 0 0 2px $primary;
+  width: 90px;
+  display: flex;
+  margin: 2px;
+  border-radius: 0.7rem;
+}
+.genres-container{
+  vertical-align: middle;
+}
+
+.stars{
+  margin:20px;
+}
+.stars {
+  margin: 20px;
+}
+.star-unselected {
+  color: #656D78;
+}
+.star-selected {
+  color: $primary;
 }
