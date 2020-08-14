@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   RegisterForm: FormGroup;
   isSubmited = false;
   equals = false;
-  errors: any;
+  isError: any;
   user: Users;
 
   constructor(
@@ -38,6 +38,16 @@ export class RegisterComponent implements OnInit {
         lastname: '',
         password: '',
         role_id: 0,
+      };
+    }
+    if (this.isError === undefined) {
+      this.isError = {
+        errors: [
+          {
+            field: '',
+            message: '',
+          },
+        ],
       };
     }
     this.reactiveForm();
@@ -102,7 +112,9 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['/'], { queryParams: { registered: true } });
       },
       (error: any) => {
-        this.notification.message(error.name, error.message, 'error');
+        console.log(error);
+        this.isError = error.errors;
+        return;
       }
     );
   }

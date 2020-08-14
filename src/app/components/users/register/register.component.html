@@ -135,6 +135,17 @@
             </span>
           </p>
         </div>
+        <div class="errorContainer" *ngIf="isSubmited && isError">
+          <p class="errorMsg">
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              report
+            </span>
+            {{ isError }}
+          </p>
+        </div>
         <button type="submit" class="submitBtn">Register</button>
       </div>
     </div>
