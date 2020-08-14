@@ -40,15 +40,7 @@ export class UndernavComponent implements OnInit {
   }
 
   logout() {
-    this.authService.Logout<Token>().subscribe(
-      (logged: Token) => {
-        this.logdOff = logged;
-        this.route.navigate(['/'], { queryParams: { log: true } });
-      },
-      (error: any) => {
-        this.notification.message(error.name, error.messge, 'error');
-      }
-    );
-    localStorage.removeItem('currentUser');
+    this.authService.Logout<Token>();
+    this.route.navigate(['/'], { queryParams: { log: true } });
   }
 }

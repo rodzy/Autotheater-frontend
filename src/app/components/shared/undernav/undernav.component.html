@@ -5,21 +5,35 @@
         {{ heading }}
       </div>
     </div>
-    <div class="link-container">
-      <ul class="container-links">
-        <li *ngIf="!show">
-          <a routerLink="/login" routerLinkActive="active" class="loginbtn">{{ buttonlogin }}</a>
-        </li>
-        <li *ngIf="!show">
-          <a routerLink="/register" routerLinkActive="active" class="signbtn">{{ buttonsignin }}</a>
-        </li>
-        <li *ngIf="show">
-          <a routerLink="/dashboard" routerLinkActive="active" class="signbtn">{{ profiletag }}</a>
-        </li>
-        <li *ngIf="show">
-          <a (click)="logout()" routerLink="/" routerLinkActive="active" class="signbtn">{{ buttonlogout }}</a>
-        </li>
-      </ul>
-    </div>
+    <form (submit)="logout()">
+      <div class="link-container">
+        <ul class="container-links">
+          <li *ngIf="!show">
+            <a routerLink="/login" routerLinkActive="active" class="loginbtn">{{
+              buttonlogin
+            }}</a>
+          </li>
+          <li *ngIf="!show">
+            <a
+              routerLink="/register"
+              routerLinkActive="active"
+              class="signbtn"
+              >{{ buttonsignin }}</a
+            >
+          </li>
+          <li *ngIf="show">
+            <a
+              routerLink="/dashboard"
+              routerLinkActive="active"
+              class="signbtn"
+              >{{ profiletag }}</a
+            >
+          </li>
+          <li *ngIf="show">
+            <button type="submit" class="signbtn">{{ buttonlogout }}</button>
+          </li>
+        </ul>
+      </div>
+    </form>
   </div>
 </section>

@@ -14,6 +14,7 @@ export class AuthService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
+
   server = environment.SERVER_URL;
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<Token>;
@@ -56,11 +57,7 @@ export class AuthService {
 
   // Logout
   Logout<T>() {
-    const loggedHeaders = this.httpOptions.headers.append(
-      'Authorization',
-      'Bearer' + this.getCurrentUserInfo().access_token
-    );
+    localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
-    return this.http.post<T>(this.server + 'auth/logout', loggedHeaders);
   }
 }
