@@ -61,6 +61,19 @@
   border-radius: 0.5em;
   border: none;
 }
+.logoutbtn {
+  color: #fff;
+  text-align: center;
+  margin: -6px 0;
+  padding: 4.5px 0;
+  background: #3c045c;
+  width: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  display: block;
+  border-radius: 0.5em;
+  border: none;
+}
 
 .loginbtn:hover{
   background: #363636;
@@ -68,6 +81,11 @@
 }
 
 .signbtn:hover{
+  background: #630699;
+  transition: ease .5s;
+}
+.logoutbtn:hover{
+  cursor: pointer;
   background: #630699;
   transition: ease .5s;
 }
