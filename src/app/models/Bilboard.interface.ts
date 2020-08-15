@@ -1,5 +1,5 @@
 export interface Billboard {
-  id: number;
+  id?: number;
   date_now: string;
   show_date: string;
   status: boolean;

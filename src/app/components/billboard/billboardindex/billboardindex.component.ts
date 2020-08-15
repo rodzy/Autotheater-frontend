@@ -28,6 +28,8 @@ export class BillboardindexComponent implements OnInit {
     if (localStorage.getItem('currentUser')) {
       this.show = localStorage.getItem('currentUser');
     }
+    this.listBillboards();
+    this.listBillboardContent();
   }
 
   // Listing billboards, separatelly for each location in mind
