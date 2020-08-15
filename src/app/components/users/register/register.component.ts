@@ -9,6 +9,7 @@ import { AuthService } from '../../../services/auth.service';
 import { Users } from '../../../models/Users.interface';
 import { NotficationService } from '../../../services/notfication.service';
 import { Router } from '@angular/router';
+import { Error } from '../../../models/Error.interface';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,7 @@ export class RegisterComponent implements OnInit {
   RegisterForm: FormGroup;
   isSubmited = false;
   equals = false;
-  isError: any;
+  isError: Error;
   user: Users;
 
   constructor(
@@ -111,10 +112,15 @@ export class RegisterComponent implements OnInit {
         (this.user = data),
           this.router.navigate(['/'], { queryParams: { registered: true } });
       },
-      (error: any) => {
-        console.log(error);
-        this.isError = error.errors;
-        return;
+      (error: Error) => {
+        this.isError = {
+          errors: [
+            {
+              field: 'email',
+              message: 'The email has already been taken',
+            },
+          ],
+        };
       }
     );
   }
