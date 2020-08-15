@@ -10,6 +10,9 @@ import { NotficationService } from '../../../services/notfication.service';
 import { GenericService } from '../../../services/generic.service';
 import { Subject } from 'rxjs';
 import { Billboard } from '../../../models/Bilboard.interface';
+import { Movie } from '../../../models/Movies.interface';
+import { Locations } from '../../../models/Locations.interface';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-billboard',
@@ -19,6 +22,8 @@ import { Billboard } from '../../../models/Bilboard.interface';
 export class CreateBillboardComponent implements OnInit {
   CreateForm: FormGroup;
   billboard: Billboard;
+  movies: Movie[];
+  locations: Locations[];
   destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
     public formBuilder: FormBuilder,
@@ -57,6 +62,34 @@ export class CreateBillboardComponent implements OnInit {
 
   get createForm() {
     return this.CreateForm.controls;
+  }
+
+  listActiveMovies() {
+    this.genericService
+      .List<Movie>('movies', this.movies)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (movie: Movie[]) => {
+          this.movies = movie;
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.message, 'error');
+        }
+      );
+  }
+
+  listActiveLocations() {
+    this.genericService
+      .List<Locations>('locations', this.locations)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (location: Locations[]) => {
+          this.locations = location;
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.message, 'error');
+        }
+      );
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
