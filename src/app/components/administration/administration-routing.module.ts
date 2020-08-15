@@ -6,6 +6,7 @@ import { UpdateMoviesComponent } from './update-movies/update-movies.component';
 import { UpdateProductsComponent } from './update-products/update-products.component';
 import { AuthGuardService } from '../../guards/auth-guard.service';
 import { RoleGuardService } from '../../guards/role-guard.service';
+import { CreateBillboardComponent } from './create-billboard/create-billboard.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,11 @@ const routes: Routes = [
   {
     path: 'update-products',
     component: UpdateProductsComponent,
+    canActivate: [AuthGuardService, RoleGuardService],
+  },
+  {
+    path: 'create-billboard',
+    component: CreateBillboardComponent,
     canActivate: [AuthGuardService, RoleGuardService],
   },
 ];

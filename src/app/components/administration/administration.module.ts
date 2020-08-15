@@ -8,6 +8,7 @@ import { UpdateMoviesComponent } from './update-movies/update-movies.component';
 import { UpdateProductsComponent } from './update-products/update-products.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { CreateBillboardComponent } from './create-billboard/create-billboard.component';
 
 const declarations: any = [
   CreateMoviesComponent,
@@ -23,7 +24,7 @@ const imports: any = [
 ];
 
 @NgModule({
-  declarations: [...declarations],
+  declarations: [...declarations, CreateBillboardComponent],
   imports: [...imports],
 })
 export class AdministrationModule {}

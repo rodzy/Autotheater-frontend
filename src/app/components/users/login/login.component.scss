@@ -119,6 +119,14 @@ $bg-secondary: #333333;
   font-weight: 500;
 }
 
+.errorMsg{
+  color:red;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
 @media screen and (max-width: 1200px) {
   .heading {
     font-size: 30px;

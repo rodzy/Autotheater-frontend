@@ -14,13 +14,19 @@
           required
           formControlName="email"
         />
-        <div class="errorContainer" *ngIf="isSubmited && formControls.email.errors">
-          <p class="erroMsgs">The email is required <span
-            class="material-icons"
-            style="vertical-align: middle; display: inline-flex;"
-          >
-            warning
-          </span></p>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && formControls.email.errors"
+        >
+          <p class="erroMsgs">
+            The email is required
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
         </div>
         <label for="password_id" class="labels">Password</label>
         <input
@@ -33,13 +39,30 @@
           required
           formControlName="password"
         />
-        <div class="errorContainer" *ngIf="isSubmited && formControls.password.errors">
-          <p class="erroMsgs">The password is required <span
-            class="material-icons"
-            style="vertical-align: middle; display: inline-flex;"
-          >
-            warning
-          </span></p>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && formControls.password.errors"
+        >
+          <p class="erroMsgs">
+            The password is required
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
+        </div>
+        <div class="errorContainer" *ngIf="isSubmited && isError">
+          <p class="errorMsg">
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              report
+            </span>
+            {{ isError }}
+          </p>
         </div>
         <div class="forgetLink">
           <a href="#">Forgot your credentials?</a>
