@@ -1,8 +1,8 @@
 <app-undernav [show]="show"></app-undernav>
 <div>
   <div *ngIf="data">
-    <div *ngFor="let item of data">
-      <h1>Name: {{ item.name }}</h1>
+    <div *ngFor="let item of movieLocation1">
+      <h1>Name: {{ item.id }}</h1>
       <p>{{ item.sinopsis }}</p>
       <div *ngIf="item?.genres">
         <ul>
