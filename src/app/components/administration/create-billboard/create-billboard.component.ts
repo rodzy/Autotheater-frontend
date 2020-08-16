@@ -35,6 +35,9 @@ export class CreateBillboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.initialValuesCheck();
+    this.listActiveMovies();
+    this.listActiveLocations();
+    this.reactiveForm();
   }
 
   initialValuesCheck() {
