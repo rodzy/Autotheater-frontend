@@ -24,6 +24,7 @@ export class CreateBillboardComponent implements OnInit {
   billboard: Billboard;
   movies: Movie[];
   locations: Locations[];
+  isSubmited = false;
   destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
     public formBuilder: FormBuilder,
@@ -85,6 +86,32 @@ export class CreateBillboardComponent implements OnInit {
       .subscribe(
         (location: Locations[]) => {
           this.locations = location;
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.message, 'error');
+        }
+      );
+  }
+
+  onSubmitBillboard() {
+    this.isSubmited = true;
+    if (this.CreateForm.invalid) {
+      return;
+    }
+    this.billboard = {
+      capacity: this.CreateForm.get('capacity').value,
+      date_now: new Date().toLocaleString(),
+      show_date: this.CreateForm.get('show_date').value,
+      movie_id: this.CreateForm.get('movie_id').value,
+      location_id: this.CreateForm.get('location_id').value,
+      status: true,
+    };
+    this.genericService
+      .Create<Billboard>('billboard', this.billboard, this.billboard)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (res: any) => {
+          this.notification.message(res.name, res.message, 'success');
         },
         (error: any) => {
           this.notification.message(error.name, error.message, 'error');
