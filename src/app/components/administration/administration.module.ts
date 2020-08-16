@@ -15,6 +15,7 @@ const declarations: any = [
   CreateProductsComponent,
   UpdateMoviesComponent,
   UpdateProductsComponent,
+  CreateBillboardComponent
 ];
 const imports: any = [
   CommonModule,
@@ -24,7 +25,7 @@ const imports: any = [
 ];
 
 @NgModule({
-  declarations: [...declarations, CreateBillboardComponent],
+  declarations: [...declarations],
   imports: [...imports],
 })
 export class AdministrationModule {}

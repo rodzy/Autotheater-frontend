@@ -12,6 +12,8 @@ import { BillboardModule } from './components/billboard/billboard.module';
 import { MoviesModule } from './components/movies/movies.module';
 import { ProductsModule } from './components/products/products.module';
 import { AdministrationModule } from './components/administration/administration.module';
+import { CreateReservationComponent } from './components/reservations/create-reservation/create-reservation.component';
+import { CheckReservationComponent } from './components/reservations/check-reservation/check-reservation.component';
 
 const declarations: any[] = [AppComponent];
 
@@ -31,7 +33,7 @@ const imports: any[] = [
 ];
 
 @NgModule({
-  declarations: [...declarations],
+  declarations: [...declarations, CreateReservationComponent, CheckReservationComponent],
   imports: [...imports],
   providers: [],
   bootstrap: [AppComponent],

@@ -5,7 +5,7 @@ import { BillboardindexComponent } from './billboardindex/billboardindex.compone
 import { SharedModule } from '../shared/shared.module';
 
 const declarations: any[] = [BillboardindexComponent];
-const imports: any[] = [CommonModule, BillboardRoutingModule,SharedModule];
+const imports: any[] = [CommonModule, BillboardRoutingModule, SharedModule];
 
 @NgModule({
   declarations: [...declarations],
