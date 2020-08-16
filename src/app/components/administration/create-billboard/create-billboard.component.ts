@@ -49,13 +49,15 @@ export class CreateBillboardComponent implements OnInit {
   }
 
   reactiveForm() {
+    const datetime = new Date();
     this.CreateForm = this.formBuilder.group({
       capacity: new FormControl('', [
         Validators.required,
         Validators.pattern('^[0-9]*$'),
       ]),
-      date_now: new FormControl('', [Validators.required]),
-      show_date: new FormControl('', [Validators.required]),
+      show_date: new FormControl(datetime.toUTCString().substring(0, 16), [
+        Validators.required,
+      ]),
       movie_id: new FormControl('', [Validators.required]),
       location_id: new FormControl('', [Validators.required]),
     });
@@ -93,7 +95,8 @@ export class CreateBillboardComponent implements OnInit {
       );
   }
 
-  onSubmitBillboard() {
+  // This will create a new session for the solicited movie
+  onSubmitToBillboard() {
     this.isSubmited = true;
     if (this.CreateForm.invalid) {
       return;
