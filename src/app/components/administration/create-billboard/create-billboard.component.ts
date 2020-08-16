@@ -55,7 +55,7 @@ export class CreateBillboardComponent implements OnInit {
         Validators.required,
         Validators.pattern('^[0-9]*$'),
       ]),
-      show_date: new FormControl(datetime.toUTCString().substring(0, 16), [
+      show_date: new FormControl(datetime.toISOString().substring(0, 16), [
         Validators.required,
       ]),
       movie_id: new FormControl('', [Validators.required]),
