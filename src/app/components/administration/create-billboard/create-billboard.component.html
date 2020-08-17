@@ -1,1 +1,146 @@
-<p>create-billboard works!</p>
+<app-undernav [show]="true"></app-undernav>
+<div>
+  <h1 class="heading">Register new <span class="spanx">movies</span></h1>
+  <h2>Let the world know about the new releases added to AutoTheater</h2>
+  <form [formGroup]="CreateForm" class="container">
+    <div class="insideContainer">
+      <div class="insideForm">
+        <label for="movie-name" class="labels">
+          Movie
+        </label>
+        <select
+          name="movie-name"
+          id="movie-name"
+          class="inputs"
+          formControlName="name"
+        >
+          <option value=""
+            >----- Select a movie from upcoming releases ------</option
+          >
+          <option *ngFor="let item of dmd.results" [ngValue]="item.id">{{
+            item.title
+          }}</option>
+        </select>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && createForm.name.errors"
+        >
+          <p class="erroMsgs">
+            The name of the movie is required
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
+        </div>
+        <label for="movie-synopsis" class="labels">
+          Synopsis
+        </label>
+        <textarea
+          name="movie-synopsis"
+          id="movie-synopsis"
+          readonly
+          cols="30"
+          rows="5"
+          wrap="on"
+          class="textbox-content"
+          *ngIf="selectedMovie"
+        >
+          {{ selectedMovie.overview }}
+        </textarea>
+        <label for="movie-classification" class="labels">
+          Classification
+        </label>
+        <select
+          name="movie-classification"
+          id="movie-classification"
+          class="inputs"
+          formControlName="classifications"
+        >
+          <option value=""
+            >----- Select a recommended classification ------</option
+          >
+          <option *ngFor="let i of classifications" [ngValue]="i.id"
+            >{{ i.type }} - {{ i.description }}</option
+          >
+        </select>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && createForm.classifications.errors"
+        >
+          <p class="erroMsgs">
+            The recommended classification is required
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
+        </div>
+        <div>
+          <label for="movie-genre" class="labels">
+            Genres
+          </label>
+          <div id="movie-genre" class="genres-container">
+            <label class="list-container" *ngFor="let item of genres"
+              >{{ item.name }}
+              <input
+                type="checkbox"
+                [value]="item.id"
+                (change)="onCheckChecked($event)"
+              />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <div
+            class="errorContainer"
+            *ngIf="isSubmited && createForm.genres.errors"
+          >
+            <p class="erroMsgs">
+              The genre for each movie is required
+              <span
+                class="material-icons"
+                style="vertical-align: middle; display: inline-flex;"
+              >
+                warning
+              </span>
+            </p>
+          </div>
+        </div>
+        <div>
+          <label for="movie-cover" class="labels">
+            Movie cover
+          </label>
+          <ng-container *ngIf="selectedMovie.id !== 0; else elseTemplate">
+            <div class="image-port">
+              <img
+                id="movie-cover"
+                alt="movie-cover"
+                aria-label="movie-cover"
+                src="{{
+                  'https://image.tmdb.org/t/p/w600_and_h900_bestv2' +
+                    selectedMovie.poster_path
+                }}"
+              />
+            </div>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <div class="image-port"></div>
+          </ng-template>
+        </div>
+        <div class="btnContainer">
+          <input type="submit" value="Submit changes" class="submit-button" />
+          <input
+            type="reset"
+            (click)="onResetMovie()"
+            value="Reset changes"
+            class="submit-button"
+          />
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
