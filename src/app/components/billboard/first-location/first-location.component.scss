@@ -163,6 +163,11 @@ section {
   text-shadow: 3px 3px #3c045c;
 }
 
+.elseContainer{
+  width: 350px;
+  
+}
+
 @media all and (max-width: 500px) {
   .card-list {
     /* On small screens, we are no longer using row direction but column */

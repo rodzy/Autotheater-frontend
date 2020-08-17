@@ -15,8 +15,8 @@ export class BillboardindexComponent implements OnInit {
   data: Billboard[];
   location1: Billboard[];
   location2: Billboard[];
-  movieLocation1: Movie[];
-  movieLocation2: Movie[];
+  movieLocation1: Movie[] = [];
+  movieLocation2: Movie[] = [];
   show = null;
   destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
@@ -28,61 +28,7 @@ export class BillboardindexComponent implements OnInit {
     if (localStorage.getItem('currentUser')) {
       this.show = localStorage.getItem('currentUser');
     }
-    this.defaultValuesCheck();
     this.listBillboards();
-  }
-
-  defaultValuesCheck() {
-    if (this.location1 === undefined) {
-      this.location1 = [
-        {
-          capacity: 0,
-          date_now: '',
-          show_date: '',
-          location_id: 0,
-          movie_id: 0,
-          status: false,
-        },
-      ];
-    }
-    if (this.location2 === undefined) {
-      this.location2 = [
-        {
-          capacity: 0,
-          date_now: '',
-          show_date: '',
-          location_id: 0,
-          movie_id: 0,
-          status: false,
-        },
-      ];
-    }
-    if (this.movieLocation1 === undefined) {
-      this.movieLocation1 = [
-        // {
-        //   name: '',
-        //   sinopsis: '',
-        //   image: '',
-        //   banner: '',
-        //   classification_id: 0,
-        //   genres: [],
-        //   status: false,
-        // },
-      ];
-    }
-    if (this.movieLocation2 === undefined) {
-      this.movieLocation2 = [
-        // {
-        //   name: '',
-        //   sinopsis: '',
-        //   image: '',
-        //   banner: '',
-        //   classification_id: 0,
-        //   genres: [],
-        //   status: false,
-        // },
-      ];
-    }
   }
 
   // Listing billboards, separatelly for each location in mind
@@ -101,7 +47,6 @@ export class BillboardindexComponent implements OnInit {
                 .Obtain<Movie>('movies', this.movieLocation1, element.movie_id)
                 .pipe(takeUntil(this.destroy$))
                 .subscribe((movie: Movie) => {
-                  console.log(element);
                   this.movieLocation1.push(movie);
                 });
             });
