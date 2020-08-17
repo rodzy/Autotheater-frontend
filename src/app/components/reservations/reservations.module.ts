@@ -10,12 +10,13 @@ import { ReservationDetailsComponent } from './reservation-details/reservation-d
 const declarations: any = [
   CheckReservationComponent,
   CreateReservationComponent,
+  ReservationDetailsComponent,
 ];
 
 const imports: any = [CommonModule, ReservationsRoutingModule, SharedModule];
 
 @NgModule({
-  declarations: [...declarations, ReservationDetailsComponent],
+  declarations: [...declarations],
   imports: [...imports],
 })
 export class ReservationsModule {}
