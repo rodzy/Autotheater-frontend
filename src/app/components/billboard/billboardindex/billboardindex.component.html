@@ -1,19 +1,20 @@
 <app-undernav [show]="show"></app-undernav>
-<div>
-  <div *ngIf="data">
-    <div *ngFor="let item of movieLocation1">
-      <h1>Name: {{ item.id }}</h1>
-      <p>{{ item.sinopsis }}</p>
-      <div *ngIf="item?.genres">
-        <ul>
-          <li *ngFor="let gen of item.genres">
-            {{ gen.name }}
-          </li>
-        </ul>
-      </div>
+<div *ngIf="data">
+  <div class="breadcrumbs">
+    <h1 class="btitle">Billboards available<span alt="emoji"> ✨</span></h1>
+  </div>
+  <div *ngFor="let item of movieLocation1">
+    <h1>Name: {{ item.id }}</h1>
+    <p>{{ item.sinopsis }}</p>
+    <div *ngIf="item?.genres">
+      <ul>
+        <li *ngFor="let gen of item.genres">
+          {{ gen.name }}
+        </li>
+      </ul>
     </div>
   </div>
-  <div *ngIf="!data">
-    <app-loading></app-loading>
-  </div>
+</div>
+<div *ngIf="!data">
+  <app-loading></app-loading>
 </div>
