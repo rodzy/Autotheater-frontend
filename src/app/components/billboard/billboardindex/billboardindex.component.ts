@@ -59,28 +59,28 @@ export class BillboardindexComponent implements OnInit {
     }
     if (this.movieLocation1 === undefined) {
       this.movieLocation1 = [
-        {
-          name: '',
-          sinopsis: '',
-          image: '',
-          banner: '',
-          classification_id: 0,
-          genres: [],
-          status: false,
-        },
+        // {
+        //   name: '',
+        //   sinopsis: '',
+        //   image: '',
+        //   banner: '',
+        //   classification_id: 0,
+        //   genres: [],
+        //   status: false,
+        // },
       ];
     }
     if (this.movieLocation2 === undefined) {
       this.movieLocation2 = [
-        {
-          name: '',
-          sinopsis: '',
-          image: '',
-          banner: '',
-          classification_id: 0,
-          genres: [],
-          status: false,
-        },
+        // {
+        //   name: '',
+        //   sinopsis: '',
+        //   image: '',
+        //   banner: '',
+        //   classification_id: 0,
+        //   genres: [],
+        //   status: false,
+        // },
       ];
     }
   }

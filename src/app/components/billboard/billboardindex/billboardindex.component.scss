@@ -1,0 +1,115 @@
+$primary: #fffb00;
+$secondary: #7109ad;
+$secondary-dual: #45036b;
+$misc: #9203e6;
+$bg-secondary: #333333;
+
+.breadcrumbs {
+  display: flex;
+  width: 100%;
+  padding-top: 20px;
+  background-color: $bg-secondary;
+  box-shadow: 1px 5px $secondary;
+  position: relative;
+}
+
+.btitle {
+font-weight: 600;
+padding-left: 80px;
+text-shadow: 3px 3px #3c045c;
+font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+section{
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+}
+
+.container {
+  display: flex;
+  border: none;
+  width: 90%;
+  height: 400px;
+  overflow: scroll;
+  overflow-y: hidden;
+  border-radius: 0.5rem;
+}
+.container::-webkit-scrollbar {
+  width: 0.5rem;
+
+}
+.container::-webkit-scrollbar-track {
+  background: $secondary;
+  border-radius: 0.5rem;
+}
+.container::-webkit-scrollbar-thumb {
+  background:$secondary-dual;
+  border-radius: 0.5rem;
+}
+
+.cards-list {
+  z-index: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin: 30px auto;
+  margin-left: 25px;
+  width: 170px;
+  height: 250px;
+  border-radius: 0.5rem;
+  box-shadow: 0 15px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.card .card_image {
+  width: inherit;
+  height: inherit;
+  border-radius: 0.5rem;
+
+}
+
+.card .card_image img {
+  width: inherit;
+  height: inherit;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+.card .card_title {
+  text-align: center;
+  border-radius: 0px 0px 40px 40px;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: -80px;
+  height: 40px;
+  background-color: white;
+}
+
+.card:hover {
+  transform: scale(1, 1);
+  box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.25),
+    0px 15px 15px 0px rgba(0, 0, 0, 0.22);
+}
+
+.title-white {
+  color: white;
+}
+
+.title-black {
+  color: black;
+}
+
+@media all and (max-width: 500px) {
+  .card-list {
+    /* On small screens, we are no longer using row direction but column */
+    flex-direction: column;
+  }
+}
