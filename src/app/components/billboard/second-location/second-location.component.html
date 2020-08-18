@@ -1,0 +1,48 @@
+<section *ngIf="data">
+  <div class="breadcrumb">
+    <h1 class="btitle">Alajuela<span class="spanx"> West</span></h1>
+  </div>
+  <ng-container
+    *ngIf="data.length > 0 && billboard.length > 0; else elseTemplate"
+  >
+    <div class="container">
+      <ng-container *ngFor="let item of data; index as i">
+        <div class="card" *ngIf="item.status">
+          <div class="card_image">
+            <img
+              src="{{ 'https://image.tmdb.org/t/p/original/' + item.banner }}"
+              alt="MovieCover"
+            />
+            <div class="card_title">
+              <a [routerLink]="['/movies/', item.id]" class="btn"
+                ><span class="btitle">View details</span></a
+              >
+            </div>
+          </div>
+          <div>
+            <div class="heading">
+              {{ item.name }}
+            </div>
+            <div class="date-aval">
+              <p>Available at: {{ billboard[i].show_date }}</p>
+            </div>
+            <div class="button-container">
+              <a [routerLink]="['/movies/', billboard[i].id]" class="btn"
+              ><span class="btitle">Reserve</span></a
+            >
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <div class="elseContainer">
+      <span class="material-icons">
+        sentiment_very_dissatisfied
+      </span>
+      <h1>No shows available at the moment</h1>
+      <p>Seems like there are no shows available temporarily</p>
+    </div>
+  </ng-template>
+</section>

@@ -13,10 +13,10 @@ import { Movie } from '../../../models/Movies.interface';
 })
 export class BillboardindexComponent implements OnInit {
   data: Billboard[];
-  location1: Billboard[];
-  location2: Billboard[];
-  movieLocation1: Movie[];
-  movieLocation2: Movie[];
+  location1: Billboard[] = [];
+  location2: Billboard[] = [];
+  movieLocation1: Movie[] = [];
+  movieLocation2: Movie[] = [];
   show = null;
   destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
@@ -29,7 +29,6 @@ export class BillboardindexComponent implements OnInit {
       this.show = localStorage.getItem('currentUser');
     }
     this.listBillboards();
-    this.listBillboardContent();
   }
 
   // Listing billboards, separatelly for each location in mind
@@ -42,31 +41,33 @@ export class BillboardindexComponent implements OnInit {
           this.data = billboards;
           this.location1 = this.data.filter((item) => item.location_id === 1);
           this.location2 = this.data.filter((item) => item.location_id === 2);
+          if (this.location1 !== undefined) {
+            this.location1.forEach((element) => {
+              this.gService
+                .Obtain<Movie>('movies', this.movieLocation1, element.movie_id)
+                .pipe(takeUntil(this.destroy$))
+                .subscribe((movie: Movie) => {
+                  this.movieLocation1.push(movie);
+                });
+            });
+            this.location1.sort((a, b) => 0 - (a > b ? 1 : -1));
+          }
+          if (this.location2 !== undefined) {
+            this.location2.forEach((element) => {
+              this.gService
+                .Obtain<Movie>('movies', this.movieLocation2, element.movie_id)
+                .pipe(takeUntil(this.destroy$))
+                .subscribe((movie: Movie) => {
+                  this.movieLocation2.push(movie);
+                });
+            });
+            this.location2.sort((a, b) => 0 - (a < b ? 1 : -1));
+          }
         },
         (error: any) => {
           this.notification.message(error.name, error.messge, 'error');
         }
       );
-  }
-
-  // Listing content required
-  listBillboardContent() {
-    this.location1.forEach((element) => {
-      this.gService
-        .Obtain<Movie>('movies', this.movieLocation1, element.movie_id)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe((movie: Movie) => {
-          this.movieLocation1.push(movie);
-        });
-    });
-    this.location2.forEach((element) => {
-      this.gService
-        .Obtain<Movie>('movies', this.movieLocation2, element.movie_id)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe((movie: Movie) => {
-          this.movieLocation2.push(movie);
-        });
-    });
   }
 
   // tslint:disable-next-line: use-lifecycle-interface

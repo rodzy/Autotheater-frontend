@@ -1,1 +1,154 @@
-<p>create-billboard works!</p>
+<app-undernav [show]="true"></app-undernav>
+<div>
+  <h1 class="heading">
+    Add a new movie to the <span class="spanx">billboard</span>
+  </h1>
+  <h2>Set up AutoTheater's billboards from one place</h2>
+  <form
+    [formGroup]="CreateForm"
+    (ngSubmit)="onSubmitToBillboard()"
+    class="container"
+  >
+    <div class="insideContainer">
+      <div class="insideForm">
+        <label for="movie-name" class="labels">
+          Movie
+        </label>
+        <select
+          name="movie-name"
+          id="movie-name"
+          class="inputs"
+          formControlName="movie_id"
+        >
+          <option value=""
+            >----- Select a movie from upcoming releases ------</option
+          >
+          <option *ngFor="let item of movies" [ngValue]="item.id">{{
+            item.name
+          }}</option>
+        </select>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && createForm.movie_id.errors"
+        >
+          <p class="erroMsgs">
+            The name of the movie is required
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
+        </div>
+        <!-- the movie pictures and info here -->
+
+        <label for="movie-classification" class="labels">
+          Location
+        </label>
+        <select
+          name="movie-classification"
+          id="movie-classification"
+          class="inputs"
+          formControlName="location_id"
+        >
+          <option value="">----- Select a location ------</option>
+          <option *ngFor="let item of locations" [ngValue]="item.id">{{
+            item.location
+          }}</option>
+        </select>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && createForm.location_id.errors"
+        >
+          <p class="erroMsgs">
+            The location for the movie is required
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
+        </div>
+        <div>
+          <label for="movie-genre" class="labels">
+            Date for the show
+          </label>
+          <input
+            type="date"
+            name="show_date"
+            id="show-date"
+            formControlName="show_date"
+            class="inputs"
+          />
+          <div
+            class="errorContainer"
+            *ngIf="isSubmited && createForm.show_date.errors"
+          >
+            <p class="erroMsgs">
+              The genre for each movie is required
+              <span
+                class="material-icons"
+                style="vertical-align: middle; display: inline-flex;"
+              >
+                warning
+              </span>
+            </p>
+          </div>
+        </div>
+        <div>
+          <label for="movie-genre" class="labels">
+            Capacity
+          </label>
+          <input
+            type="number"
+            name="capacity"
+            id="capacity"
+            formControlName="capacity"
+            class="inputs"
+          />
+          <div
+            class="errorContainer"
+            *ngIf="isSubmited && createForm.capacity.errors"
+          >
+            <p class="erroMsgs">
+              The genre for each movie is required
+              <span
+                class="material-icons"
+                style="vertical-align: middle; display: inline-flex;"
+              >
+                warning
+              </span>
+            </p>
+          </div>
+        </div>
+        <!-- <div>
+          <label for="movie-cover" class="labels">
+            Movie cover
+          </label>
+          <ng-container *ngIf="selectedMovie.id !== 0; else elseTemplate">
+            <div class="image-port">
+              <img
+                id="movie-cover"
+                alt="movie-cover"
+                aria-label="movie-cover"
+                src="{{
+                  'https://image.tmdb.org/t/p/w600_and_h900_bestv2' +
+                    selectedMovie.poster_path
+                }}"
+              />
+            </div>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <div class="image-port"></div>
+          </ng-template>
+        </div> -->
+        <div class="btnContainer">
+          <input type="submit" value="Submit changes" class="submit-button" />
+          <input type="reset" value="Reset changes" class="submit-button" />
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
