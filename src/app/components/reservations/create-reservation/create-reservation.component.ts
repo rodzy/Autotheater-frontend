@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NotficationService } from '../../../services/notfication.service';
 import { GenericService } from '../../../services/generic.service';
@@ -20,6 +25,8 @@ export class CreateReservationComponent implements OnInit {
   isSubmited = false;
   billboard: Billboard;
   movie: Movie;
+  product: Products;
+  ticket: Tickets;
   products: Products[] = [];
   tickets: Tickets[] = [];
   selectedProducts: Products[] = [];
@@ -38,11 +45,15 @@ export class CreateReservationComponent implements OnInit {
     this.getInitialView();
     this.getProducts();
     this.getTickets();
+    this.reactiveForm();
   }
 
   // First glance of a reactive form
   reactiveForm() {
-    this.CreateForm = this.formBuilder.group({});
+    this.CreateForm = this.formBuilder.group({
+      products: new FormControl(''),
+      tickets: new FormControl('', [Validators.required]),
+    });
   }
 
   // Get method for the create form alerts
@@ -114,11 +125,24 @@ export class CreateReservationComponent implements OnInit {
   }
 
   /* This saves products on behalf of
-     the user needs
+     the user needs, validating on the database
+     that the product still exists
   */
   saveProducts(event) {
     event.preventDefault();
-    this.selectedProducts.push();
+    const id = this.CreateForm.get('products').value;
+    this.genericService
+      .Obtain<Products>('products', this.product, id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (p: Products) => {
+          this.product = p;
+          this.selectedProducts.push(this.product);
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.messge, 'error');
+        }
+      );
   }
 
   /* This deletes products on behalf of
@@ -139,7 +163,19 @@ export class CreateReservationComponent implements OnInit {
   */
   saveTickets(event) {
     event.preventDefault();
-    this.selectedTickets.push();
+    const id = this.CreateForm.get('tickets').value;
+    this.genericService
+      .Obtain<Tickets>('tickets', this.ticket, id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (t: Tickets) => {
+          this.ticket = t;
+          this.selectedTickets.push(this.ticket);
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.messge, 'error');
+        }
+      );
   }
 
   /* This deletes products on behalf of
