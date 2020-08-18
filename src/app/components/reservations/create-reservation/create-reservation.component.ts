@@ -22,6 +22,8 @@ export class CreateReservationComponent implements OnInit {
   movie: Movie;
   products: Products[] = [];
   tickets: Tickets[] = [];
+  selectedProducts: Products[] = [];
+  selectedTickets: Tickets[] = [];
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
@@ -32,7 +34,11 @@ export class CreateReservationComponent implements OnInit {
     private genericService: GenericService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getInitialView();
+    this.getProducts();
+    this.getTickets();
+  }
 
   /* This sets the initial state for the
      Create reservations component
@@ -65,6 +71,36 @@ export class CreateReservationComponent implements OnInit {
           }
         );
     }
+  }
+
+  // Get the initial view for products
+  getProducts() {
+    this.genericService
+      .List<Products>('products', this.products)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (prod: Products[]) => {
+          this.products = prod;
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.messge, 'error');
+        }
+      );
+  }
+
+  // Get tickets listing
+  getTickets() {
+    this.genericService
+      .List<Tickets>('tickets', this.tickets)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (tick: Tickets[]) => {
+          this.tickets = tick;
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.messge, 'error');
+        }
+      );
   }
 
   /* This saves products on behalf of
