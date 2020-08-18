@@ -13,8 +13,8 @@ import { Movie } from '../../../models/Movies.interface';
 })
 export class BillboardindexComponent implements OnInit {
   data: Billboard[];
-  location1: Billboard[];
-  location2: Billboard[];
+  location1: Billboard[] = [];
+  location2: Billboard[] = [];
   movieLocation1: Movie[] = [];
   movieLocation2: Movie[] = [];
   show = null;

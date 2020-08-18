@@ -1,8 +1,14 @@
 <app-undernav [show]="true"></app-undernav>
 <div>
-  <h1 class="heading">Register new <span class="spanx">movies</span></h1>
-  <h2>Let the world know about the new releases added to AutoTheater</h2>
-  <form [formGroup]="CreateForm" class="container">
+  <h1 class="heading">
+    Add a new movie to the <span class="spanx">billboard</span>
+  </h1>
+  <h2>Set up AutoTheater's billboards from one place</h2>
+  <form
+    [formGroup]="CreateForm"
+    (ngSubmit)="onSubmitToBillboard()"
+    class="container"
+  >
     <div class="insideContainer">
       <div class="insideForm">
         <label for="movie-name" class="labels">
@@ -12,13 +18,13 @@
           name="movie-name"
           id="movie-name"
           class="inputs"
-          formControlName="name"
+          formControlName="movie_id"
         >
           <option value=""
             >----- Select a movie from upcoming releases ------</option
           >
-          <option *ngFor="let item of dmd.results" [ngValue]="item.id">{{
-            item.title
+          <option *ngFor="let item of movies" [ngValue]="item.id">{{
+            item.name
           }}</option>
         </select>
         <div
@@ -35,43 +41,28 @@
             </span>
           </p>
         </div>
-        <label for="movie-synopsis" class="labels">
-          Synopsis
-        </label>
-        <textarea
-          name="movie-synopsis"
-          id="movie-synopsis"
-          readonly
-          cols="30"
-          rows="5"
-          wrap="on"
-          class="textbox-content"
-          *ngIf="selectedMovie"
-        >
-          {{ selectedMovie.overview }}
-        </textarea>
+        <!-- the movie pictures and info here -->
+
         <label for="movie-classification" class="labels">
-          Classification
+          Location
         </label>
         <select
           name="movie-classification"
           id="movie-classification"
           class="inputs"
-          formControlName="classifications"
+          formControlName="location_id"
         >
-          <option value=""
-            >----- Select a recommended classification ------</option
-          >
-          <option *ngFor="let i of classifications" [ngValue]="i.id"
-            >{{ i.type }} - {{ i.description }}</option
-          >
+          <option value="">----- Select a location ------</option>
+          <option *ngFor="let item of locations" [ngValue]="item.id">{{
+            item.location
+          }}</option>
         </select>
         <div
           class="errorContainer"
           *ngIf="isSubmited && createForm.classifications.errors"
         >
           <p class="erroMsgs">
-            The recommended classification is required
+            The location for the movie is required
             <span
               class="material-icons"
               style="vertical-align: middle; display: inline-flex;"
@@ -82,19 +73,15 @@
         </div>
         <div>
           <label for="movie-genre" class="labels">
-            Genres
+            Date for the show
           </label>
-          <div id="movie-genre" class="genres-container">
-            <label class="list-container" *ngFor="let item of genres"
-              >{{ item.name }}
-              <input
-                type="checkbox"
-                [value]="item.id"
-                (change)="onCheckChecked($event)"
-              />
-              <span class="checkmark"></span>
-            </label>
-          </div>
+          <input
+            type="date"
+            name="show_date"
+            id="show-date"
+            formControlName="show_date"
+            class="inputs"
+          />
           <div
             class="errorContainer"
             *ngIf="isSubmited && createForm.genres.errors"
@@ -111,6 +98,32 @@
           </div>
         </div>
         <div>
+          <label for="movie-genre" class="labels">
+            Capacity
+          </label>
+          <input
+            type="number"
+            name="capacity"
+            id="capacity"
+            formControlName="capacity"
+            class="inputs"
+          />
+          <div
+            class="errorContainer"
+            *ngIf="isSubmited && createForm.genres.errors"
+          >
+            <p class="erroMsgs">
+              The genre for each movie is required
+              <span
+                class="material-icons"
+                style="vertical-align: middle; display: inline-flex;"
+              >
+                warning
+              </span>
+            </p>
+          </div>
+        </div>
+        <!-- <div>
           <label for="movie-cover" class="labels">
             Movie cover
           </label>
@@ -130,15 +143,10 @@
           <ng-template #elseTemplate>
             <div class="image-port"></div>
           </ng-template>
-        </div>
+        </div> -->
         <div class="btnContainer">
           <input type="submit" value="Submit changes" class="submit-button" />
-          <input
-            type="reset"
-            (click)="onResetMovie()"
-            value="Reset changes"
-            class="submit-button"
-          />
+          <input type="reset" value="Reset changes" class="submit-button" />
         </div>
       </div>
     </div>
