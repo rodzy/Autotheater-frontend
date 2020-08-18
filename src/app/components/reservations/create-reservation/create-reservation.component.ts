@@ -14,6 +14,7 @@ import { Products } from '../../../models/Products.interface';
 import { Tickets } from '../../../models/Tickets.interface';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Classificationproduct } from '../../../models/Classificationproduct.interface';
 
 @Component({
   selector: 'app-create-reservation',
@@ -26,8 +27,10 @@ export class CreateReservationComponent implements OnInit {
   billboard: Billboard;
   movie: Movie;
   product: Products;
+  productClass: Classificationproduct;
   ticket: Tickets;
   products: Products[] = [];
+  productClasses: Classificationproduct[] = [];
   tickets: Tickets[] = [];
   selectedProducts: Products[] = [];
   selectedTickets: Tickets[] = [];
@@ -52,6 +55,7 @@ export class CreateReservationComponent implements OnInit {
   reactiveForm() {
     this.CreateForm = this.formBuilder.group({
       products: new FormControl(''),
+      productClass: new FormControl(''),
       tickets: new FormControl('', [Validators.required]),
     });
   }
@@ -94,7 +98,7 @@ export class CreateReservationComponent implements OnInit {
     }
   }
 
-  // Get the initial view for products
+  // Get the initial view for products and their classifications
   getProducts() {
     this.genericService
       .List<Products>('products', this.products)
@@ -107,6 +111,22 @@ export class CreateReservationComponent implements OnInit {
           this.notification.message(error.name, error.messge, 'error');
         }
       );
+    if (this.products !== undefined) {
+      this.genericService
+        .List<Classificationproduct>(
+          'products/classification',
+          this.productClasses
+        )
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          (classes: Classificationproduct[]) => {
+            this.productClasses = classes;
+          },
+          (error: any) => {
+            this.notification.message(error.name, error.messge, 'error');
+          }
+        );
+    }
   }
 
   // Get tickets listing
