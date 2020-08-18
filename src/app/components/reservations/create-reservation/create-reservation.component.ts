@@ -15,6 +15,8 @@ import { Tickets } from '../../../models/Tickets.interface';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Classificationproduct } from '../../../models/Classificationproduct.interface';
+import { Reservation } from '../../../models/Reservation.interface';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-create-reservation',
@@ -33,7 +35,9 @@ export class CreateReservationComponent implements OnInit {
   productClasses: Classificationproduct[] = [];
   tickets: Tickets[] = [];
   selectedProducts: Products[] = [];
+  selectedClassifications: Classificationproduct[] = [];
   selectedTickets: Tickets[] = [];
+  reservation: Reservation;
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
@@ -41,7 +45,8 @@ export class CreateReservationComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private notification: NotficationService,
-    private genericService: GenericService
+    private genericService: GenericService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -218,6 +223,33 @@ export class CreateReservationComponent implements OnInit {
     this.isSubmited = true;
     if (this.CreateForm.invalid) {
       return;
+    }
+
+    this.reservation = {
+      billboard_id: this.billboard.id,
+      date_now: new Date().toLocaleString(),
+      user_id: this.authService.getCurrentUserInfo().user.id,
+      products: this.products,
+      tickets: this.tickets,
+      tax: 13,
+      total: 0,
+    };
+
+    if (this.reservation !== undefined) {
+      this.genericService
+        .Create<Reservation>('reservation', this.reservation, this.reservation)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          (res: any) => {
+            this.notification.message(res.name, res.message, 'success');
+            this.router.navigate(['reservation-details'], {
+              queryParams: { done: true },
+            });
+          },
+          (error: any) => {
+            this.notification.message(error.name, error.message, 'error');
+          }
+        );
     }
   }
 
