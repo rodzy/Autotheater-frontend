@@ -214,7 +214,12 @@ export class CreateReservationComponent implements OnInit {
   /* Submiting reservations after the
      users product insertions and tickets selections
   */
-  onSubmitedReservation() {}
+  onSubmitedReservation() {
+    this.isSubmited = true;
+    if (this.CreateForm.invalid) {
+      return;
+    }
+  }
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy(): void {
