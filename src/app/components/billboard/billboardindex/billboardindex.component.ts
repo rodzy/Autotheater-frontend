@@ -50,6 +50,7 @@ export class BillboardindexComponent implements OnInit {
                   this.movieLocation1.push(movie);
                 });
             });
+            this.location1.sort((a, b) => 0 - (a > b ? 1 : -1));
           }
           if (this.location2 !== undefined) {
             this.location2.forEach((element) => {
@@ -60,6 +61,7 @@ export class BillboardindexComponent implements OnInit {
                   this.movieLocation2.push(movie);
                 });
             });
+            this.location2.sort((a, b) => 0 - (a < b ? 1 : -1));
           }
         },
         (error: any) => {
