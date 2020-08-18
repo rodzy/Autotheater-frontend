@@ -29,7 +29,7 @@
         </select>
         <div
           class="errorContainer"
-          *ngIf="isSubmited && createForm.name.errors"
+          *ngIf="isSubmited && createForm.movie_id.errors"
         >
           <p class="erroMsgs">
             The name of the movie is required
@@ -59,7 +59,7 @@
         </select>
         <div
           class="errorContainer"
-          *ngIf="isSubmited && createForm.classifications.errors"
+          *ngIf="isSubmited && createForm.location_id.errors"
         >
           <p class="erroMsgs">
             The location for the movie is required
@@ -84,7 +84,7 @@
           />
           <div
             class="errorContainer"
-            *ngIf="isSubmited && createForm.genres.errors"
+            *ngIf="isSubmited && createForm.show_date.errors"
           >
             <p class="erroMsgs">
               The genre for each movie is required
@@ -110,7 +110,7 @@
           />
           <div
             class="errorContainer"
-            *ngIf="isSubmited && createForm.genres.errors"
+            *ngIf="isSubmited && createForm.capacity.errors"
           >
             <p class="erroMsgs">
               The genre for each movie is required
