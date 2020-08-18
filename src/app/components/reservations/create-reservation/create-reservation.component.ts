@@ -54,7 +54,7 @@ export class CreateReservationComponent implements OnInit {
   deleteTickets() {}
 
   /* Submiting reservations after the
-     users product insertions
+     users product insertions and tickets selections
   */
   onSubmitedReservation() {}
 }
