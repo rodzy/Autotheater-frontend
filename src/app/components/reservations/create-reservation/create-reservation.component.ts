@@ -40,6 +40,16 @@ export class CreateReservationComponent implements OnInit {
     this.getTickets();
   }
 
+  // First glance of a reactive form
+  reactiveForm() {
+    this.CreateForm = this.formBuilder.group({});
+  }
+
+  // Get method for the create form alerts
+  get createForm() {
+    return this.CreateForm.controls;
+  }
+
   /* This sets the initial state for the
      Create reservations component
   */
@@ -106,22 +116,44 @@ export class CreateReservationComponent implements OnInit {
   /* This saves products on behalf of
      the user needs
   */
-  saveProducts() {}
+  saveProducts(event) {
+    event.preventDefault();
+    this.selectedProducts.push();
+  }
 
   /* This deletes products on behalf of
      the user needs
   */
-  deleteProducts() {}
+  deleteProducts(event) {
+    event.preventDefault();
+    const removedIndex = this.selectedProducts
+      .map((item) => {
+        return item.id;
+      })
+      .indexOf(1);
+    this.selectedProducts.splice(removedIndex, 1);
+  }
 
   /* This deletes products on behalf of
      the user needs
   */
-  saveTickets() {}
+  saveTickets(event) {
+    event.preventDefault();
+    this.selectedTickets.push();
+  }
 
   /* This deletes products on behalf of
      the user needs
   */
-  deleteTickets() {}
+  deleteTickets(event) {
+    event.preventDefault();
+    const removedIndex = this.selectedTickets
+      .map((item) => {
+        return item.id;
+      })
+      .indexOf(1);
+    this.selectedTickets.splice(removedIndex, 1);
+  }
 
   /* Submiting reservations after the
      users product insertions and tickets selections
