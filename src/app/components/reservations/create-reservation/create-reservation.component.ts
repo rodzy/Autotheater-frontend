@@ -50,36 +50,12 @@ export class CreateReservationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.initialValues();
     this.getInitialView();
     this.getProducts();
     this.getTickets();
     this.reactiveForm();
   }
 
-  initialValues() {
-    if (this.billboard === undefined) {
-      this.billboard = {
-        capacity: 0,
-        date_now: '',
-        location_id: 0,
-        movie_id: 0,
-        show_date: '',
-        status: false,
-      };
-    }
-    if (this.movie === undefined) {
-      this.movie = {
-        name: '',
-        sinopsis: '',
-        image: '',
-        banner: '',
-        classification_id: 0,
-        genres: [],
-        status: true,
-      };
-    }
-  }
 
   // First glance of a reactive form
   reactiveForm() {

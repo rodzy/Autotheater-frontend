@@ -1,13 +1,43 @@
-<p>create-reservation works!</p>
-<h1>{{billboard.movie_id}}</h1>
-<h1>{{movie.sinopsis}}</h1>
-<div *ngFor="let item of products">
-  <h1>{{item.name}}</h1>
-</div>
-<div *ngFor="let item of productClasses">
-  <h1>{{item.type}}</h1>
-</div>
-<div *ngFor="let item of tickets">
-  <h1>{{item.name}}</h1>
-</div>
-
+<app-undernav [show]="true"></app-undernav>
+<section *ngIf="billboard">
+  <header>
+    <h1 class="heading">Make your <span class="spanx">reservation</span></h1>
+    <h2>
+      From here you can get all the products and tickets that you need, for you
+      to enjoy your movie at maximum
+    </h2>
+  </header>
+  <form
+    [formGroup]="CreateForm"
+    (ngSubmit)="onSubmitedReservation()"
+    class="container"
+  >
+    <div class="insideContainer">
+      <div class="insideForm">
+        <label for="movie-info" class="labels">
+          Movie <span class="spanx">information</span>
+        </label>
+        <div class="info-container" *ngIf="movie">
+          <div class="info">
+            <h3>{{ movie.name }}</h3>
+            <p><span>Overview:</span> <br />{{ movie.sinopsis }}</p>
+            <p><span>Show date: </span> <br />{{ billboard.show_date }}</p>
+          </div>
+          <div class="multimedia">
+            <img
+              id="movie-cover"
+              alt="movie-cover"
+              aria-label="movie-cover"
+              src="{{
+                'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + movie.image
+              }}"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
+<section *ngIf="!billboard">
+  <app-loading></app-loading>
+</section>
