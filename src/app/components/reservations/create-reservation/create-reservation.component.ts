@@ -56,7 +56,6 @@ export class CreateReservationComponent implements OnInit {
     this.reactiveForm();
   }
 
-
   // First glance of a reactive form
   reactiveForm() {
     this.CreateForm = this.formBuilder.group({
@@ -161,18 +160,20 @@ export class CreateReservationComponent implements OnInit {
   saveProducts(event) {
     event.preventDefault();
     const id = this.CreateForm.get('products').value;
-    this.genericService
-      .Obtain<Products>('products', this.product, id)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (p: Products) => {
-          this.product = p;
-          this.selectedProducts.push(this.product);
-        },
-        (error: any) => {
-          this.notification.message(error.name, error.messge, 'error');
-        }
-      );
+    if (id !== '') {
+      this.genericService
+        .Obtain<Products>('products', this.product, id)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          (p: Products) => {
+            this.product = p;
+            this.selectedProducts.push(this.product);
+          },
+          (error: any) => {
+            this.notification.message(error.name, error.messge, 'error');
+          }
+        );
+    }
   }
 
   /* This deletes products on behalf of
@@ -194,18 +195,20 @@ export class CreateReservationComponent implements OnInit {
   saveTickets(event) {
     event.preventDefault();
     const id = this.CreateForm.get('tickets').value;
-    this.genericService
-      .Obtain<Tickets>('tickets', this.ticket, id)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (t: Tickets) => {
-          this.ticket = t;
-          this.selectedTickets.push(this.ticket);
-        },
-        (error: any) => {
-          this.notification.message(error.name, error.messge, 'error');
-        }
-      );
+    if (id !== '') {
+      this.genericService
+        .Obtain<Tickets>('tickets', this.ticket, id)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          (t: Tickets) => {
+            this.ticket = t;
+            this.selectedTickets.push(this.ticket);
+          },
+          (error: any) => {
+            this.notification.message(error.name, error.messge, 'error');
+          }
+        );
+    }
   }
 
   /* This deletes products on behalf of

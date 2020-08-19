@@ -44,6 +44,7 @@
             id="products"
             formControlName="products"
           >
+            <option value="" disabled selected>Select your option</option>
             <option *ngFor="let item of products" [ngValue]="item.id"
               >{{ item.name }}: ${{ item.price }}</option
             >
@@ -54,6 +55,7 @@
             id="classifications"
             formControlName="productClass"
           >
+            <option value="" disabled selected>Select your option</option>
             <option *ngFor="let item of productClasses" [ngValue]="item.id"
               >{{ item.type }}: +${{ item.pricetotal }}</option
             >
@@ -63,7 +65,7 @@
           Add the products you're intrested in, the taxing and totals for each
           product will be calculated at the end
         </h4>
-        <div class="btn-container">
+        <div class="btnContainer">
           <input
             type="button"
             (click)="saveProducts($event)"
@@ -71,6 +73,16 @@
             class="submit-button"
           />
         </div>
+        <ng-container *ngIf="selectedProducts.length > 0; else elseTemplate1">
+          <h1 *ngFor="let item of selectedProducts">
+            {{ item }}
+          </h1>
+        </ng-container>
+        <ng-template #elseTemplate1>
+          <div class="no-no-container">
+            <p>No products added yet 🤷‍♂️</p>
+          </div>
+        </ng-template>
         <label for="product-info" class="labels">
           Get your best <span class="spanx">tickets</span>
         </label>
@@ -81,6 +93,8 @@
             id="tickets"
             formControlName="tickets"
           >
+            <option value="" disabled selected>Select your option</option>
+
             <option *ngFor="let item of tickets" [ngValue]="item.id"
               >{{ item.name }}: ${{ item.pricing }}</option
             >
@@ -90,12 +104,30 @@
           Tickets are valued one per vehicle, the taxing and totals for each
           ticket will be calculated at the end
         </h4>
-        <div class="btn-container">
+        <div class="btnContainer">
           <input
             type="button"
             (click)="saveTickets($event)"
             value="Add your ticket to your cart"
             class="submit-button"
+          />
+        </div>
+        <ng-container *ngIf="selectedTickets.length > 0; else elseTemplate">
+          <h1 *ngFor="let item of selectedTickets">
+            {{ item.name }}
+          </h1>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <div class="no-no-container">
+            <p>No tickets added yet 👮‍♂️</p>
+          </div>
+        </ng-template>
+        <div class="btnContainer">
+          <input
+            type="submit"
+            name="SubmitBtn"
+            class="submit-button"
+            value="Process your reservation"
           />
         </div>
       </div>
