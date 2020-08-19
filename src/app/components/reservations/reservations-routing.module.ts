@@ -7,7 +7,7 @@ import { ReservationDetailsComponent } from './reservation-details/reservation-d
 
 const routes: Routes = [
   {
-    path: 'create-reservation',
+    path: 'create-reservation/:id',
     component: CreateReservationComponent,
     canActivate: [AuthGuardService],
   },
@@ -17,7 +17,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
   },
   {
-    path: 'reservation-details',
+    path: 'reservation-details/:id',
     component: ReservationDetailsComponent,
     canActivate: [AuthGuardService],
   },
