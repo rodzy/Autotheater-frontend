@@ -92,12 +92,18 @@ export class UpdateMoviesComponent implements OnInit {
     if (this.CreateForm.invalid) {
       return;
     }
-    this.newMovie = {
-      name: this.CreateForm.get('name').value,
-      sinopsis: this.CreateForm.get('sinopsis').value,
-      classification_id: this.CreateForm.get('classifications').value,
-      genres: this.CreateForm.get('genres').value,
-      status: true,
-    }
+    // this.newMovie = {
+    //   name: this.CreateForm.get('name').value,
+    //   sinopsis: this.CreateForm.get('sinopsis').value,
+    //   classification_id: this.CreateForm.get('classifications').value,
+    //   genres: this.CreateForm.get('genres').value,
+    //   status: true,
+    // }
+  }
+
+  // tslint:disable-next-line: use-lifecycle-interface
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }
