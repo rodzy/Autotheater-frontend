@@ -225,6 +225,7 @@ export class CreateReservationComponent implements OnInit {
       return;
     }
 
+    // @TODO: BUSSINESS LOGIC FOR TAXING AND SUBTOTALS
     this.reservation = {
       billboard_id: this.billboard.id,
       date_now: new Date().toLocaleString(),
