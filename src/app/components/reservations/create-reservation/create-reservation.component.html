@@ -44,9 +44,9 @@
             id="products"
             formControlName="products"
           >
-            <option *ngFor="let item of products" [ngValue]="item.id">{{
-              item.name
-            }}</option>
+            <option *ngFor="let item of products" [ngValue]="item.id"
+              >{{ item.name }}: ${{ item.price }}</option
+            >
           </select>
           <select
             class="inputs"
@@ -54,16 +54,47 @@
             id="classifications"
             formControlName="productClass"
           >
-            <option *ngFor="let item of productClasses" [ngValue]="item.id">{{
-              item.type
-            }}</option>
+            <option *ngFor="let item of productClasses" [ngValue]="item.id"
+              >{{ item.type }}: +${{ item.pricetotal }}</option
+            >
           </select>
         </div>
+        <h4 style="text-align: center;">
+          Add the products you're intrested in, the taxing and totals for each
+          product will be calculated at the end
+        </h4>
         <div class="btn-container">
           <input
             type="button"
             (click)="saveProducts($event)"
             value="Add products to your cart"
+            class="submit-button"
+          />
+        </div>
+        <label for="product-info" class="labels">
+          Get your best <span class="spanx">tickets</span>
+        </label>
+        <div class="product-container" *ngIf="products">
+          <select
+            class="inputs"
+            name="tickets"
+            id="tickets"
+            formControlName="tickets"
+          >
+            <option *ngFor="let item of tickets" [ngValue]="item.id"
+              >{{ item.name }}: ${{ item.pricing }}</option
+            >
+          </select>
+        </div>
+        <h4 style="text-align: center;">
+          Tickets are valued one per vehicle, the taxing and totals for each
+          ticket will be calculated at the end
+        </h4>
+        <div class="btn-container">
+          <input
+            type="button"
+            (click)="saveTickets($event)"
+            value="Add your ticket to your cart"
             class="submit-button"
           />
         </div>
