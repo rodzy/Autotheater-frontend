@@ -48,6 +48,13 @@ $bg-secondary: #333333;
   }
 }
 
+.product-container{
+  display: flex;
+  margin-top: 30px;
+  width: 100%;
+  justify-content: space-between;
+}
+
 .heading {
   margin: 48px auto 32px;
   height: 30px;

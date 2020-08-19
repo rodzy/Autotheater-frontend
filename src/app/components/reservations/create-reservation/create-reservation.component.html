@@ -1,5 +1,5 @@
 <app-undernav [show]="true"></app-undernav>
-<section *ngIf="billboard">
+<section *ngIf="billboard && movie">
   <header>
     <h1 class="heading">Make your <span class="spanx">reservation</span></h1>
     <h2>
@@ -34,10 +34,43 @@
             />
           </div>
         </div>
+        <label for="product-info" class="labels">
+          Buy our <span class="spanx">products</span>
+        </label>
+        <div class="product-container" *ngIf="products">
+          <select
+            class="inputs"
+            name="products"
+            id="products"
+            formControlName="products"
+          >
+            <option *ngFor="let item of products" [ngValue]="item.id">{{
+              item.name
+            }}</option>
+          </select>
+          <select
+            class="inputs"
+            name="classifications"
+            id="classifications"
+            formControlName="productClass"
+          >
+            <option *ngFor="let item of productClasses" [ngValue]="item.id">{{
+              item.type
+            }}</option>
+          </select>
+        </div>
+        <div class="btn-container">
+          <input
+            type="button"
+            (click)="saveProducts($event)"
+            value="Add products to your cart"
+            class="submit-button"
+          />
+        </div>
       </div>
     </div>
   </form>
 </section>
-<section *ngIf="!billboard">
+<section *ngIf="!billboard || !movie">
   <app-loading></app-loading>
 </section>
