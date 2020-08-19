@@ -32,7 +32,7 @@ export class DetailsComponent implements OnInit {
     this.ObtainMovieDetails(this.id);
   }
 
-  // Listing movies using the generic service and the notifying service
+  // Obtaining movies using the generic service and the notifying service
   ObtainMovieDetails(id: any) {
     this.gService
       .Obtain<Movie>('movies', this.data, id)
