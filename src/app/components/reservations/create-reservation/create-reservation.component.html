@@ -73,10 +73,69 @@
             class="submit-button"
           />
         </div>
-        <ng-container *ngIf="selectedProducts.length > 0; else elseTemplate1">
-          <h1 *ngFor="let item of selectedProducts">
-            {{ item }}
-          </h1>
+        <ng-container
+          *ngIf="
+            selectedProducts.length > 0 && selectedClassifications.length > 0;
+            else elseTemplate1
+          "
+        >
+          <table class="contents-table">
+            <caption>
+              List of your selected products
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">
+                  Product
+                </th>
+                <th scope="col">
+                  Pricing<br /><small>*Individual price</small>
+                </th>
+                <th scope="col">
+                  Classification
+                </th>
+                <th scope="col">
+                  Extra price<br/><small>*This price is added by classification</small>
+                </th>
+                <th scope="col">
+                  Remove from cart 🚮
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of selectedProducts; let i = index">
+                <td>
+                  {{ item.name }}
+                </td>
+                <td>${{ item.price }}</td>
+                <td>
+                  {{ selectedClassifications[i].type }}
+                </td>
+                <td>${{ selectedClassifications[i].pricetotal }}</td>
+                <td>
+                  <input
+                    type="button"
+                    (click)="
+                      deleteProducts(
+                        $event,
+                        item.id,
+                        selectedClassifications[i].id
+                      )
+                    "
+                    name="deleteBtn"
+                    id="delete-btn"
+                    value="Remove"
+                    class="submit-button"
+                  />
+                </td>
+              </tr>
+              <!-- <tr *ngFor="let item of selectedClassifications">
+                <td>
+                  {{item.type}}
+                </td>
+              </tr> -->
+            </tbody>
+          </table>
         </ng-container>
         <ng-template #elseTemplate1>
           <div class="no-no-container">
@@ -135,9 +194,7 @@
                 <td>
                   {{ item.name }}
                 </td>
-                <td>
-                  ${{ item.pricing }}
-                </td>
+                <td>${{ item.pricing }}</td>
                 <td>
                   <input
                     type="button"

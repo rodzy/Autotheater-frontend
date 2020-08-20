@@ -160,7 +160,8 @@ export class CreateReservationComponent implements OnInit {
   saveProducts(event) {
     event.preventDefault();
     const id = this.CreateForm.get('products').value;
-    if (id !== '') {
+    const idCl = this.CreateForm.get('productClass').value;
+    if (id !== '' && idCl !== '') {
       this.genericService
         .Obtain<Products>('products', this.product, id)
         .pipe(takeUntil(this.destroy$))
@@ -168,25 +169,50 @@ export class CreateReservationComponent implements OnInit {
           (p: Products) => {
             this.product = p;
             this.selectedProducts.push(this.product);
+            this.genericService
+              .Obtain<Classificationproduct>(
+                'products/classification',
+                this.productClass,
+                idCl
+              )
+              .pipe(takeUntil(this.destroy$))
+              .subscribe(
+                (clp: Classificationproduct) => {
+                  this.productClass = clp;
+                  this.selectedClassifications.push(this.productClass);
+                  console.log(this.selectedClassifications);
+                },
+                (error: any) => {
+                  this.notification.message(error.name, error.messge, 'error');
+                }
+              );
           },
           (error: any) => {
             this.notification.message(error.name, error.messge, 'error');
           }
         );
+    } else {
+      return;
     }
   }
 
   /* This deletes products on behalf of
      the user needs
   */
-  deleteProducts(event, id: number) {
+  deleteProducts(event, id: number, idCL: number) {
     event.preventDefault();
     const removedIndex = this.selectedProducts
       .map((item) => {
         return item.id;
       })
       .indexOf(id);
+    const removedClass = this.selectedClassifications
+      .map((item) => {
+        return item.id;
+      })
+      .indexOf(idCL);
     this.selectedProducts.splice(removedIndex, 1);
+    this.selectedClassifications.splice(removedClass, 1);
   }
 
   /* This deletes products on behalf of
