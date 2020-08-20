@@ -13,6 +13,7 @@ import { Billboard } from '../../../models/Bilboard.interface';
 import { Movie } from '../../../models/Movies.interface';
 import { Locations } from '../../../models/Locations.interface';
 import { takeUntil } from 'rxjs/operators';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-create-billboard',
@@ -30,7 +31,8 @@ export class CreateBillboardComponent implements OnInit {
     public formBuilder: FormBuilder,
     private router: Router,
     private notification: NotficationService,
-    private genericService: GenericService
+    private genericService: GenericService,
+    public datePipe: DatePipe
   ) {}
 
   ngOnInit(): void {
@@ -104,9 +106,14 @@ export class CreateBillboardComponent implements OnInit {
     if (this.CreateForm.invalid) {
       return;
     }
+    const dateToday = new Date();
     this.billboard = {
       capacity: this.CreateForm.get('capacity').value,
-      date_now: new Date().toLocaleString(),
+      date_now: this.datePipe.transform(
+        dateToday,
+        'yyyy-MM-dd HH:mm:ss',
+        'GMT-0600'
+      ),
       show_date: this.CreateForm.get('show_date').value,
       movie_id: this.CreateForm.get('movie_id').value,
       location_id: this.CreateForm.get('location_id').value,

@@ -6,7 +6,7 @@
     *ngIf="data.length > 0 && billboard.length > 0; else elseTemplate"
   >
     <div class="container">
-      <ng-container *ngFor="let item of data; index as i">
+      <ng-container *ngFor="let item of data; let i = index">
         <div class="card" *ngIf="item.status">
           <div class="card_image">
             <img
@@ -27,9 +27,11 @@
               <p>Available at: {{ billboard[i].show_date }}</p>
             </div>
             <div class="button-container">
-              <a [routerLink]="['/create-reservation/', billboard[i].id]" class="btn"
-              ><span class="btitle">Reserve</span></a
-            >
+              <a
+                [routerLink]="['/create-reservation/', billboard[i].id]"
+                class="btn"
+                ><span class="btitle">Reserve</span></a
+              >
             </div>
           </div>
         </div>
