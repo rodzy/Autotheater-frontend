@@ -17,6 +17,7 @@ import { Subject } from 'rxjs';
 import { Classificationproduct } from '../../../models/Classificationproduct.interface';
 import { Reservation } from '../../../models/Reservation.interface';
 import { AuthService } from '../../../services/auth.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-create-reservation',
@@ -46,7 +47,8 @@ export class CreateReservationComponent implements OnInit {
     private route: ActivatedRoute,
     private notification: NotficationService,
     private genericService: GenericService,
-    private authService: AuthService
+    private authService: AuthService,
+    public datepipe: DatePipe
   ) {}
 
   ngOnInit(): void {
@@ -258,35 +260,44 @@ export class CreateReservationComponent implements OnInit {
     if (this.CreateForm.invalid) {
       return;
     }
+    console.log('Working');
 
+    const currentDate = new Date();
+    console.log(currentDate);
     // @TODO: BUSSINESS LOGIC FOR TAXING AND SUBTOTALS
     this.reservation = {
       billboard_id: this.billboard.id,
-      date_now: new Date().toLocaleString(),
+      date_now: this.datepipe.transform(
+        currentDate,
+        'yyyy-MM-dd HH:mm:ss',
+        'GMT-0600'
+      ),
       user_id: this.authService.getCurrentUserInfo().user.id,
-      products: this.products,
-      tickets: this.tickets,
+      products: this.selectedProducts,
+      tickets: this.selectedTickets,
       tax: 13,
       total: 0,
     };
 
-    if (this.reservation !== undefined) {
-      // this.genericService.Update<Billboard>('billboard',this.billboard,this.billboard).pipe(takeUntil(this.destroy$)).subscribe(())
-      this.genericService
-        .Create<Reservation>('reservation', this.reservation, this.reservation)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe(
-          (res: any) => {
-            this.notification.message(res.name, res.message, 'success');
-            this.router.navigate(['reservation-details'], {
-              queryParams: { done: true },
-            });
-          },
-          (error: any) => {
-            this.notification.message(error.name, error.message, 'error');
-          }
-        );
-    }
+    console.log(this.reservation);
+
+    // if (this.reservation !== undefined) {
+    //   // this.genericService.Update<Billboard>('billboard',this.billboard,this.billboard).pipe(takeUntil(this.destroy$)).subscribe(())
+    //   this.genericService
+    //     .Create<Reservation>('reservation', this.reservation, this.reservation)
+    //     .pipe(takeUntil(this.destroy$))
+    //     .subscribe(
+    //       (res: any) => {
+    //         this.notification.message(res.name, res.message, 'success');
+    //         this.router.navigate(['reservation-details'], {
+    //           queryParams: { done: true },
+    //         });
+    //       },
+    //       (error: any) => {
+    //         this.notification.message(error.name, error.message, 'error');
+    //       }
+    //     );
+    // }
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
