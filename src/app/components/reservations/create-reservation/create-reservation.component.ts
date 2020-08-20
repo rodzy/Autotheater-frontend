@@ -251,7 +251,6 @@ export class CreateReservationComponent implements OnInit {
     this.selectedTickets.splice(removedIndex, 1);
   }
 
-  // @TODO: SUBMITED RESERVATIONS
   /* Submiting reservations after the
      users product insertions and tickets selections
   */
@@ -260,11 +259,28 @@ export class CreateReservationComponent implements OnInit {
     if (this.CreateForm.invalid) {
       return;
     }
-    console.log('Working');
-
+    // Calculated values of the screen logic
+    // Destructure the arrays
+    let subtotalTickets = 0;
+    let subtotalProducts = 0;
+    let subtotalAddons = 0;
+    const goToTickets = [];
+    const goToProducts = [];
+    this.selectedTickets.forEach((item) => {
+      goToTickets.push(item.id);
+      subtotalTickets += parseFloat(item.pricing.toString());
+    });
+    this.selectedProducts.forEach((item) => {
+      goToProducts.push(item.id);
+      subtotalProducts += parseFloat(item.price.toString());
+    });
+    this.selectedClassifications.forEach((item) => {
+      subtotalAddons += parseFloat(item.pricetotal.toString());
+    });
+    const total = subtotalTickets + subtotalProducts + subtotalAddons;
+    // Set up taxing
+    const finalTotal = total * 1.13;
     const currentDate = new Date();
-    console.log(currentDate);
-    // @TODO: BUSSINESS LOGIC FOR TAXING AND SUBTOTALS
     this.reservation = {
       billboard_id: this.billboard.id,
       date_now: this.datepipe.transform(
@@ -273,10 +289,10 @@ export class CreateReservationComponent implements OnInit {
         'GMT-0600'
       ),
       user_id: this.authService.getCurrentUserInfo().user.id,
-      products: this.selectedProducts,
-      tickets: this.selectedTickets,
+      products: goToProducts,
+      tickets: goToTickets,
       tax: 13,
-      total: 0,
+      total: parseFloat(finalTotal.toPrecision(2)),
     };
 
     console.log(this.reservation);
