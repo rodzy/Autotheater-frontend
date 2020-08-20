@@ -23,7 +23,7 @@ export class GenericService {
     this.headers = new HttpHeaders();
     this.headers = this.headers.set(
       'Content-Type',
-      'application/json; charset=utf-8',
+      'application/json; charset=utf-8'
     );
     // Subcribing to the current user signed in
     this.authService.currentUser.subscribe((x) => (this.currentUser = x));
@@ -63,12 +63,12 @@ export class GenericService {
     model: T | any,
     object: T | any
   ): Observable<T | T[]> {
-    console.log(this.currentUser.access_token);
     return this.http.post<T | T[]>(this.server + endpoint, object, {
-      headers: this.headers.append(
-        'Authorization',
-        'Bearer' + this.currentUser.access_token
-      ),
+      // tslint:disable-next-line: object-literal-key-quotes
+      headers: new HttpHeaders({
+        // tslint:disable-next-line: object-literal-key-quotes
+        'Authorization': 'Bearer' + this.currentUser.access_token,
+      }),
     });
   }
 

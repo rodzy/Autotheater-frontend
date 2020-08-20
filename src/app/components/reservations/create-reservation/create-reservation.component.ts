@@ -294,26 +294,30 @@ export class CreateReservationComponent implements OnInit {
       tax: 13,
       total: parseFloat(finalTotal.toPrecision(2)),
     };
+    // Removing from localStorage residual data
+    if (localStorage.getItem('reservationDetails')) {
+      localStorage.removeItem('reservationDetails');
+    }
 
-    console.log(this.reservation);
-
-    // if (this.reservation !== undefined) {
-    //   // this.genericService.Update<Billboard>('billboard',this.billboard,this.billboard).pipe(takeUntil(this.destroy$)).subscribe(())
-    //   this.genericService
-    //     .Create<Reservation>('reservation', this.reservation, this.reservation)
-    //     .pipe(takeUntil(this.destroy$))
-    //     .subscribe(
-    //       (res: any) => {
-    //         this.notification.message(res.name, res.message, 'success');
-    //         this.router.navigate(['reservation-details'], {
-    //           queryParams: { done: true },
-    //         });
-    //       },
-    //       (error: any) => {
-    //         this.notification.message(error.name, error.message, 'error');
-    //       }
-    //     );
-    // }
+    // Pulling the actual request to the database
+    if (this.reservation !== undefined) {
+      // this.genericService.Update<Billboard>('billboard',this.billboard,this.billboard).pipe(takeUntil(this.destroy$)).subscribe(())
+      this.genericService
+      .Create<Reservation>('reservation', this.reservation, this.reservation)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (res: any) => {
+            localStorage.setItem('reservationDetails', JSON.stringify(this.reservation));
+            this.notification.message(res.name, res.message, 'success');
+            this.router.navigate(['reservation-details'], {
+              queryParams: { done: true },
+            });
+          },
+          (error: any) => {
+            this.notification.message(error.name, error.message, 'error');
+          }
+        );
+    }
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
