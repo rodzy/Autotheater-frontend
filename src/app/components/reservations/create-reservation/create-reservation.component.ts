@@ -82,19 +82,23 @@ export class CreateReservationComponent implements OnInit {
         .subscribe(
           (bill: Billboard) => {
             this.billboard = bill;
-          },
-          (error: any) => {
-            this.notification.message(error.name, error.messge, 'error');
-          }
-        );
-    }
-    if (this.billboard !== undefined) {
-      this.genericService
-        .Obtain<Movie>('movies', this.movie, this.billboard.id)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe(
-          (movie: Movie) => {
-            this.movie = movie;
+            if (this.billboard !== undefined) {
+              this.genericService
+                .Obtain<Movie>('movies', this.movie, this.billboard.movie_id)
+                .pipe(takeUntil(this.destroy$))
+                .subscribe(
+                  (movie: Movie) => {
+                    this.movie = movie;
+                  },
+                  (error: any) => {
+                    this.notification.message(
+                      error.name,
+                      error.messge,
+                      'error'
+                    );
+                  }
+                );
+            }
           },
           (error: any) => {
             this.notification.message(error.name, error.messge, 'error');
@@ -156,31 +160,58 @@ export class CreateReservationComponent implements OnInit {
   saveProducts(event) {
     event.preventDefault();
     const id = this.CreateForm.get('products').value;
-    this.genericService
-      .Obtain<Products>('products', this.product, id)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (p: Products) => {
-          this.product = p;
-          this.selectedProducts.push(this.product);
-        },
-        (error: any) => {
-          this.notification.message(error.name, error.messge, 'error');
-        }
-      );
+    const idCl = this.CreateForm.get('productClass').value;
+    if (id !== '' && idCl !== '') {
+      this.genericService
+        .Obtain<Products>('products', this.product, id)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          (p: Products) => {
+            this.product = p;
+            this.selectedProducts.push(this.product);
+            this.genericService
+              .Obtain<Classificationproduct>(
+                'products/classification',
+                this.productClass,
+                idCl
+              )
+              .pipe(takeUntil(this.destroy$))
+              .subscribe(
+                (clp: Classificationproduct) => {
+                  this.productClass = clp;
+                  this.selectedClassifications.push(this.productClass);
+                },
+                (error: any) => {
+                  this.notification.message(error.name, error.messge, 'error');
+                }
+              );
+          },
+          (error: any) => {
+            this.notification.message(error.name, error.messge, 'error');
+          }
+        );
+    } else {
+      return;
+    }
   }
 
   /* This deletes products on behalf of
      the user needs
   */
-  deleteProducts(event) {
+  deleteProducts(event, id: number, idCL: number) {
     event.preventDefault();
     const removedIndex = this.selectedProducts
       .map((item) => {
         return item.id;
       })
-      .indexOf(1);
+      .indexOf(id);
+    const removedClass = this.selectedClassifications
+      .map((item) => {
+        return item.id;
+      })
+      .indexOf(idCL);
     this.selectedProducts.splice(removedIndex, 1);
+    this.selectedClassifications.splice(removedClass, 1);
   }
 
   /* This deletes products on behalf of
@@ -189,33 +220,36 @@ export class CreateReservationComponent implements OnInit {
   saveTickets(event) {
     event.preventDefault();
     const id = this.CreateForm.get('tickets').value;
-    this.genericService
-      .Obtain<Tickets>('tickets', this.ticket, id)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (t: Tickets) => {
-          this.ticket = t;
-          this.selectedTickets.push(this.ticket);
-        },
-        (error: any) => {
-          this.notification.message(error.name, error.messge, 'error');
-        }
-      );
+    if (id !== '') {
+      this.genericService
+        .Obtain<Tickets>('tickets', this.ticket, id)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          (t: Tickets) => {
+            this.ticket = t;
+            this.selectedTickets.push(this.ticket);
+          },
+          (error: any) => {
+            this.notification.message(error.name, error.messge, 'error');
+          }
+        );
+    }
   }
 
   /* This deletes products on behalf of
      the user needs
   */
-  deleteTickets(event) {
+  deleteTickets(event, id: number) {
     event.preventDefault();
     const removedIndex = this.selectedTickets
       .map((item) => {
         return item.id;
       })
-      .indexOf(1);
+      .indexOf(id);
     this.selectedTickets.splice(removedIndex, 1);
   }
 
+  // @TODO: SUBMITED RESERVATIONS
   /* Submiting reservations after the
      users product insertions and tickets selections
   */
@@ -237,6 +271,7 @@ export class CreateReservationComponent implements OnInit {
     };
 
     if (this.reservation !== undefined) {
+      // this.genericService.Update<Billboard>('billboard',this.billboard,this.billboard).pipe(takeUntil(this.destroy$)).subscribe(())
       this.genericService
         .Create<Reservation>('reservation', this.reservation, this.reservation)
         .pipe(takeUntil(this.destroy$))

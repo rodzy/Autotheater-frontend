@@ -1,1 +1,231 @@
-<p>create-reservation works!</p>
+<app-undernav [show]="true"></app-undernav>
+<section *ngIf="billboard && movie">
+  <header>
+    <h1 class="heading">Make your <span class="spanx">reservation</span></h1>
+    <h2>
+      From here you can get all the products and tickets that you need, for you
+      to enjoy your movie at maximum
+    </h2>
+  </header>
+  <form
+    [formGroup]="CreateForm"
+    (ngSubmit)="onSubmitedReservation()"
+    class="container"
+  >
+    <div class="insideContainer">
+      <div class="insideForm">
+        <label for="movie-info" class="labels">
+          Movie <span class="spanx">information</span>
+        </label>
+        <div class="info-container" *ngIf="movie">
+          <div class="info">
+            <h3>{{ movie.name }}</h3>
+            <p><span>Overview:</span> <br />{{ movie.sinopsis }}</p>
+            <p><span>Show date: </span> <br />{{ billboard.show_date }}</p>
+          </div>
+          <div class="multimedia">
+            <img
+              id="movie-cover"
+              alt="movie-cover"
+              aria-label="movie-cover"
+              src="{{
+                'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + movie.image
+              }}"
+            />
+          </div>
+        </div>
+        <label for="product-info" class="labels">
+          Buy our <span class="spanx">products</span>
+        </label>
+        <div class="product-container" *ngIf="products">
+          <select
+            class="inputs"
+            name="products"
+            id="products"
+            formControlName="products"
+          >
+            <option value="" disabled selected>Select your option</option>
+            <option *ngFor="let item of products" [ngValue]="item.id"
+              >{{ item.name }}: ${{ item.price }}</option
+            >
+          </select>
+          <select
+            class="inputs"
+            name="classifications"
+            id="classifications"
+            formControlName="productClass"
+          >
+            <option value="" disabled selected>Select your option</option>
+            <option *ngFor="let item of productClasses" [ngValue]="item.id"
+              >{{ item.type }}: +${{ item.pricetotal }}</option
+            >
+          </select>
+        </div>
+        <h4 style="text-align: center;">
+          Add the products you're intrested in, the taxing and totals for each
+          product will be calculated at the end
+        </h4>
+        <div class="btnContainer">
+          <input
+            type="button"
+            (click)="saveProducts($event)"
+            value="Add products to your cart"
+            class="submit-button"
+          />
+        </div>
+        <ng-container
+          *ngIf="
+            selectedProducts.length > 0 && selectedClassifications.length > 0;
+            else elseTemplate1
+          "
+        >
+          <table class="contents-table">
+            <caption>
+              List of your selected products
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">
+                  Product
+                </th>
+                <th scope="col">
+                  Pricing<br /><small>*Individual price</small>
+                </th>
+                <th scope="col">
+                  Classification
+                </th>
+                <th scope="col">
+                  Extra price<br/><small>*This price is added by classification</small>
+                </th>
+                <th scope="col">
+                  Remove from cart 🚮
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of selectedProducts; let i = index">
+                <td>
+                  {{ item.name }}
+                </td>
+                <td>${{ item.price }}</td>
+                <td>
+                  {{ selectedClassifications[i].type }}
+                </td>
+                <td>${{ selectedClassifications[i].pricetotal }}</td>
+                <td>
+                  <input
+                    type="button"
+                    (click)="
+                      deleteProducts(
+                        $event,
+                        item.id,
+                        selectedClassifications[i].id
+                      )
+                    "
+                    name="deleteBtn"
+                    id="delete-btn"
+                    value="Remove"
+                    class="submit-button"
+                  />
+                </td>
+              </tr>
+              <!-- <tr *ngFor="let item of selectedClassifications">
+                <td>
+                  {{item.type}}
+                </td>
+              </tr> -->
+            </tbody>
+          </table>
+        </ng-container>
+        <ng-template #elseTemplate1>
+          <div class="no-no-container">
+            <p>No products added yet 🤷‍♂️</p>
+          </div>
+        </ng-template>
+        <label for="product-info" class="labels">
+          Get your best <span class="spanx">tickets</span>
+        </label>
+        <div class="product-container" *ngIf="products">
+          <select
+            class="inputs"
+            name="tickets"
+            id="tickets"
+            formControlName="tickets"
+          >
+            <option value="" disabled selected>Select your option</option>
+
+            <option *ngFor="let item of tickets" [ngValue]="item.id"
+              >{{ item.name }}: ${{ item.pricing }}</option
+            >
+          </select>
+        </div>
+        <h4 style="text-align: center;">
+          Tickets are valued one per vehicle, the taxing and totals for each
+          ticket will be calculated at the end
+        </h4>
+        <div class="btnContainer">
+          <input
+            type="button"
+            (click)="saveTickets($event)"
+            value="Add your ticket to your cart"
+            class="submit-button"
+          />
+        </div>
+        <ng-container *ngIf="selectedTickets.length > 0; else elseTemplate">
+          <table class="contents-table">
+            <caption>
+              All of your tickets are selected
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">
+                  Ticket name
+                </th>
+                <th scope="col">
+                  Pricing
+                </th>
+                <th scope="col">
+                  Remove from cart 🚮
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of selectedTickets">
+                <td>
+                  {{ item.name }}
+                </td>
+                <td>${{ item.pricing }}</td>
+                <td>
+                  <input
+                    type="button"
+                    (click)="deleteTickets($event, item.id)"
+                    name="deleteBtn"
+                    id="delete-btn"
+                    value="Remove"
+                    class="submit-button"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <div class="no-no-container">
+            <p>No tickets added yet 👮‍♂️</p>
+          </div>
+        </ng-template>
+        <div class="btnContainer">
+          <input
+            type="submit"
+            name="SubmitBtn"
+            class="submit-button"
+            value="Process your reservation"
+          />
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
+<section *ngIf="!billboard || !movie">
+  <app-loading></app-loading>
+</section>

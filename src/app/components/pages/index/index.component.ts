@@ -73,7 +73,7 @@ export class IndexComponent implements OnInit {
     if (log) {
       this.notification.message(
         'Success, we hope to have you soon',
-        `Successfully logged out of AutoTheater come back when ever you like 😄`,
+        `Successfully logged out of AutoTheater come back whenever you like 😄`,
         'success'
       );
     }
