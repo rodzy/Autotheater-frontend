@@ -180,7 +180,6 @@ export class CreateReservationComponent implements OnInit {
                 (clp: Classificationproduct) => {
                   this.productClass = clp;
                   this.selectedClassifications.push(this.productClass);
-                  console.log(this.selectedClassifications);
                 },
                 (error: any) => {
                   this.notification.message(error.name, error.messge, 'error');
@@ -250,6 +249,7 @@ export class CreateReservationComponent implements OnInit {
     this.selectedTickets.splice(removedIndex, 1);
   }
 
+  // @TODO: SUBMITED RESERVATIONS
   /* Submiting reservations after the
      users product insertions and tickets selections
   */
