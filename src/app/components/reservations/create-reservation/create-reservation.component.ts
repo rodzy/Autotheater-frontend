@@ -179,13 +179,13 @@ export class CreateReservationComponent implements OnInit {
   /* This deletes products on behalf of
      the user needs
   */
-  deleteProducts(event) {
+  deleteProducts(event, id: number) {
     event.preventDefault();
     const removedIndex = this.selectedProducts
       .map((item) => {
         return item.id;
       })
-      .indexOf(1);
+      .indexOf(id);
     this.selectedProducts.splice(removedIndex, 1);
   }
 
@@ -214,13 +214,13 @@ export class CreateReservationComponent implements OnInit {
   /* This deletes products on behalf of
      the user needs
   */
-  deleteTickets(event) {
+  deleteTickets(event, id: number) {
     event.preventDefault();
     const removedIndex = this.selectedTickets
       .map((item) => {
         return item.id;
       })
-      .indexOf(1);
+      .indexOf(id);
     this.selectedTickets.splice(removedIndex, 1);
   }
 
@@ -245,6 +245,7 @@ export class CreateReservationComponent implements OnInit {
     };
 
     if (this.reservation !== undefined) {
+      // this.genericService.Update<Billboard>('billboard',this.billboard,this.billboard).pipe(takeUntil(this.destroy$)).subscribe(())
       this.genericService
         .Create<Reservation>('reservation', this.reservation, this.reservation)
         .pipe(takeUntil(this.destroy$))

@@ -113,9 +113,30 @@
           />
         </div>
         <ng-container *ngIf="selectedTickets.length > 0; else elseTemplate">
-          <h1 *ngFor="let item of selectedTickets">
-            {{ item.name }}
-          </h1>
+          <table style="width: 100%;">
+            <tr>
+              <th>
+                Ticket name
+              </th>
+              <th>
+                Pricing
+              </th>
+              <th>
+                Delete me🚧
+              </th>
+            </tr>
+            <tr *ngFor="let item of selectedTickets">
+              <td>
+                 {{item.name}}
+              </td>
+              <td>
+                 {{item.pricing}}
+              </td>
+              <td>
+                <input type="button" (click)="deleteTickets($event,item.id)" name="deleteBtn" id="delete-btn" value="♻">
+              </td>
+            </tr>
+          </table>
         </ng-container>
         <ng-template #elseTemplate>
           <div class="no-no-container">
