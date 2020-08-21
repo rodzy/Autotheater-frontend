@@ -8,6 +8,7 @@ import { AllmoviesComponent } from './allmovies/allmovies.component';
 import { BestmoviesComponent } from './bestmovies/bestmovies.component';
 import { DetailsComponent } from './details/details.component';
 import { TooltipModule } from 'ng2-tooltip-directive';
+import { CheckMoviesComponent } from './check-movies/check-movies.component';
 
 const declarations: any[] = [
   IndexComponent,
@@ -15,6 +16,7 @@ const declarations: any[] = [
   AllmoviesComponent,
   BestmoviesComponent,
   DetailsComponent,
+  CheckMoviesComponent,
 ];
 const imports: any[] = [
   CommonModule,
