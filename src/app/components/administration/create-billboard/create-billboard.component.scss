@@ -230,6 +230,14 @@ h2 {
   font-weight: 500;
 }
 
+.datePicker{
+  display: flex;
+  margin-top: 30px;
+  margin-bottom: 32px;
+  height: 48px;
+  line-height: 15px;
+}
+
 @media screen and (max-width: 1200px) {
   .heading {
     font-size: 30px;

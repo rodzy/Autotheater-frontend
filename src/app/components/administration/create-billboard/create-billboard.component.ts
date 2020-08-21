@@ -119,17 +119,19 @@ export class CreateBillboardComponent implements OnInit {
       location_id: this.CreateForm.get('location_id').value,
       status: true,
     };
-    this.genericService
-      .Create<Billboard>('billboard', this.billboard, this.billboard)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (res: any) => {
-          this.notification.message(res.name, res.message, 'success');
-        },
-        (error: any) => {
-          this.notification.message(error.name, error.message, 'error');
-        }
-      );
+    if (this.billboard !== undefined) {
+      this.genericService
+        .Create<Billboard>('billboard', this.billboard, this.billboard)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          (res: any) => {
+            this.notification.message(res.name, res.message, 'success');
+          },
+          (error: any) => {
+            this.notification.message(error.name, error.message, 'error');
+          }
+        );
+    }
   }
 
   // tslint:disable-next-line: use-lifecycle-interface

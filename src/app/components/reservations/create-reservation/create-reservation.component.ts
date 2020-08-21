@@ -309,7 +309,7 @@ export class CreateReservationComponent implements OnInit {
         (res: any) => {
             localStorage.setItem('reservationDetails', JSON.stringify(this.reservation));
             this.notification.message(res.name, res.message, 'success');
-            this.router.navigate(['reservation-details'], {
+            this.router.navigate(['check-reservation'], {
               queryParams: { done: true },
             });
           },
