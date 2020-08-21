@@ -1,1 +1,87 @@
-<p>check-products works!</p>
+<app-undernav [show]="true"></app-undernav>
+<section *ngIf="data">
+  <h1 class="heading"><span class="spanx">Products</span> listing</h1>
+  <h2>Manage the products for sale on AutoTheater</h2>
+  <div class="container">
+    <div class="insideContainer">
+      <ng-container *ngIf="data.length > 0; else elseTemplate">
+        <table class="contents-table">
+          <caption>
+            List of your selected products
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">
+                Product
+              </th>
+              <th scope="col">
+                Pricing<br /><small>*Individual price</small>
+              </th>
+              <th scope="col">
+                Associated classifications
+              </th>
+              <th scope="col">
+                Extra price<br /><small
+                  >*This price is added by classification</small
+                >
+              </th>
+              <th scope="col">
+                Remove from cart 🚮
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of data; let i = index">
+              <td>
+                {{ item.name }}
+              </td>
+              <td>${{ item.price }}</td>
+              <td>
+                <div *ngFor="let i of item.classificationproducts" class="class-container">
+
+
+                    <div class="class-tag">
+                      <span
+                      class="material-icons gen-icon"
+                      style="vertical-align: middle; display: inline-flex;"
+                      >
+                      fiber_manual_record
+                    </span>
+                    {{ i.type }}
+                  </div>
+
+                </div>
+              </td>
+              <td>
+                <input
+                  type="button"
+                  name="deleteBtn"
+                  id="delete-btn"
+                  value="Remove"
+                  class="submit-button"
+                />
+              </td>
+              <td>
+                <input
+                  type="button"
+                  name="deleteBtn"
+                  id="delete-btn"
+                  value="Edit"
+                  class="submit-button"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <div class="no-no-container">
+          <p>The product directory is empty 🤷‍♂️</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</section>
+<section *ngIf="!data">
+  <app-loading></app-loading>
+</section>

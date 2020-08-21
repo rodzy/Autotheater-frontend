@@ -1,0 +1,392 @@
+$primary: #fffb00;
+$secondary: #7109ad;
+$secondary-dual: #45036b;
+$misc: #9203e6;
+$bg-secondary: #333333;
+$bg-color:#404040;
+
+.container {
+  left: 0;
+  right: 0;
+  background-color: $bg-secondary;
+  margin: 0 auto 331px;
+  width: 80%;
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.08);
+  border-radius: 1rem;
+}
+
+.info-container {
+  display: flex;
+  margin-top: 10px;
+  padding-top: 30px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.avatar{
+  width: 60px;
+  border-radius: 0.5rem;
+}
+
+.info {
+  h3 {
+    font-weight: 600;
+    text-shadow: 3px 3px #3c045c;
+    font-size: 19px;
+    letter-spacing: 0.5px;
+  }
+  span {
+    font-weight: 600;
+    font-size: 18px;
+    text-shadow: 3px 3px #3c045c;
+  }
+  p {
+    font-weight: 500;
+    font-size: 17px;
+  }
+}
+
+.multimedia {
+  width: 50%;
+  img {
+    width: 250px;
+    border-radius: 1rem;
+  }
+}
+
+.product-container {
+  display: flex;
+  margin-top: 30px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.heading {
+  margin: 48px auto 32px;
+  height: 30px;
+  font-weight: 600;
+  text-shadow: 3px 3px #3c045c;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 48px;
+  letter-spacing: -0.5px;
+  line-height: 64px;
+  text-align: center;
+  font-stretch: normal;
+}
+
+.spanx {
+  color: $primary;
+}
+
+h2 {
+  text-shadow: 3px 3px #3c045c;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.insideContainer {
+  padding: 56px;
+  box-sizing: border-box;
+}
+
+.insideForm {
+  box-sizing: border-box;
+}
+
+.labels {
+  height: 12px;
+  color: #ffffff;
+  text-shadow: 3px 3px #3c045c;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  line-height: 13px;
+  float: left;
+}
+
+.inputs {
+  margin-top: 8px;
+  margin-bottom: 32px;
+  height: 48px;
+  width: 100%;
+  border: 2px solid $bg-secondary;
+  border-radius: 4px;
+  background-color: #404040;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  line-height: 15px;
+  text-indent: 16px;
+  color: #ffffff;
+}
+
+.textbox-content {
+  margin-top: 10px;
+  margin-bottom: 32px;
+  height: 48px;
+  width: 100%;
+  border: 2px solid $bg-secondary;
+  border-radius: 4px;
+  background-color: #404040;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  padding-top: 10px;
+  color: #ffffff;
+  height: 120px;
+  border: 3px solid #333333;
+  padding: 5px;
+}
+
+.genres-container {
+  width: 100%;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 10em 10em 10em 10em;
+  grid-template-rows: 18% 30px auto;
+}
+
+.list-container {
+  display: flex;
+  position: sticky;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+}
+
+.checkmark {
+  position: absolute;
+  border-radius: 1rem;
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background-color: rgba(97, 97, 97, 0.972);
+}
+
+.list-container:hover input ~ .checkmark {
+  background-color: $primary;
+}
+
+.list-container input:checked ~ .checkmark {
+  background-color: $primary;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.list-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.check-inputs {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.submit-button {
+  height: 56px;
+  width: 200px;
+  border-radius: 1px;
+  border: 0;
+  background-color: $secondary;
+  color: #fff;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 15px;
+  text-align: center;
+  padding:20px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  margin-left: 5px;
+}
+
+.submit-button:hover {
+  transition: ease 0.5s;
+  background-color: $secondary-dual;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.image-port {
+  width: 100%;
+  display: flex;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  place-content: center;
+}
+
+.image-port img {
+  width: 20em;
+  border-radius: 1rem;
+}
+
+.inputs:focus,
+.textbox-content:focus {
+  border: 3px solid $primary;
+}
+
+.inputs,
+.textbox-content {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.errorContainer {
+  position: relative;
+  top: -12px;
+}
+
+.erroMsgs {
+  color: $primary;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.no-no-container {
+  display: flex;
+  justify-content: center;
+  border: 5px solid $secondary;
+  border-radius: 1rem;
+  background-color: $secondary-dual;
+  width: 300px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  p{
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding-top: 10px;
+  }
+}
+
+.contents-table{
+  width: 100%;
+  table-layout: fixed;
+  border:5px solid $secondary;
+  border-radius: 1rem;
+  background-color: $bg-color;
+  margin-bottom: 30px;
+  caption{
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    text-shadow: 3px 3px #3c045c;
+  }
+  thead th{
+    padding:10px;
+    text-shadow: 3px 3px #3c045c;
+    font-size: 16px;
+    border: none;
+    border-bottom: 3px solid $secondary;
+  }
+  tbody td{
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    padding-top:30px;
+  }
+  .submit-button{
+    width: 100px;
+    border-radius: 5rem;
+  }
+}
+
+.gen-icon {
+  color: $secondary;
+  font-size: 20px;
+}
+
+.class-tag {
+  background: transparent;
+  box-shadow: 0 0 2px $primary;
+  width: 50%;
+  display: flex;
+  margin: 2px;
+  border-radius: 0.7rem;
+}
+.class-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.stars{
+  margin:20px;
+}
+.starCounter{
+  margin-top:19px;
+  p{
+    margin:3px;
+    font-size: 16px;
+    color:$primary;
+  }
+}
+.stars {
+  margin: 20px;
+}
+.star-unselected {
+  color: #656D78;
+}
+.star-selected {
+  color: $primary;
+}
+
+
+@media screen and (max-width: 1200px) {
+  .heading {
+    font-size: 30px;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  .container {
+    width: 100%;
+  }
+  .btnContainer {
+    flex-direction: column;
+  }
+  .info-container{
+    flex-direction: column;
+  }
+  .submit-button{
+    width: 100%;
+  }
+}

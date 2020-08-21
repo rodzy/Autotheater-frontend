@@ -36,4 +36,10 @@ export class CheckMoviesComponent implements OnInit {
         }
       );
   }
+
+  // Select the desired movie and redirect
+  onSelectedRedirect() {}
+
+  // Deactivate movie from the actual cinema
+  deactivateMovie() {}
 }
