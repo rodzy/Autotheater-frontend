@@ -40,6 +40,8 @@ export class CreateBillboardComponent implements OnInit {
     this.listActiveMovies();
     this.listActiveLocations();
     this.reactiveForm();
+    const date = new Date().toISOString().split('T')[0];
+    document.getElementById('show-date').setAttribute('min', date);
   }
 
   initialValuesCheck() {
@@ -54,15 +56,12 @@ export class CreateBillboardComponent implements OnInit {
   }
 
   reactiveForm() {
-    const datetime = new Date();
     this.CreateForm = this.formBuilder.group({
       capacity: new FormControl('', [
         Validators.required,
         Validators.pattern('^[0-9]*$'),
       ]),
-      show_date: new FormControl('', [
-        Validators.required,
-      ]),
+      show_date: new FormControl('', [Validators.required]),
       hour: new FormControl('', [
         Validators.required,
         Validators.pattern('^[0-9]*$'),
@@ -115,14 +114,21 @@ export class CreateBillboardComponent implements OnInit {
       return;
     }
     const dateToday = new Date();
+    const showDated = (this.CreateForm.get('show_date').value as string).concat(
+      ` ${this.CreateForm.get('hour').value}:${
+        this.CreateForm.get('minutes').value
+      }:00`
+    );
+    const formatedDate = this.datePipe.transform(
+      dateToday,
+      'yyyy-MM-dd HH:mm:ss',
+      'GMT-0600'
+    );
+
     this.billboard = {
       capacity: this.CreateForm.get('capacity').value,
-      date_now: this.datePipe.transform(
-        dateToday,
-        'yyyy-MM-dd HH:mm:ss',
-        'GMT-0600'
-      ),
-      show_date: this.CreateForm.get('show_date').value,
+      date_now: formatedDate,
+      show_date: showDated,
       movie_id: this.CreateForm.get('movie_id').value,
       location_id: this.CreateForm.get('location_id').value,
       status: true,
