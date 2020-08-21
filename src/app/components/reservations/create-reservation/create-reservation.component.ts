@@ -39,6 +39,7 @@ export class CreateReservationComponent implements OnInit {
   selectedClassifications: Classificationproduct[] = [];
   selectedTickets: Tickets[] = [];
   reservation: Reservation;
+  globallyTotal = 0;
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(

@@ -87,6 +87,8 @@
             name="show_hour"
             id="show_hour"
             class="inputs"
+            formControlName="hour"
+            placeholder="Hour"
           />
           <input
             type="number"
@@ -95,14 +97,21 @@
             name="show_minutes"
             id="show_minutes"
             class="inputs"
+            formControlName="minutes"
+            placeholder="Minutes"
           />
         </div>
         <div
           class="errorContainer"
-          *ngIf="isSubmited && createForm.show_date.errors"
+          *ngIf="
+            isSubmited && (
+            createForm.show_date.errors ||
+            createForm.hour.errors ||
+            createForm.minutes.errors)
+          "
         >
           <p class="erroMsgs">
-            The genre for each movie is required
+            The date/time for the show is required and must be a valid date
             <span
               class="material-icons"
               style="vertical-align: middle; display: inline-flex;"
@@ -128,7 +137,7 @@
             *ngIf="isSubmited && createForm.capacity.errors"
           >
             <p class="erroMsgs">
-              The genre for each movie is required
+              The capacity is required
               <span
                 class="material-icons"
                 style="vertical-align: middle; display: inline-flex;"
