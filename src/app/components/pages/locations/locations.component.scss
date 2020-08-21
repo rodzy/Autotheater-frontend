@@ -1,3 +1,9 @@
+$primary: #fffb00;
+$secondary: #7109ad;
+$secondary-dual: #45036b;
+$misc: #9203e6;
+$bg-secondary: #333333;
+
 .container {
   width: 100%;
   padding-top: 5em;
@@ -37,7 +43,7 @@
 }
 .locatedDiv {
   width: 100%;
-  height: 100%;
+
   background-color: #404040;
   display: flex;
   flex-direction: column;
@@ -252,5 +258,33 @@ span {
   }
   .locationsDiv {
     width: 100%;
+  }
+}
+
+@media screen and (max-width:700px){
+  p{
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+
+
+  .maxContainer{
+    display: flex;
+    flex-direction: column;
+    .location-info{
+      padding:10px;
+      h2{
+        font-size: 18px;
+        font-weight: 600;
+        margin:0;
+      }
+      h6{
+        margin:0;
+        padding: 0;
+      }
+      .btn{
+        display: none;
+      }
+    }
   }
 }

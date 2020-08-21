@@ -4,90 +4,6 @@ $secondary-dual: #45036b;
 $misc: #9203e6;
 $bg-secondary: #333333;
 
-// .cards-list {
-//   z-index: 0;
-//   width: 100%;
-//   display: flex;
-//   justify-content: space-around;
-//   flex-wrap: wrap;
-// }
-
-// .card {
-//   margin: 30px auto;
-//   width: 200px;
-//   height: 300px;
-//   border-radius: 0.5rem;
-//   box-shadow: 0 15px 15px rgba(0, 0, 0, 0.2);
-//   cursor: pointer;
-//   transition: 0.4s;
-// }
-
-// .card .card_image {
-//   width: inherit;
-//   height: inherit;
-//   border-radius: 0.5rem;
-// }
-
-// .card .card_image img {
-//   width: inherit;
-//   height: inherit;
-//   border-radius: 0.5rem;
-//   object-fit: cover;
-// }
-
-// .card .card_title {
-//   text-align: center;
-//   border-radius: 0px 0px 40px 40px;
-//   font-family: sans-serif;
-//   font-weight: bold;
-//   font-size: 30px;
-//   margin-top: -80px;
-//   height: 40px;
-//   background-color: white;
-// }
-
-// .card:hover {
-//   transform: scale(1, 1);
-//   box-shadow: 0px 15px 15px rgba(0,0,0,0.25),
-//     0px 15px 15px 0px rgba(0,0,0,0.22);
-// }
-
-// .title-white {
-//   color: white;
-
-// }
-
-// .title-black {
-//   color: black;
-// }
-
-// .like-count {
-//   display: flex;
-//   font-size: 15px;
-//   margin-left: 5px;
-//   font-weight: 500;
-// }
-
-// .stars{
-//   margin:1px;
-// }
-// .starCounter{
-//   p{
-//     margin:3px;
-//     font-size: 16px;
-//     color:$primary;
-//   }
-// }
-// .stars {
-//   margin: 2px;
-// }
-// .star-unselected {
-//   color: #656D78;
-// }
-// .star-selected {
-//   color: $primary;
-// }
-
 .cards-list {
   z-index: 0;
   width: 100%;
@@ -247,7 +163,7 @@ img {
   color: $primary;
 }
 
-@media all and (max-width: 500px) {
+@media all and (max-width: 700px) {
   .card-list {
     /* On small screens, we are no longer using row direction but column */
     flex-direction: column;
