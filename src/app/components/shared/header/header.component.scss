@@ -82,24 +82,5 @@ svg:hover {
   body{
     overflow-x: hidden;
   }
-  .nav-links{
-    position: absolute;
-    right: 0px;
-    height: 92vh;
-    top:8vh;
-    background-color: #333333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 1;
-    transform: translateX(100%);
-    transition: transform 0.5s ease-in;
-  }
-
-  .nav-links li{
-    opacity: 0;
-  }
-   .burger{
-     display: block;
-   }
+  
 }

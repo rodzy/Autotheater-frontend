@@ -106,3 +106,23 @@
     transform: translateY(-10px);
   }
 }
+
+@media screen and (max-width:700px){
+  .paragraph{
+    font-size: 18px;
+    text-align: center;
+  }
+  .undernav{
+    display: flex;
+    flex-direction: column;
+  }
+  .container-links{
+    flex:0;
+    padding:0;
+    margin-top: 30px;
+    justify-content: center;
+  }
+  .loginbtn{
+    margin-right: 5px;
+  }
+}
