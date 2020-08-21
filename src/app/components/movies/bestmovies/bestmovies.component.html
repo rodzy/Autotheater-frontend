@@ -4,16 +4,18 @@
   </div>
   <div class="container">
     <div *ngFor="let item of data">
-      <div class="card" *ngIf="item.likes_count>=1">
+      <div class="card" *ngIf="item.likes_count >= 1">
         <div class="card_image">
           <img
-          src="{{
-            'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + item.image
-          }}"
-          alt="MovieCover"
+            src="{{
+              'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + item.image
+            }}"
+            alt="MovieCover"
           />
           <div class="card_title">
-            <a [routerLink]="['/movies/',item.id]" class="btn"><span class="btitle">View details</span></a>
+            <a [routerLink]="['/movies/', item.id]" class="btn"
+              ><span class="btitle">View details</span></a
+            >
           </div>
         </div>
         <div>
@@ -21,32 +23,136 @@
             {{ item.name }}
           </div>
           <div class="like-count">
-            <span
-            class="material-icons"
-            style="
-              vertical-align: middle;
-              display: inline-flex;
-              font-size: 15px;
-              "
-          >
-          thumb_up </span
-          ><span style="padding-left: 7px;">{{ item.likes_count }}</span>
-        </div>
-        <div *ngIf="item.genres" class="genres-container">
-          <div *ngFor="let gen of item.genres">
-            <div class="genres-tag">
-              <span
-              class="material-icons gen-icon"
-              style="vertical-align: middle; display: inline-flex;"
-              >
-              fiber_manual_record
-            </span>
-            {{ gen.name }}
+            <div class="stars" *ngIf="item.likes_count === 0">
+              <span class="material-icons star-unselected">
+                star_border
+              </span>
+              <span class="material-icons star-unselected">
+                star_border
+              </span>
+              <span class="material-icons star-unselected">
+                star_border
+              </span>
+              <span class="material-icons star-unselected">
+                star_border
+              </span>
+              <span class="material-icons star-unselected">
+                star_border
+              </span>
+            </div>
+            <div
+              class="stars"
+              *ngIf="item.likes_count >= 1 && item.likes_count <= 3"
+            >
+              <span class="material-icons star-selected">
+                star
+              </span>
+              <span class="material-icons star-unselected">
+                star_border
+              </span>
+              <span class="material-icons star-unselected">
+                star_border
+              </span>
+              <span class="material-icons star-unselected">
+                star_border
+              </span>
+              <span class="material-icons star-unselected">
+                star_border
+              </span>
+            </div>
+            <div
+              class="stars"
+              *ngIf="item.likes_count >= 4 && item.likes_count <= 7"
+            >
+              <span class="material-icons star-selected">
+                star
+              </span>
+              <span class="material-icons star-selected">
+                star
+              </span>
+              <span class="material-icons star-unselected">
+                star_border
+              </span>
+              <span class="material-icons star-unselected">
+                star_border
+              </span>
+              <span class="material-icons star-unselected">
+                star_border
+              </span>
+            </div>
+            <div
+              class="stars"
+              *ngIf="item.likes_count >= 8 && item.likes_count <= 15"
+            >
+              <span class="material-icons star-selected">
+                star
+              </span>
+              <span class="material-icons star-selected">
+                star
+              </span>
+              <span class="material-icons star-selected">
+                star
+              </span>
+              <span class="material-icons star-unselected">
+                star_border
+              </span>
+              <span class="material-icons star-unselected">
+                star_border
+              </span>
+            </div>
+            <div
+              class="stars"
+              *ngIf="item.likes_count >= 16 && item.likes_count <= 25"
+            >
+              <span class="material-icons star-selected">
+                star
+              </span>
+              <span class="material-icons star-selected">
+                star
+              </span>
+              <span class="material-icons star-selected">
+                star
+              </span>
+              <span class="material-icons star-selected">
+                star
+              </span>
+              <span class="material-icons star-unselected">
+                star_border
+              </span>
+            </div>
+            <div class="stars" *ngIf="item.likes_count >= 26">
+              <span class="material-icons star-selected">
+                star
+              </span>
+              <span class="material-icons star-selected">
+                star
+              </span>
+              <span class="material-icons star-selected">
+                star
+              </span>
+              <span class="material-icons star-selected">
+                star
+              </span>
+              <span class="material-icons star-selected">
+                star
+              </span>
+            </div>
+          </div>
+          <div *ngIf="item.genres" class="genres-container">
+            <div *ngFor="let gen of item.genres">
+              <div class="genres-tag">
+                <span
+                  class="material-icons gen-icon"
+                  style="vertical-align: middle; display: inline-flex;"
+                >
+                  fiber_manual_record
+                </span>
+                {{ gen.name }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-</div>
 </section>
