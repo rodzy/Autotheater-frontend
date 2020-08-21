@@ -120,7 +120,7 @@ $bg-secondary: #333333;
   object-fit: cover;
 }
 
-img{
+img {
   width: inherit;
   border-radius: 0.5rem;
 }
@@ -172,10 +172,10 @@ img{
   color: $primary;
 }
 
-.btn:hover{
-  .btitle{
+.btn:hover {
+  .btitle {
     text-shadow: 3px 3px $misc;
-  transition: ease 1s;
+    transition: ease 1s;
   }
   background-color: $secondary-dual;
   transition: ease 1s;
@@ -211,35 +211,41 @@ img{
 }
 
 .heading {
-  font-size: 15px;
-  margin-top: 30px;
-  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  width: 200px;
+  font-size: 16px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
   font-weight: 600;
   letter-spacing: 1px;
   text-shadow: 3px 3px #3c045c;
 }
 
-.stars{
-  margin:1px;
+.underCard {
+  text-align: center;
 }
-.starCounter{
-  p{
-    margin:3px;
+
+.stars {
+  margin: 1px;
+}
+.starCounter {
+  p {
+    margin: 3px;
     font-size: 16px;
-    color:$primary;
+    color: $primary;
   }
 }
 .stars {
   margin: 2px;
 }
 .star-unselected {
-  color: #656D78;
+  color: #656d78;
 }
 .star-selected {
   color: $primary;
 }
-
-
 
 @media all and (max-width: 500px) {
   .card-list {
