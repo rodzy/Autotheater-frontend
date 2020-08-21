@@ -10,7 +10,7 @@ $bg-color:#404040;
   right: 0;
   background-color: $bg-secondary;
   margin: 0 auto 331px;
-  width: 70%;
+  width: 80%;
   box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.08);
   border-radius: 1rem;
 }
@@ -332,7 +332,7 @@ h2 {
 .class-tag {
   background: transparent;
   box-shadow: 0 0 2px $primary;
-  width: 50%;
+  width: 100px;
   display: flex;
   margin: 2px;
   border-radius: 0.7rem;
@@ -341,7 +341,7 @@ h2 {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 100%;
+
 }
 
 .stars{
@@ -364,9 +364,15 @@ h2 {
 .star-selected {
   color: $primary;
 }
+.table-container{
+  overflow-x:auto;
+}
 
 
 @media screen and (max-width: 1200px) {
+  .contents-table{
+    table-layout: fixed;
+  }
   .heading {
     font-size: 30px;
   }

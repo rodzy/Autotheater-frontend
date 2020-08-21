@@ -5,74 +5,192 @@
   <div class="container">
     <div class="insideContainer">
       <ng-container *ngIf="data.length > 0; else elseTemplate">
-        <table class="contents-table">
-          <caption>
-            List of your selected products
-          </caption>
-          <thead>
-            <tr>
-              <th scope="col">
-                Product
-              </th>
-              <th scope="col">
-                Pricing<br /><small>*Individual price</small>
-              </th>
-              <th scope="col">
-                Associated classifications
-              </th>
-              <th scope="col">
-                Extra price<br /><small
+        <div class="table-container">
+
+          <table class="contents-table">
+            <caption>
+              List of your selected products
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">
+                  Product
+                </th>
+                <th scope="col">Pricing<br /><small>*Individual price</small></th>
+                <th scope="col" colspan="2">
+                  Associated classifications
+                </th>
+                <th scope="col">
+                  Extra price<br /><small
                   >*This price is added by classification</small
-                >
-              </th>
-              <th scope="col">
-                Remove from cart 🚮
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of data; let i = index">
-              <td>
+                  >
+                </th>
+                <th scope="col" colspan="2">
+                  Remove from cart 🚮
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of data; let i = index">
+                <td>
                 {{ item.name }}
               </td>
               <td>${{ item.price }}</td>
-              <td>
-                <div *ngFor="let i of item.classificationproducts" class="class-container">
-
-
-                    <div class="class-tag">
-                      <span
-                      class="material-icons gen-icon"
-                      style="vertical-align: middle; display: inline-flex;"
-                      >
-                      fiber_manual_record
-                    </span>
-                    {{ i.type }}
-                  </div>
-
+              <td colspan="2">
+                <div
+                *ngFor="let i of item.classificationproducts"
+                class="class-container"
+                >
+                <div class="class-tag">
+                  <span
+                  class="material-icons gen-icon"
+                  style="vertical-align: middle; display: inline-flex;"
+                  >
+                  fiber_manual_record
+                </span>
+                {{ i.type }}
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="stars" *ngIf="item.ratings_count === 0">
+              <span class="material-icons star-unselected">
+                star_border
+              </span>
+              <span class="material-icons star-unselected">
+                star_border
+              </span>
+              <span class="material-icons star-unselected">
+                star_border
+              </span>
+              <span class="material-icons star-unselected">
+                star_border
+              </span>
+              <span class="material-icons star-unselected">
+                star_border
+              </span>
+            </div>
+            <div
+            class="stars"
+            *ngIf="item.ratings_count >= 1 && item.ratings_count <= 3"
+            >
+            <span class="material-icons star-selected">
+              star
+            </span>
+            <span class="material-icons star-unselected">
+              star_border
+            </span>
+            <span class="material-icons star-unselected">
+              star_border
+            </span>
+            <span class="material-icons star-unselected">
+              star_border
+            </span>
+            <span class="material-icons star-unselected">
+              star_border
+            </span>
+          </div>
+          <div
+          class="stars"
+          *ngIf="item.ratings_count >= 4 && item.ratings_count <= 7"
+          >
+          <span class="material-icons star-selected">
+            star
+          </span>
+                  <span class="material-icons star-selected">
+                    star
+                  </span>
+                  <span class="material-icons star-unselected">
+                    star_border
+                  </span>
+                  <span class="material-icons star-unselected">
+                    star_border
+                  </span>
+                  <span class="material-icons star-unselected">
+                    star_border
+                  </span>
+                </div>
+                <div
+                class="stars"
+                *ngIf="item.ratings_count >= 8 && item.ratings_count <= 15"
+                >
+                <span class="material-icons star-selected">
+                  star
+                </span>
+                <span class="material-icons star-selected">
+                  star
+                </span>
+                <span class="material-icons star-selected">
+                  star
+                </span>
+                <span class="material-icons star-unselected">
+                  star_border
+                </span>
+                <span class="material-icons star-unselected">
+                  star_border
+                </span>
+              </div>
+              <div
+              class="stars"
+              *ngIf="item.ratings_count >= 16 && item.ratings_count <= 25"
+              >
+                  <span class="material-icons star-selected">
+                    star
+                  </span>
+                  <span class="material-icons star-selected">
+                    star
+                  </span>
+                  <span class="material-icons star-selected">
+                    star
+                  </span>
+                  <span class="material-icons star-selected">
+                    star
+                  </span>
+                  <span class="material-icons star-unselected">
+                    star_border
+                  </span>
+                </div>
+                <div class="stars" *ngIf="item.ratings_count >= 26">
+                  <span class="material-icons star-selected">
+                    star
+                  </span>
+                  <span class="material-icons star-selected">
+                    star
+                  </span>
+                  <span class="material-icons star-selected">
+                    star
+                  </span>
+                  <span class="material-icons star-selected">
+                    star
+                  </span>
+                  <span class="material-icons star-selected">
+                    star
+                  </span>
+                </div>
+                <div class="starCounter">
+                  <p>({{ item.ratings_count }})</p>
                 </div>
               </td>
-              <td>
+              <td colspan="2">
                 <input
-                  type="button"
-                  name="deleteBtn"
-                  id="delete-btn"
-                  value="Remove"
-                  class="submit-button"
+                type="button"
+                name="deleteBtn"
+                id="delete-btn"
+                value="Remove"
+                class="submit-button"
                 />
-              </td>
-              <td>
                 <input
-                  type="button"
-                  name="deleteBtn"
-                  id="delete-btn"
-                  value="Edit"
-                  class="submit-button"
+                type="button"
+                name="deleteBtn"
+                id="delete-btn"
+                value="Edit"
+                class="submit-button"
                 />
               </td>
             </tr>
           </tbody>
         </table>
+      </div>
       </ng-container>
       <ng-template #elseTemplate>
         <div class="no-no-container">
