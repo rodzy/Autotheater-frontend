@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { AdministrationRoutingModule } from './administration-routing.module';
 import { CreateMoviesComponent } from './create-movies/create-movies.component';
@@ -15,17 +15,18 @@ const declarations: any = [
   CreateProductsComponent,
   UpdateMoviesComponent,
   UpdateProductsComponent,
-  CreateBillboardComponent
+  CreateBillboardComponent,
 ];
 const imports: any = [
   CommonModule,
   AdministrationRoutingModule,
   ReactiveFormsModule,
-  SharedModule
+  SharedModule,
 ];
 
 @NgModule({
   declarations: [...declarations],
   imports: [...imports],
+  providers: [DatePipe],
 })
 export class AdministrationModule {}

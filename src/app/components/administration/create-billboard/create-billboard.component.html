@@ -20,9 +20,7 @@
           class="inputs"
           formControlName="movie_id"
         >
-          <option value=""
-            >----- Select a movie from upcoming releases ------</option
-          >
+          <option value="" disabled selected>Select your option</option>
           <option *ngFor="let item of movies" [ngValue]="item.id">{{
             item.name
           }}</option>
@@ -52,7 +50,7 @@
           class="inputs"
           formControlName="location_id"
         >
-          <option value="">----- Select a location ------</option>
+          <option value="" disabled selected>Select your option</option>
           <option *ngFor="let item of locations" [ngValue]="item.id">{{
             item.location
           }}</option>
@@ -71,10 +69,10 @@
             </span>
           </p>
         </div>
-        <div>
-          <label for="movie-genre" class="labels">
-            Date for the show
-          </label>
+        <label for="movie-genre" class="labels">
+          Date for the show
+        </label>
+        <div class="datePicker">
           <input
             type="date"
             name="show_date"
@@ -82,21 +80,47 @@
             formControlName="show_date"
             class="inputs"
           />
-          <div
-            class="errorContainer"
-            *ngIf="isSubmited && createForm.show_date.errors"
-          >
-            <p class="erroMsgs">
-              The genre for each movie is required
-              <span
-                class="material-icons"
-                style="vertical-align: middle; display: inline-flex;"
-              >
-                warning
-              </span>
-            </p>
-          </div>
+          <input
+            type="number"
+            min="00"
+            max="24"
+            name="show_hour"
+            id="show_hour"
+            class="inputs"
+            formControlName="hour"
+            placeholder="Hour"
+          />
+          <input
+            type="number"
+            min="00"
+            max="60"
+            name="show_minutes"
+            id="show_minutes"
+            class="inputs"
+            formControlName="minutes"
+            placeholder="Minutes"
+          />
         </div>
+        <div
+          class="errorContainer"
+          *ngIf="
+            isSubmited && (
+            createForm.show_date.errors ||
+            createForm.hour.errors ||
+            createForm.minutes.errors)
+          "
+        >
+          <p class="erroMsgs">
+            The date/time for the show is required and must be a valid date
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
+        </div>
+
         <div>
           <label for="movie-genre" class="labels">
             Capacity
@@ -113,7 +137,7 @@
             *ngIf="isSubmited && createForm.capacity.errors"
           >
             <p class="erroMsgs">
-              The genre for each movie is required
+              The capacity is required
               <span
                 class="material-icons"
                 style="vertical-align: middle; display: inline-flex;"
