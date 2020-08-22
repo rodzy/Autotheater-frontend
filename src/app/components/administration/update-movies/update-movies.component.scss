@@ -3,6 +3,7 @@ $secondary: #7109ad;
 $secondary-dual: #45036b;
 $misc: #9203e6;
 $bg-secondary: #333333;
+$bg-color:#404040;
 
 .container {
   left: 0;
@@ -228,6 +229,60 @@ h2 {
   color: $primary;
   font-size: 16px;
   font-weight: 500;
+}
+
+.no-no-container {
+  display: flex;
+  justify-content: center;
+  border: 5px solid $secondary;
+  border-radius: 1rem;
+  background-color: $secondary-dual;
+  width: 300px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  p{
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding-top: 10px;
+  }
+}
+
+.table-cont{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.contents-table{
+  width: 50%;
+  table-layout: fixed;
+  border:5px solid $secondary;
+  border-radius: 1rem;
+  background-color: $bg-color;
+  margin-bottom: 30px;
+  caption{
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    text-shadow: 3px 3px #3c045c;
+  }
+  thead th{
+    padding:10px;
+    text-shadow: 3px 3px #3c045c;
+    font-size: 16px;
+    border: none;
+    border-bottom: 3px solid $secondary;
+  }
+  tbody td{
+    text-align: center;
+    font-size: 16px;
+  }
+  .submit-button{
+    width: 100px;
+    border-radius: 5rem;
+  }
 }
 
 @media screen and (max-width: 1200px) {
