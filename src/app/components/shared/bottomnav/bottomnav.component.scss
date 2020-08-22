@@ -13,6 +13,7 @@ $bg-secondary: #333333;
   justify-content: center;
   margin: 0;
   border-top: solid;
+  border-bottom:solid;
   border-color: $secondary;
   position: relative;
 }
@@ -26,8 +27,16 @@ $bg-secondary: #333333;
   display: flex;
   margin: 0;
   padding: 0;
-  width: 80%;
+  width: 100%;
   justify-content: space-around;
+  ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    li{
+      margin:50px;
+    }
+  }
 }
 .gridDiv{
   flex-direction: row;
@@ -42,3 +51,23 @@ $bg-secondary: #333333;
   z-index: 2;
 }
 
+@media screen and (max-width:700px){
+  .container{
+    padding:0;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .nav-links{
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    ul{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      li{
+        margin:20px;
+      }
+    }
+  }
+}

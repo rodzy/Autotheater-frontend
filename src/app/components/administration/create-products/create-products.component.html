@@ -95,7 +95,7 @@
           class="inputs"
           formControlName="type_id"
         >
-          <option value="">----- What kind of product is it? ------</option>
+          <option value="" disabled selected>Select your option</option>
           <option *ngFor="let i of pTypes" [ngValue]="i.id">{{
             i.name
           }}</option>

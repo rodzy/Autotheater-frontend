@@ -20,12 +20,12 @@ const routes: Routes = [
     canActivate: [AuthGuardService, RoleGuardService],
   },
   {
-    path: 'update-movies',
+    path: 'update-movies/:id',
     component: UpdateMoviesComponent,
     canActivate: [AuthGuardService, RoleGuardService],
   },
   {
-    path: 'update-products',
+    path: 'update-products/:id',
     component: UpdateProductsComponent,
     canActivate: [AuthGuardService, RoleGuardService],
   },

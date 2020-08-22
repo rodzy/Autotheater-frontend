@@ -1,3 +1,9 @@
+$primary: #fffb00;
+$secondary: #7109ad;
+$secondary-dual: #45036b;
+$misc: #9203e6;
+$bg-secondary: #333333;
+
 .cards-list {
   z-index: 0;
   width: 100%;
@@ -8,8 +14,9 @@
 
 .card {
   margin: 30px auto;
-  width: 200px;
-  height: 300px;
+  margin-left: 30px;
+  width: 170px;
+  height: 250px;
   border-radius: 0.5rem;
   box-shadow: 0 15px 15px rgba(0, 0, 0, 0.2);
   cursor: pointer;
@@ -22,11 +29,16 @@
   border-radius: 0.5rem;
 }
 
-.card .card_image img {
+.card .card_image a {
   width: inherit;
   height: inherit;
   border-radius: 0.5rem;
   object-fit: cover;
+}
+
+img {
+  width: inherit;
+  border-radius: 0.5rem;
 }
 
 .card .card_title {
@@ -37,25 +49,121 @@
   font-size: 30px;
   margin-top: -80px;
   height: 40px;
-  background-color: white;
+  opacity: 0;
 }
 
-.card:hover {
-  transform: scale(1, 1);
-  box-shadow: 0px 15px 15px rgba(0,0,0,0.25),
-    0px 15px 15px 0px rgba(0,0,0,0.22);
+.card_image:hover {
+  .card_title {
+    transition: 0.5s;
+    opacity: 1;
+    display: block;
+    position: relative;
+  }
+  img {
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+    position: static;
+  }
+}
+
+.btn {
+  background-color: $secondary;
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 25px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.btitle {
+  font-weight: 600;
+  text-shadow: 3px 3px #3c045c;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.spanx {
+  color: $primary;
+}
+
+.btn:hover {
+  .btitle {
+    text-shadow: 3px 3px $misc;
+    transition: ease 1s;
+  }
+  background-color: $secondary-dual;
+  transition: ease 1s;
 }
 
 .title-white {
   color: white;
-
 }
 
 .title-black {
   color: black;
 }
 
-@media all and (max-width: 500px) {
+.gen-icon {
+  color: $secondary;
+  font-size: 20px;
+}
+.genres-tag {
+  background: transparent;
+  box-shadow: 0 0 2px $primary;
+  width: 90px;
+  display: flex;
+  margin: 2px;
+  border-radius: 0.7rem;
+}
+
+.genres-container {
+  display: grid;
+  padding-top: 20px;
+  justify-content: center;
+  grid-template-columns: repeat(2, 1fr);
+  color: #ffff;
+}
+
+.heading {
+  display: flex;
+  justify-content: center;
+  width: 200px;
+  font-size: 16px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-shadow: 3px 3px #3c045c;
+}
+
+.underCard {
+  text-align: center;
+}
+
+.stars {
+  margin: 1px;
+}
+.starCounter {
+  p {
+    margin: 3px;
+    font-size: 16px;
+    color: $primary;
+  }
+}
+.stars {
+  margin: 2px;
+}
+.star-unselected {
+  color: #656d78;
+}
+.star-selected {
+  color: $primary;
+}
+
+@media all and (max-width: 700px) {
   .card-list {
     /* On small screens, we are no longer using row direction but column */
     flex-direction: column;

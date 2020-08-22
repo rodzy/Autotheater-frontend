@@ -1,2 +1,161 @@
 <app-undernav [show]="true"></app-undernav>
-<p>update-movies works!</p>
+<div *ngIf="data && classifications && genres">
+  <h1 class="heading">Update this <span class="spanx">movie</span></h1>
+  <h2>
+    Sometimes movies are registered incorrectly, from here you can change those
+    details
+  </h2>
+  <form [formGroup]="CreateForm" (ngSubmit)="onSubmitMovie()" class="container">
+    <div class="insideContainer">
+      <div class="insideForm">
+        <label for="movie-name" class="labels">
+          Movie
+        </label>
+        <input
+          type="text"
+          name="movie-name"
+          id="movie-name"
+          class="inputs"
+          formControlName="name"
+          readonly
+        />
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && createForm.name.errors"
+        >
+          <p class="erroMsgs">
+            The name of the movie is required
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
+        </div>
+        <label for="movie-synopsis" class="labels">
+          Synopsis
+        </label>
+        <textarea
+          name="movie-synopsis"
+          id="movie-synopsis"
+          cols="30"
+          rows="5"
+          wrap="on"
+          class="textbox-content"
+          formControlName="synopsis"
+        >
+        </textarea>
+        <label for="movie-classification" class="labels">
+          Classification
+        </label>
+        <select
+          name="movie-classification"
+          id="movie-classification"
+          class="inputs"
+          formControlName="classifications"
+        >
+          <option value="" disabled selected>Select your option</option>
+          <option *ngFor="let i of classifications" [ngValue]="i.id"
+            >{{ i.type }} - {{ i.description }}</option
+          >
+        </select>
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && createForm.classifications.errors"
+        >
+          <p class="erroMsgs">
+            The recommended classification is required
+            <span
+              class="material-icons"
+              style="vertical-align: middle; display: inline-flex;"
+            >
+              warning
+            </span>
+          </p>
+        </div>
+        <div>
+          <label for="movie-genre" class="labels">
+            Genres
+          </label>
+          <div class="btnContainer">
+            <input
+              type="button"
+
+              value="Add your ticket to your cart"
+              class="submit-button"
+            />
+          </div>
+          <ng-container *ngIf="genres.length > 0; else elseTemplate">
+            <div class="table-cont">
+              <table class="contents-table">
+                <caption>
+                  All of your tickets are selected
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col" colspan="1">
+                      Selected genres
+                    </th>
+
+                    <th scope="col">
+                      Remove genres 🚮
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of genres">
+                    <td>
+                      {{ item.name }}
+                    </td>
+                    <td>
+                      <input
+                      type="button"
+
+                      name="deleteBtn"
+                      id="delete-btn"
+                      value="Remove"
+                      class="submit-button"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            </ng-container>
+            <ng-template #elseTemplate>
+              <div class="no-no-container">
+                <p>No genres that's weird 🚨👮‍♂️🚨</p>
+              </div>
+            </ng-template>
+
+            <div
+            class="errorContainer"
+            *ngIf="isSubmited && createForm.genres.errors"
+            >
+            <p class="erroMsgs">
+              The genre for each movie is required
+              <span
+              class="material-icons"
+                style="vertical-align: middle; display: inline-flex;"
+              >
+                warning
+              </span>
+            </p>
+          </div>
+        </div>
+        <div class="btnContainer">
+          <input type="submit" value="Submit changes" class="submit-button" />
+          <input
+            type="reset"
+            value="Reset changes"
+            class="submit-button"
+          />
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div *ngIf="!(data && classifications && genres)">
+  <app-loading></app-loading>
+</div>

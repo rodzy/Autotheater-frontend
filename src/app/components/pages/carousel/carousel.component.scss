@@ -1,9 +1,14 @@
+$primary:#fffb00;
+$secondary:#7109ad;
+$bg-color:#404040;
+$bg-secondary:#333333;
+
 :host {
   flex: 1;
 }
 .container{
   width: 100%;
-
+  margin-bottom: 30px;
   padding-bottom: 0;
   display: flex;
   justify-content: center;
@@ -82,5 +87,11 @@
   }
   &.right {
     transform: rotate(225deg);
+  }
+}
+
+@media screen and (max-width:700px){
+  .container{
+background-color:$bg-secondary;
   }
 }

@@ -5,6 +5,8 @@ import { GenericService } from '../../../services/generic.service';
 import { Movie } from '../../../models/Movies.interface';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Genre } from '../../../models/Genre.interface';
+import { MovieClassification } from '../../../models/MovieClasification.interface';
 import {
   FormGroup,
   FormBuilder,
@@ -26,6 +28,8 @@ export class UpdateMoviesComponent implements OnInit {
   CreateForm: FormGroup;
   isSubmited = false;
   newMovie: Movie;
+  genres: Genre[] = [];
+  classifications: MovieClassification[] = [];
   constructor(
     public formBuilder: FormBuilder,
     private gService: GenericService,
@@ -38,7 +42,8 @@ export class UpdateMoviesComponent implements OnInit {
       this.show = true;
     }
     this.ObtainMovieDetails(this.id);
-    this.reactiveForm();
+    this.listClassifications();
+    this.listGenres();
   }
 
   // Obtaining movies using the generic service and the notifying service
@@ -49,6 +54,7 @@ export class UpdateMoviesComponent implements OnInit {
       .subscribe(
         (data: Movie) => {
           this.data = data;
+          this.reactiveForm();
         },
         (error: any) => {
           this.notification.message(error.name, error.messge, 'error');
@@ -56,10 +62,41 @@ export class UpdateMoviesComponent implements OnInit {
       );
   }
 
+  listGenres() {
+    this.gService
+      .List<Genre>('genres', this.genres)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (gen: Genre[]) => {
+          this.genres = gen;
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.message, 'error');
+        }
+      );
+  }
+
+  listClassifications() {
+    this.gService
+      .List<MovieClassification>('movies/classification', this.classifications)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (classy: MovieClassification[]) => {
+          this.classifications = classy;
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.message, 'error');
+        }
+      );
+  }
+
   reactiveForm() {
     this.CreateForm = this.formBuilder.group({
-      name: new FormControl('', [Validators.required]),
-      classifications: new FormControl('', [Validators.required]),
+      name: new FormControl(this.data.name),
+      synopsis: new FormControl(this.data.sinopsis, [Validators.required]),
+      classifications: new FormControl(this.data.classification_id, [
+        Validators.required,
+      ]),
       genres: new FormArray([], [Validators.required]),
     });
   }

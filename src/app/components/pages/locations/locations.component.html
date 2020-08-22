@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container" *ngIf="data">
   <div class="gridDiv">
     <div class="container-located">
       <div class="locatedDiv">
-        <div *ngIf="data">
+        <div class="maxContainer">
           <h1 class="heading">We are <span>located</span> at</h1>
           <p>
             Visit one of our auto cinemas, check the billboard available down
@@ -24,12 +24,10 @@
             </div>
           </div>
         </div>
-        <div *ngIf="!data">
-          <div class="locations-container">
-
-                <app-loading></app-loading>
-              </div>
-
+        <div class="locations-container">
+          <div *ngIf="!data">
+            <app-loading></app-loading>
+          </div>
         </div>
       </div>
       <div>
@@ -41,7 +39,11 @@
                 <h1 class="snack-heading">
                   Check out our <span>snack gallery</span>
                 </h1>
-                <a routerLink="/products" routerLinkActive="active" class="btn-snack">
+                <a
+                  routerLink="/products"
+                  routerLinkActive="active"
+                  class="btn-snack"
+                >
                   <span class="material-icons">
                     arrow_forward
                   </span>
@@ -58,9 +60,9 @@
         <p>Find the most upvoted movies rated by our clients</p>
       </div>
       <app-likedmovies></app-likedmovies>
-      <div *ngIf="!data">
-          <app-loading></app-loading>
-      </div>
     </div>
   </div>
+</div>
+<div *ngIf="!data">
+  <app-loading></app-loading>
 </div>
