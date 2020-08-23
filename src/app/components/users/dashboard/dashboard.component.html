@@ -23,19 +23,16 @@
       </div>
       <ng-container *ngIf="user.role_id !== 1; else elseTemplate">
         <h3 class="inheadings">Your Reservations:</h3>
-        <table class="contents-table">
-          <caption>
-            List of registered releases
-          </caption>
+        <table class="contents-table" *ngIf="reservations.length>0">
           <thead>
             <tr>
               <th scope="col" colspan="2">
                 Date of the reservation
               </th>
-              <th scope="col" colspan="2">
+              <th scope="col" colspan="3">
                 Tickets
               </th>
-              <th scope="col" colspan="2">
+              <th scope="col" colspan="3">
                 Products
               </th>
               <th scope="col">
@@ -51,15 +48,15 @@
               <td colspan="2">
                 {{ item.date_now | date: "dd/MM/yyyy" }}
               </td>
-              <td colspan="2">
-                <select>
+              <td colspan="3">
+                <select class="inputs" style="margin-top: 30px;">
                   <option *ngFor="let i of item.tickets"
                     >{{ i.name }} ${{ i.pricing | number: "1.0-0" }}</option
                   >
                 </select>
               </td>
-              <td colspan="2">
-                <select>
+              <td colspan="3">
+                <select class="inputs" style="margin-top: 30px;">
                   <option *ngFor="let i of item.products"
                     >{{ i.name }} ${{ i.price | number: "1.0-0" }}</option
                   >
