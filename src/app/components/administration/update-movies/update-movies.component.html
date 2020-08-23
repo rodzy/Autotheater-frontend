@@ -139,16 +139,10 @@
 
           <div
             class="errorContainer"
-            *ngIf="isSubmited && createForm.genres.errors"
+            *ngIf="isSubmited && createForm.genres.errors || this.data.genres.length === 0"
           >
-            <p class="erroMsgs">
-              The genre for each movie is required
-              <span
-                class="material-icons"
-                style="vertical-align: middle; display: inline-flex;"
-              >
-                warning
-              </span>
+            <p class="erroMsgs" style="text-align: center;">
+              🚨 Remember that the genres for each movie is required 🚨
             </p>
           </div>
         </div>

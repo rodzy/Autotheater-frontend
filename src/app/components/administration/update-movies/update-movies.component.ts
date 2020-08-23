@@ -12,7 +12,6 @@ import {
   FormBuilder,
   FormControl,
   Validators,
-  FormArray,
 } from '@angular/forms';
 
 @Component({
@@ -30,6 +29,7 @@ export class UpdateMoviesComponent implements OnInit {
   newMovie: Movie;
   genres: Genre[] = [];
   classifications: MovieClassification[] = [];
+  message = '';
   constructor(
     public formBuilder: FormBuilder,
     private gService: GenericService,
@@ -112,7 +112,6 @@ export class UpdateMoviesComponent implements OnInit {
     const foundG = this.data.genres.find((value) => value.id === id);
     if (foundG === undefined) {
       this.data.genres.push(this.genres.find((value) => value.id === id));
-      console.log(this.data.genres);
     }
   }
 
@@ -129,7 +128,7 @@ export class UpdateMoviesComponent implements OnInit {
   // Submit the update request
   onSubmitMovie() {
     this.isSubmited = true;
-    if (this.CreateForm.invalid) {
+    if (this.CreateForm.invalid || this.data.genres.length === 0) {
       return;
     }
     // this.newMovie = {
