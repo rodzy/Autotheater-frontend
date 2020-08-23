@@ -134,7 +134,6 @@ export class CreateBillboardComponent implements OnInit {
     if (foundT === undefined) {
       this.selectedTickets.push(this.tickets.find((value) => value.id === id));
     }
-    console.log(this.selectedTickets);
   }
 
   deleteTickets(event, id: number) {
