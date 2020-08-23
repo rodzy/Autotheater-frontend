@@ -24,12 +24,17 @@
               {{ item.name }}
             </div>
             <div class="date-aval">
-              <p>Available at: {{ billboard[i].show_date }}</p>
+              <p>
+                Available at:
+                {{ billboard[i].show_date | date: "dd/MM/yyyy, HH:mm a" }}
+              </p>
             </div>
             <div class="button-container">
-              <a [routerLink]="['/create-reservation/', billboard[i].id]" class="btn"
-              ><span class="btitle">Reserve</span></a
-            >
+              <a
+                [routerLink]="['/create-reservation/', billboard[i].id]"
+                class="btn"
+                ><span class="btitle">Reserve</span></a
+              >
             </div>
           </div>
         </div>

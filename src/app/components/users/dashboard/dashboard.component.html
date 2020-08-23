@@ -49,28 +49,24 @@
           <tbody>
             <tr *ngFor="let item of reservations">
               <td colspan="2">
-                {{ item.date_now }}
+                {{ item.date_now | date: "dd/MM/yyyy" }}
               </td>
               <td colspan="2">
                 <select>
                   <option *ngFor="let i of item.tickets"
-                    >{{ i.name }} ${{ i.pricing | number:'1.0-0' }}</option
+                    >{{ i.name }} ${{ i.pricing | number: "1.0-0" }}</option
                   >
                 </select>
               </td>
               <td colspan="2">
                 <select>
                   <option *ngFor="let i of item.products"
-                    >{{ i.name }} ${{ i.price | number:'1.0-0' }}</option
+                    >{{ i.name }} ${{ i.price | number: "1.0-0" }}</option
                   >
                 </select>
               </td>
-              <td>
-                {{ item.tax | number:'1.0-0' }}%
-              </td>
-              <td>
-                $ {{ item.total | number:'1.0-0' }}
-              </td>
+              <td>{{ item.tax | number: "1.0-0" }}%</td>
+              <td>$ {{ item.total | number: "1.0-0" }}</td>
             </tr>
           </tbody>
         </table>
