@@ -67,7 +67,7 @@ export class GenericService {
       // tslint:disable-next-line: object-literal-key-quotes
       headers: new HttpHeaders({
         // tslint:disable-next-line: object-literal-key-quotes
-        'Authorization': 'Bearer' + this.currentUser.access_token,
+        Authorization: 'Bearer' + this.currentUser.access_token,
       }),
     });
   }
@@ -75,14 +75,12 @@ export class GenericService {
   // Patch a resource
   Update<T>(
     endpoint: string,
-    model: T | any,
-    object: T | any
+    object: T | any,
+    id: number
   ): Observable<T | T[]> {
-    return this.http.patch<T | T[]>(
-      this.server + endpoint + `/${object.id}`,
-      object,
-      { headers: this.headers }
-    );
+    return this.http.post<T | T[]>(this.server + endpoint + `/${id}`, object, {
+      headers: this.headers,
+    });
   }
 
   Like(endpoint: string, id: number): Observable<any | any[]> {

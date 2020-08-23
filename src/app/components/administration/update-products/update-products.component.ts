@@ -103,20 +103,20 @@ export class UpdateProductsComponent implements OnInit {
       classificationproducts: this.CreateForm.get('classifications').value,
       status: true,
     };
-    this.genericService
-      .Update<Products>('products', this.newProduct, this.data)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (res: any) => {
-          this.notification.message(res.name, res.message, 'success');
-          this.router.navigate(['/dashboard'], {
-            queryParams: { productSuccess: true },
-          });
-        },
-        (error: any) => {
-          this.notification.message(error.name, error.message, 'error');
-        }
-      );
+    // this.genericService
+    //   .Update<Products>('products', this.newProduct, this.data)
+    //   .pipe(takeUntil(this.destroy$))
+    //   .subscribe(
+    //     (res: any) => {
+    //       this.notification.message(res.name, res.message, 'success');
+    //       this.router.navigate(['/dashboard'], {
+    //         queryParams: { productSuccess: true },
+    //       });
+    //     },
+    //     (error: any) => {
+    //       this.notification.message(error.name, error.message, 'error');
+    //     }
+    //   );
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
