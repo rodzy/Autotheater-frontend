@@ -80,26 +80,20 @@
           </label>
           <div class="gen-content">
             <select
-            name="movie-classification"
-            id="movie-classification"
-            class="inputs"
-            formControlName="genres"
+              name="movie-classification"
+              id="movie-classification"
+              class="inputs"
+              formControlName="genres"
             >
-            <option value="" disabled selected>Select your option</option>
-            <ng-container *ngFor="let i of genres">
-              <option [ngValue]="i.id">{{
-                i.name
-              }}</option>
-            </ng-container>
-          </select>
-          <div class="btnContainer">
-            <input
-            type="button"
-            value="Add genres"
-            class="submit-button"
-            />
+              <option value="" disabled selected>Select your option</option>
+              <ng-container *ngFor="let i of genres">
+                <option [ngValue]="i.id">{{ i.name }}</option>
+              </ng-container>
+            </select>
+            <div class="btnContainer">
+              <input type="button" value="Add genres" class="submit-button" (click)="saveGenres($event)" />
+            </div>
           </div>
-        </div>
           <ng-container *ngIf="data.genres.length > 0; else elseTemplate">
             <div class="table-cont">
               <table class="contents-table">
@@ -128,6 +122,7 @@
                         name="deleteBtn"
                         id="delete-btn"
                         value="Remove"
+                        (click)="deleteGenres($event, item.id)"
                         class="submit-button"
                       />
                     </td>

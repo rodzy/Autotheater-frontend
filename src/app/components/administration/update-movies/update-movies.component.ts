@@ -97,7 +97,7 @@ export class UpdateMoviesComponent implements OnInit {
       classifications: new FormControl(this.data.classification_id, [
         Validators.required,
       ]),
-      genres: new FormArray([], [Validators.required]),
+      genres: new FormControl('', [Validators.required]),
     });
   }
 
@@ -106,21 +106,24 @@ export class UpdateMoviesComponent implements OnInit {
     return this.CreateForm.controls;
   }
 
-  // Event checker for the reactive form
-  onCheckChecked(event) {
-    const genresArray: FormArray = this.CreateForm.get('genres') as FormArray;
-    if (event.target.checked) {
-      genresArray.push(new FormControl(event.target.value));
-    } else {
-      let i = 0;
-      genresArray.controls.forEach((control: FormControl) => {
-        if (control.value === event.target.value) {
-          genresArray.removeAt(i);
-          return;
-        }
-        i++;
-      });
+  saveGenres(event) {
+    event.preventDefault();
+    const id = this.CreateForm.get('genres').value;
+    const foundG = this.data.genres.find((value) => value.id === id);
+    if (foundG === undefined) {
+      this.data.genres.push(this.genres.find((value) => value.id === id));
+      console.log(this.data.genres);
     }
+  }
+
+  deleteGenres(event, id: number) {
+    event.preventDefault();
+    const removedIndex = this.data.genres
+      .map((item) => {
+        return item.id;
+      })
+      .indexOf(id);
+    this.data.genres.splice(removedIndex, 1);
   }
 
   // Submit the update request
