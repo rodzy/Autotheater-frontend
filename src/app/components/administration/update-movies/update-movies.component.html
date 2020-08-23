@@ -46,6 +46,20 @@
           formControlName="synopsis"
         >
         </textarea>
+        <div
+        class="errorContainer"
+        *ngIf="isSubmited && createForm.synopsis.errors"
+      >
+        <p class="erroMsgs">
+          The synopsis is the description for the movie and is required
+          <span
+            class="material-icons"
+            style="vertical-align: middle; display: inline-flex;"
+          >
+            warning
+          </span>
+        </p>
+      </div>
         <label for="movie-classification" class="labels">
           Classification
         </label>
@@ -139,7 +153,7 @@
 
           <div
             class="errorContainer"
-            *ngIf="isSubmited && createForm.genres.errors || this.data.genres.length === 0"
+            *ngIf="this.data.genres.length === 0"
           >
             <p class="erroMsgs" style="text-align: center;">
               🚨 Remember that the genres for each movie is required 🚨
@@ -148,7 +162,6 @@
         </div>
         <div class="btnContainer">
           <input type="submit" value="Submit changes" class="submit-button" />
-          <input type="reset" value="Reset changes" class="submit-button" />
         </div>
       </div>
     </div>

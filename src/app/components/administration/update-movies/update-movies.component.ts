@@ -97,7 +97,7 @@ export class UpdateMoviesComponent implements OnInit {
       classifications: new FormControl(this.data.classification_id, [
         Validators.required,
       ]),
-      genres: new FormControl('', [Validators.required]),
+      genres: new FormControl(''),
     });
   }
 
