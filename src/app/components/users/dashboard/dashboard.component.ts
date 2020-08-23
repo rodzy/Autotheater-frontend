@@ -24,15 +24,33 @@ export class DashboardComponent implements OnInit {
 
   messages() {
     let movieSuccess = false;
+    let movieUpdated = false;
     let productSuccess = false;
+    let productUpdate = false;
     this.route.queryParams.subscribe((params) => {
       movieSuccess = params.movieSuccess || false;
+      movieUpdated = params.movieUpdated || false;
+      productUpdate = params.productUpdate || false;
       productSuccess = params.productSuccess || false;
     });
     if (movieSuccess) {
       this.notification.message(
         'Success, movie registered successfully',
         `Movie registered successfully 📔🎬`,
+        'success'
+      );
+    }
+    if (movieUpdated) {
+      this.notification.message(
+        'Success, movie updated successfully',
+        `Movie updated successfully ✅✨`,
+        'success'
+      );
+    }
+    if (productUpdate) {
+      this.notification.message(
+        'Success, product updated successfully',
+        `Product updated successfully ✅✨`,
         'success'
       );
     }

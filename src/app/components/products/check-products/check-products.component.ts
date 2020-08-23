@@ -38,11 +38,6 @@ export class CheckProductsComponent implements OnInit {
       );
   }
 
-  // Select the desired product and redirect
-  onSelectedRedirect() {}
-
-  // Deactivate product from the actual cinema
-  deactivateMovie() {}
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy(): void {

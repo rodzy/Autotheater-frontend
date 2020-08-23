@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NotficationService } from '../../../services/notfication.service';
 import { GenericService } from '../../../services/generic.service';
 import { Movie } from '../../../models/Movies.interface';
@@ -12,7 +12,6 @@ import {
   FormBuilder,
   FormControl,
   Validators,
-  FormArray,
 } from '@angular/forms';
 
 @Component({
@@ -30,11 +29,13 @@ export class UpdateMoviesComponent implements OnInit {
   newMovie: Movie;
   genres: Genre[] = [];
   classifications: MovieClassification[] = [];
+  message = '';
   constructor(
     public formBuilder: FormBuilder,
     private gService: GenericService,
     private notification: NotficationService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public router: Router
   ) {}
 
   ngOnInit(): void {
@@ -97,7 +98,7 @@ export class UpdateMoviesComponent implements OnInit {
       classifications: new FormControl(this.data.classification_id, [
         Validators.required,
       ]),
-      genres: new FormArray([], [Validators.required]),
+      genres: new FormControl(''),
     });
   }
 
@@ -106,36 +107,60 @@ export class UpdateMoviesComponent implements OnInit {
     return this.CreateForm.controls;
   }
 
-  // Event checker for the reactive form
-  onCheckChecked(event) {
-    const genresArray: FormArray = this.CreateForm.get('genres') as FormArray;
-    if (event.target.checked) {
-      genresArray.push(new FormControl(event.target.value));
-    } else {
-      let i = 0;
-      genresArray.controls.forEach((control: FormControl) => {
-        if (control.value === event.target.value) {
-          genresArray.removeAt(i);
-          return;
-        }
-        i++;
-      });
+  saveGenres(event) {
+    event.preventDefault();
+    const id = this.CreateForm.get('genres').value;
+    const foundG = this.data.genres.find((value) => value.id === id);
+    if (foundG === undefined) {
+      this.data.genres.push(this.genres.find((value) => value.id === id));
     }
+  }
+
+  deleteGenres(event, id: number) {
+    event.preventDefault();
+    const removedIndex = this.data.genres
+      .map((item) => {
+        return item.id;
+      })
+      .indexOf(id);
+    this.data.genres.splice(removedIndex, 1);
   }
 
   // Submit the update request
   onSubmitMovie() {
     this.isSubmited = true;
-    if (this.CreateForm.invalid) {
+    if (this.CreateForm.invalid || this.data.genres.length === 0) {
       return;
     }
-    // this.newMovie = {
-    //   name: this.CreateForm.get('name').value,
-    //   sinopsis: this.CreateForm.get('sinopsis').value,
-    //   classification_id: this.CreateForm.get('classifications').value,
-    //   genres: this.CreateForm.get('genres').value,
-    //   status: true,
-    // }
+    const genresArr = [];
+    this.data.genres.forEach((item) => {
+      genresArr.push(item.id);
+    });
+
+    this.newMovie = {
+      name: this.CreateForm.get('name').value,
+      image: this.data.image,
+      banner: this.data.banner,
+      sinopsis: this.CreateForm.get('synopsis').value,
+      classification_id: this.CreateForm.get('classifications').value,
+      genres: genresArr,
+      status: true,
+    };
+    this.gService
+      .Update<Movie>('movies', this.newMovie, this.data.id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (res: any) => {
+          if (res.message === 'Movied updated successfully') {
+            this.router.navigate(['/dashboard'], {
+              queryParams: { movieUpdated: true },
+            });
+          }
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.message, 'error');
+        }
+      );
   }
 
   // tslint:disable-next-line: use-lifecycle-interface

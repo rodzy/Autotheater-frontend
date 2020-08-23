@@ -248,6 +248,13 @@ h2 {
   }
 }
 
+.gen-content{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  padding-top: 30px;
+}
+
 .table-cont{
   width: 100%;
   display: flex;
