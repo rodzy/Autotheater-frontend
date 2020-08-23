@@ -106,7 +106,6 @@ export class UpdateProductsComponent implements OnInit {
       ]),
       price: new FormControl(this.data.price, [
         Validators.required,
-        Validators.pattern('^[0-9]*$'),
       ]),
       type_id: new FormControl(this.data.type_id, Validators.required),
       classifications: new FormControl(''),
@@ -117,7 +116,7 @@ export class UpdateProductsComponent implements OnInit {
     return this.CreateForm.controls;
   }
 
-  saveGenres(event) {
+  saveClassifications(event) {
     event.preventDefault();
     const id = this.CreateForm.get('classifications').value;
     const foundG = this.data.classificationproducts.find(
@@ -130,7 +129,7 @@ export class UpdateProductsComponent implements OnInit {
     }
   }
 
-  deleteGenres(event, id: number) {
+  deleteClassifications(event, id: number) {
     event.preventDefault();
     const removedIndex = this.data.classificationproducts
       .map((item) => {
@@ -142,17 +141,26 @@ export class UpdateProductsComponent implements OnInit {
 
   onSubmitedProduct() {
     this.isSubmited = true;
-    if (this.CreateForm.invalid) {
+    if (
+      this.CreateForm.invalid ||
+      this.data.classificationproducts.length === 0
+    ) {
       return;
     }
+
+    const classArrs = [];
+    this.data.classificationproducts.forEach((item) => {
+      classArrs.push(item.id);
+    });
     this.newProduct = {
       name: this.CreateForm.get('name').value,
       description: this.CreateForm.get('description').value,
       price: this.CreateForm.get('price').value,
       type_id: this.CreateForm.get('type_id').value,
-      classificationproducts: this.CreateForm.get('classifications').value,
+      classificationproducts: classArrs,
       status: true,
     };
+    console.log(this.newProduct);
     // this.genericService
     //   .Update<Products>('products', this.newProduct, this.data)
     //   .pipe(takeUntil(this.destroy$))
