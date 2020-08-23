@@ -27,7 +27,7 @@
         <div class="detailsHead">
           <h1 class="detailsTitle btitle">{{ data.name }}</h1>
           <div class="subtitles">
-            <span class="classification">${{ data.price }}</span>
+            <span class="classification">${{ data.price | number:'1.0-0' }}</span>
             <div
               *ngFor="let item of data.classificationproducts"
               class="genres-container"
@@ -51,14 +51,14 @@
         <div class="detailsbody">
           <h3 class="contentTitle">About this product</h3>
           <p class="synopsis">
-            The unitary price for this product is ${{ data.price }}, the total
+            The unitary price for this product is ${{ data.price | number:'1.0-0' }}, the total
             price might vary depending on the classification:
           </p>
         </div>
         <div *ngFor="let item of data.classificationproducts" class="listbody">
           <ul class="listing">
             <li class="listing-item">
-              {{ item.type }}: Extra price ${{ item.pricetotal }}
+              {{ item.type }}: Extra price ${{ item.pricetotal | number:'1.0-0' }}
             </li>
           </ul>
         </div>
