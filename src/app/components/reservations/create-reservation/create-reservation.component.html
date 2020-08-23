@@ -159,7 +159,7 @@
           >
             <option value="" disabled selected>Select your option</option>
 
-            <option *ngFor="let item of tickets" [ngValue]="item.id"
+            <option *ngFor="let item of billboard.tickets" [ngValue]="item.id"
               >{{ item.name }}: ${{ item.pricing | number: "1.0-0" }}</option
             >
           </select>

@@ -104,10 +104,10 @@
         <div
           class="errorContainer"
           *ngIf="
-            isSubmited && (
-            createForm.show_date.errors ||
-            createForm.hour.errors ||
-            createForm.minutes.errors)
+            isSubmited &&
+            (createForm.show_date.errors ||
+              createForm.hour.errors ||
+              createForm.minutes.errors)
           "
         >
           <p class="erroMsgs">
@@ -121,17 +121,22 @@
           </p>
         </div>
 
+        <label for="movie-genre" class="labels">
+          Capacity
+        </label>
         <div>
-          <label for="movie-genre" class="labels">
-            Capacity
-          </label>
-          <input
-            type="number"
-            name="capacity"
-            id="capacity"
-            formControlName="capacity"
-            class="inputs"
-          />
+          <div style="display: flex; width: 100%; margin: 0;">
+            <input
+              type="number"
+              name="capacity"
+              id="capacity"
+              formControlName="capacity"
+              class="inputs"
+              style="width: 20%;"
+              max="30"
+              min="0"
+            />
+          </div>
           <div
             class="errorContainer"
             *ngIf="isSubmited && createForm.capacity.errors"
@@ -147,27 +152,17 @@
             </p>
           </div>
         </div>
-        <!-- <div>
-          <label for="movie-cover" class="labels">
-            Movie cover
-          </label>
-          <ng-container *ngIf="selectedMovie.id !== 0; else elseTemplate">
-            <div class="image-port">
-              <img
-                id="movie-cover"
-                alt="movie-cover"
-                aria-label="movie-cover"
-                src="{{
-                  'https://image.tmdb.org/t/p/w600_and_h900_bestv2' +
-                    selectedMovie.poster_path
-                }}"
-              />
-            </div>
-          </ng-container>
-          <ng-template #elseTemplate>
-            <div class="image-port"></div>
-          </ng-template>
-        </div> -->
+        <label for="movie-genre" class="labels">
+          Tickets
+        </label>
+        <div style="display: flex; width: 100%; margin: 0;">
+          <select class="inputs">
+            <option *ngFor="let i of tickets" [ngValue]="i.id"
+              >{{ i.name }}: ${{ i.pricing | number: "1.0-0" }}</option
+            >
+          </select>
+          <input type="submit" value="Submit changes" class="submit-button" />
+        </div>
         <div class="btnContainer">
           <input type="submit" value="Submit changes" class="submit-button" />
           <input type="reset" value="Reset changes" class="submit-button" />

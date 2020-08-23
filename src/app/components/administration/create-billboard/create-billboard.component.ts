@@ -14,6 +14,7 @@ import { Movie } from '../../../models/Movies.interface';
 import { Locations } from '../../../models/Locations.interface';
 import { takeUntil } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
+import { Tickets } from '../../../models/Tickets.interface';
 
 @Component({
   selector: 'app-create-billboard',
@@ -23,8 +24,9 @@ import { DatePipe } from '@angular/common';
 export class CreateBillboardComponent implements OnInit {
   CreateForm: FormGroup;
   billboard: Billboard;
-  movies: Movie[];
-  locations: Locations[];
+  movies: Movie[] = [];
+  locations: Locations[] = [];
+  tickets: Tickets[] = [];
   isSubmited = false;
   destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
@@ -39,6 +41,7 @@ export class CreateBillboardComponent implements OnInit {
     this.initialValuesCheck();
     this.listActiveMovies();
     this.listActiveLocations();
+    this.listTickets();
     this.reactiveForm();
     const date = new Date().toISOString().split('T')[0];
     document.getElementById('show-date').setAttribute('min', date);
@@ -52,6 +55,7 @@ export class CreateBillboardComponent implements OnInit {
       movie_id: 0,
       location_id: 0,
       status: false,
+      tickets: [],
     };
   }
 
@@ -107,6 +111,20 @@ export class CreateBillboardComponent implements OnInit {
       );
   }
 
+  listTickets() {
+    this.genericService
+        .List<Tickets>('tickets', this.tickets)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          (t: Tickets[]) => {
+            this.tickets = t;
+          },
+          (error: any) => {
+            this.notification.message(error.name, error.messge, 'error');
+          }
+        );
+  }
+
   // This will create a new session for the solicited movie
   onSubmitToBillboard() {
     this.isSubmited = true;
@@ -131,6 +149,7 @@ export class CreateBillboardComponent implements OnInit {
       show_date: showDated,
       movie_id: this.CreateForm.get('movie_id').value,
       location_id: this.CreateForm.get('location_id').value,
+      tickets: [],
       status: true,
     };
     if (this.billboard !== undefined) {
