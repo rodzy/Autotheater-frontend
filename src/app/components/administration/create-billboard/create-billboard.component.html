@@ -156,12 +156,13 @@
           Tickets
         </label>
         <div style="display: flex; width: 100%; margin: 0;">
-          <select class="inputs">
+          <select class="inputs" formControlName="tickets">
+            <option disabled selected value="">Select your option</option>
             <option *ngFor="let i of tickets" [ngValue]="i.id"
               >{{ i.name }}: ${{ i.pricing | number: "1.0-0" }}</option
             >
           </select>
-          <input type="submit" value="Submit changes" class="submit-button" />
+          <input type="submit" value="Submit changes" (click)="saveTickets($event)" class="submit-button" />
         </div>
         <div class="btnContainer">
           <input type="submit" value="Submit changes" class="submit-button" />

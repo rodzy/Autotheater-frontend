@@ -27,6 +27,7 @@ export class CreateBillboardComponent implements OnInit {
   movies: Movie[] = [];
   locations: Locations[] = [];
   tickets: Tickets[] = [];
+  selectedTickets: Tickets[] = [];
   isSubmited = false;
   destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
@@ -76,6 +77,7 @@ export class CreateBillboardComponent implements OnInit {
       ]),
       movie_id: new FormControl('', [Validators.required]),
       location_id: new FormControl('', [Validators.required]),
+      tickets: new FormControl(),
     });
   }
 
@@ -125,6 +127,26 @@ export class CreateBillboardComponent implements OnInit {
         );
   }
 
+  saveTickets(event) {
+    event.preventDefault();
+    const id = this.CreateForm.get('tickets').value;
+    const foundT = this.selectedTickets.find((value) => value.id === id);
+    if (foundT === undefined) {
+      this.selectedTickets.push(this.tickets.find((value) => value.id === id));
+    }
+    console.log(this.selectedTickets);
+  }
+
+  deleteTickets(event, id: number) {
+    event.preventDefault();
+    const removedIndex = this.selectedTickets
+      .map((item) => {
+        return item.id;
+      })
+      .indexOf(id);
+    this.selectedTickets.splice(removedIndex, 1);
+  }
+
   // This will create a new session for the solicited movie
   onSubmitToBillboard() {
     this.isSubmited = true;
@@ -143,13 +165,18 @@ export class CreateBillboardComponent implements OnInit {
       'GMT-0600'
     );
 
+    const goToTickets = [];
+    this.selectedTickets.forEach((item) => {
+      goToTickets.push(item.id);
+    });
+
     this.billboard = {
       capacity: this.CreateForm.get('capacity').value,
       date_now: formatedDate,
       show_date: showDated,
       movie_id: this.CreateForm.get('movie_id').value,
       location_id: this.CreateForm.get('location_id').value,
-      tickets: [],
+      tickets: goToTickets,
       status: true,
     };
     if (this.billboard !== undefined) {
