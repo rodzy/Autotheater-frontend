@@ -79,7 +79,10 @@ export class GenericService {
     id: number
   ): Observable<T | T[]> {
     return this.http.post<T | T[]>(this.server + endpoint + `/${id}`, object, {
-      headers: this.headers,
+      headers: new HttpHeaders({
+        // tslint:disable-next-line: object-literal-key-quotes
+        Authorization: 'Bearer' + this.currentUser.access_token,
+      }),
     });
   }
 

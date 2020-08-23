@@ -96,17 +96,11 @@ export class UpdateProductsComponent implements OnInit {
 
   reactiveForm() {
     this.CreateForm = this.formBuilder.group({
-      name: new FormControl(this.data.name, [
-        Validators.required,
-        Validators.minLength(5),
-      ]),
+      name: new FormControl(this.data.name, [Validators.required]),
       description: new FormControl(this.data.description, [
         Validators.required,
-        Validators.minLength(15),
       ]),
-      price: new FormControl(this.data.price, [
-        Validators.required,
-      ]),
+      price: new FormControl(this.data.price, [Validators.required]),
       type_id: new FormControl(this.data.type_id, Validators.required),
       classifications: new FormControl(''),
     });
@@ -160,21 +154,19 @@ export class UpdateProductsComponent implements OnInit {
       classificationproducts: classArrs,
       status: true,
     };
-    console.log(this.newProduct);
-    // this.genericService
-    //   .Update<Products>('products', this.newProduct, this.data)
-    //   .pipe(takeUntil(this.destroy$))
-    //   .subscribe(
-    //     (res: any) => {
-    //       this.notification.message(res.name, res.message, 'success');
-    //       this.router.navigate(['/dashboard'], {
-    //         queryParams: { productSuccess: true },
-    //       });
-    //     },
-    //     (error: any) => {
-    //       this.notification.message(error.name, error.message, 'error');
-    //     }
-    //   );
+    this.genericService
+      .Update<Products>('products', this.newProduct, this.data.id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (res: any) => {
+          this.router.navigate(['/dashboard'], {
+            queryParams: { productSuccess: true },
+          });
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.message, 'error');
+        }
+      );
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
