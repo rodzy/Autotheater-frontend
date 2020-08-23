@@ -1,4 +1,3 @@
-<app-undernav [show]="true"></app-undernav>
 <!-- <app-undernav [show]="true"></app-undernav>
 <div>
   <h1 class="heading">Register new <span class="spanx">products</span></h1>
@@ -119,35 +118,76 @@
           <label for="product-classification" class="labels">
             Classifications
           </label>
-          <div id="product-classification" class="genres-container">
-            <label class="list-container" *ngFor="let item of classifications"
-              >{{ item.type }}
-              <input
-                type="checkbox"
-                [value]="item.id"
-                (change)="onCheckChecked($event)"
-              />
-              <span class="checkmark"></span>
-            </label>
-          </div>
-        </div>
-        <div
-          class="errorContainer"
-          *ngIf="isSubmited && createForm.classifications.errors"
-        >
-          <p class="erroMsgs">
-            The recommended classifications are required
-            <span
-              class="material-icons"
-              style="vertical-align: middle; display: inline-flex;"
+          <div class="gen-content">
+            <select
+              name="movie-classification"
+              id="movie-classification"
+              class="inputs"
+              formControlName="genres"
             >
-              warning
-            </span>
-          </p>
+              <option value="" disabled selected>Select your option</option>
+              <ng-container *ngFor="let i of ">
+                <option [ngValue]="i.id">{{ i.name }}</option>
+              </ng-container>
+            </select>
+            <div class="btnContainer">
+              <input type="button" value="Add genres" class="submit-button" (click)="saveGenres($event)" />
+            </div>
+          </div>
+          <ng-container *ngIf="data.genres.length > 0; else elseTemplate">
+            <div class="table-cont">
+              <table class="contents-table">
+                <caption>
+                  Genres associated with this movie
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col" colspan="1">
+                      Selected genres
+                    </th>
+
+                    <th scope="col">
+                      Remove genres 🚮
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of data.genres">
+                    <td>
+                      {{ item.name }}
+                    </td>
+                    <td>
+                      <input
+                        type="button"
+                        name="deleteBtn"
+                        id="delete-btn"
+                        value="Remove"
+                        (click)="deleteGenres($event, item.id)"
+                        class="submit-button"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <div class="no-no-container">
+              <p>No genres that's weird 🚨👮‍♂️🚨</p>
+            </div>
+          </ng-template>
+
+          <div
+            class="errorContainer"
+            *ngIf="this.data.genres.length === 0"
+          >
+            <p class="erroMsgs" style="text-align: center;">
+              🚨 Remember that the genres for each movie is required 🚨
+            </p>
+          </div>
         </div>
         <div class="btnContainer">
           <input type="submit" value="Submit changes" class="submit-button" />
-          <input type="reset" value="Reset changes" class="submit-button" />
         </div>
       </div>
     </div>

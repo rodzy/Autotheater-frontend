@@ -139,7 +139,11 @@ export class CreateBillboardComponent implements OnInit {
         .pipe(takeUntil(this.destroy$))
         .subscribe(
           (res: any) => {
-            this.notification.message(res.name, res.message, 'success');
+            this.notification.message(
+              `Success, ${res.message}`,
+              `Added to the billboard successfully ✅✨`,
+              'success'
+            );
           },
           (error: any) => {
             this.notification.message(error.name, error.message, 'error');

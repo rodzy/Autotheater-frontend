@@ -21,13 +21,9 @@
                   Associated classifications
                 </th>
                 <th scope="col">
-                  Extra price<br /><small
-                  >*This price is added by classification</small
-                  >
+                  Ratings
                 </th>
-                <th scope="col" colspan="2">
-                  Remove from cart 🚮
-                </th>
+                <th scope="col" colspan="2">Perform actions<br />✅</th>
               </tr>
             </thead>
             <tbody>
@@ -172,20 +168,22 @@
                 </div>
               </td>
               <td colspan="2">
-                <input
-                type="button"
-                name="deleteBtn"
-                id="delete-btn"
-                value="Remove"
+                <a
+                [routerLink]="['/products/',item.id]"
+                routerLinkActive="active"
+                name="detaildBtn"
+                id="details-btn"
                 class="submit-button"
-                />
-                <input
-                type="button"
-                name="deleteBtn"
-                id="delete-btn"
-                value="Edit"
+                >Details</a
+              >
+              <a
+                [routerLink]="['/update-products/',item.id]"
+                routerLinkActive="active"
+                name="editBtn"
+                id="edit-btn"
                 class="submit-button"
-                />
+                >Edit</a
+              >
               </td>
             </tr>
           </tbody>

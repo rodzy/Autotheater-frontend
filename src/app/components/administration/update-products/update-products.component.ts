@@ -33,7 +33,7 @@ export class UpdateProductsComponent implements OnInit {
       this.show = true;
     }
     this.ObtainProductDetails(this.id);
-    this.reactiveForm();
+
   }
 
   // Obtaining products using the generic service and the notifying service
@@ -44,6 +44,7 @@ export class UpdateProductsComponent implements OnInit {
       .subscribe(
         (data: Products) => {
           this.data = data;
+          this.reactiveForm();
         },
         (error: any) => {
           this.notification.message(error.name, error.messge, 'error');
