@@ -28,6 +28,12 @@
                 Available at:
                 {{ billboard[i].show_date | date: "dd/MM/yyyy, HH:mm a" }}
               </p>
+              <p>
+                Capacity: {{ billboard[i].capacity }}
+                <span class="material-icons" style="vertical-align: middle;">
+                  directions_car
+                </span>
+              </p>
             </div>
             <div class="button-container">
               <a
