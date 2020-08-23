@@ -46,7 +46,7 @@
           >
             <option value="" disabled selected>Select your option</option>
             <option *ngFor="let item of products" [ngValue]="item.id"
-              >{{ item.name }}: ${{ item.price }}</option
+              >{{ item.name }}: ${{ item.price | number:'1.0-0'}}</option
             >
           </select>
           <select
@@ -57,7 +57,7 @@
           >
             <option value="" disabled selected>Select your option</option>
             <option *ngFor="let item of productClasses" [ngValue]="item.id"
-              >{{ item.type }}: +${{ item.pricetotal }}</option
+              >{{ item.type }}: +${{ item.pricetotal | number:'1.0-0'}}</option
             >
           </select>
         </div>
@@ -109,11 +109,11 @@
                 <td>
                   {{ item.name }}
                 </td>
-                <td>${{ item.price }}</td>
+                <td>${{ item.price | number:'1.0-0' }}</td>
                 <td>
                   {{ selectedClassifications[i].type }}
                 </td>
-                <td>${{ selectedClassifications[i].pricetotal }}</td>
+                <td>${{ selectedClassifications[i].pricetotal | number:'1.0-0'}}</td>
                 <td>
                   <input
                     type="button"
@@ -152,7 +152,7 @@
             <option value="" disabled selected>Select your option</option>
 
             <option *ngFor="let item of tickets" [ngValue]="item.id"
-              >{{ item.name }}: ${{ item.pricing }}</option
+              >{{ item.name }}: ${{ item.pricing | number:'1.0-0' }}</option
             >
           </select>
         </div>
@@ -191,7 +191,7 @@
                 <td>
                   {{ item.name }}
                 </td>
-                <td>${{ item.pricing }}</td>
+                <td>${{ item.pricing | number:'1.0-0'}}</td>
                 <td>
                   <input
                     type="button"
