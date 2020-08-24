@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Movie } from '../../../models/Movies.interface';
 import { DatePipe } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-billboardindex',
@@ -23,7 +24,8 @@ export class BillboardindexComponent implements OnInit {
   constructor(
     private gService: GenericService,
     private notification: NotficationService,
-    public datepipe: DatePipe
+    public datepipe: DatePipe,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -31,8 +33,22 @@ export class BillboardindexComponent implements OnInit {
       this.show = localStorage.getItem('currentUser');
     }
     this.listBillboards();
+    this.messages();
   }
 
+  messages() {
+    let done = false;
+    this.route.queryParams.subscribe((params) => {
+      done = params.done || false;
+    });
+    if (done) {
+      this.notification.message(
+        'Success, your reservation has been processed ✅',
+        `You can check the details of your transaction on the profile tab, we hope to see you at AutoTheater`,
+        'success'
+      );
+    }
+  }
   // Listing billboards, separatelly for each location in mind
   listBillboards() {
     const currentDate = new Date();

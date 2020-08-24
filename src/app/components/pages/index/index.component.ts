@@ -51,8 +51,8 @@ export class IndexComponent implements OnInit {
     });
     if (auth) {
       this.notification.message(
-        'Hey, user!',
-        `You're not authorized to perform such action please register or contact us 🤖`,
+        'Hey, user!🤖',
+        `You're not authorized to perform such action please create an account or log in to continue`,
         'warning'
       );
     }
@@ -65,14 +65,14 @@ export class IndexComponent implements OnInit {
     }
     if (registered) {
       this.notification.message(
-        'Success, thank you for sign on AutoTheater',
+        'Success, thank you for sign on AutoTheater ✅',
         `Please specify your account credentials to start enjoying all of AutoTheater benefits 😄`,
         'success'
       );
     }
     if (log) {
       this.notification.message(
-        'Success, we hope to have you soon',
+        'Success, we hope to have you soon ✅',
         `Successfully logged out of AutoTheater come back whenever you like 😄`,
         'success'
       );
