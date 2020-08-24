@@ -65,19 +65,24 @@ export class CreateBillboardComponent implements OnInit {
       capacity: new FormControl('', [
         Validators.required,
         Validators.pattern('^[0-9]*$'),
+        Validators.max(30)
       ]),
       show_date: new FormControl('', [Validators.required]),
       hour: new FormControl('', [
         Validators.required,
         Validators.pattern('^[0-9]*$'),
+        Validators.min(0),
+        Validators.max(23)
       ]),
       minutes: new FormControl('', [
         Validators.required,
         Validators.pattern('^[0-9]*$'),
+        Validators.min(0),
+        Validators.max(59)
       ]),
       movie_id: new FormControl('', [Validators.required]),
       location_id: new FormControl('', [Validators.required]),
-      tickets: new FormControl(),
+      tickets: new FormControl(''),
     });
   }
 

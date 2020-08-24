@@ -82,8 +82,8 @@
           />
           <input
             type="number"
-            min="00"
-            max="24"
+            min="0"
+            max="23"
             name="show_hour"
             id="show_hour"
             class="inputs"
@@ -92,8 +92,8 @@
           />
           <input
             type="number"
-            min="00"
-            max="60"
+            min="0"
+            max="59"
             name="show_minutes"
             id="show_minutes"
             class="inputs"
@@ -142,7 +142,7 @@
             *ngIf="isSubmited && createForm.capacity.errors"
           >
             <p class="erroMsgs">
-              The capacity is required
+              The capacity is required & the maximum capacity is 30 vehicles
               <span
                 class="material-icons"
                 style="vertical-align: middle; display: inline-flex;"
@@ -162,22 +162,22 @@
               >{{ i.name }}: ${{ i.pricing | number: "1.0-0" }}</option
             >
           </select>
-          <input type="submit" value="Submit changes" (click)="saveTickets($event)" class="submit-button" />
+          <input type="submit" value="Add tickets" (click)="saveTickets($event)" class="submit-button" />
         </div>
         <ng-container *ngIf="selectedTickets.length > 0; else elseTemplate">
           <div class="table-cont">
             <table class="contents-table">
               <caption>
-                Genres associated with this movie
+                Tickets associated with this show
               </caption>
               <thead>
                 <tr>
                   <th scope="col" colspan="1">
-                    Selected genres
+                    Selected tickets
                   </th>
 
                   <th scope="col">
-                    Remove genres 🚮
+                    Remove tickets 🚮
                   </th>
                 </tr>
               </thead>
@@ -203,7 +203,7 @@
         </ng-container>
         <ng-template #elseTemplate>
           <div class="no-no-container">
-            <p>No genres that's weird 🚨👮‍♂️🚨</p>
+            <p>No tickets added yet 🚨👮‍♂️🚨</p>
           </div>
         </ng-template>
 
@@ -212,7 +212,7 @@
           *ngIf="isSubmited && this.selectedTickets.length === 0"
         >
           <p class="erroMsgs" style="text-align: center;">
-            🚨 Remember that the genres for each movie is required 🚨
+            🚨 Remember that the tickets are required 🚨
           </p>
         </div>
         <div class="btnContainer">
