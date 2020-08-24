@@ -14,6 +14,7 @@ import { Movie } from '../../../models/Movies.interface';
 import { Locations } from '../../../models/Locations.interface';
 import { takeUntil } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
+import { Tickets } from '../../../models/Tickets.interface';
 
 @Component({
   selector: 'app-create-billboard',
@@ -23,8 +24,10 @@ import { DatePipe } from '@angular/common';
 export class CreateBillboardComponent implements OnInit {
   CreateForm: FormGroup;
   billboard: Billboard;
-  movies: Movie[];
-  locations: Locations[];
+  movies: Movie[] = [];
+  locations: Locations[] = [];
+  tickets: Tickets[] = [];
+  selectedTickets: Tickets[] = [];
   isSubmited = false;
   destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
@@ -39,6 +42,7 @@ export class CreateBillboardComponent implements OnInit {
     this.initialValuesCheck();
     this.listActiveMovies();
     this.listActiveLocations();
+    this.listTickets();
     this.reactiveForm();
     const date = new Date().toISOString().split('T')[0];
     document.getElementById('show-date').setAttribute('min', date);
@@ -52,6 +56,7 @@ export class CreateBillboardComponent implements OnInit {
       movie_id: 0,
       location_id: 0,
       status: false,
+      tickets: [],
     };
   }
 
@@ -60,18 +65,24 @@ export class CreateBillboardComponent implements OnInit {
       capacity: new FormControl('', [
         Validators.required,
         Validators.pattern('^[0-9]*$'),
+        Validators.max(30)
       ]),
       show_date: new FormControl('', [Validators.required]),
       hour: new FormControl('', [
         Validators.required,
         Validators.pattern('^[0-9]*$'),
+        Validators.min(0),
+        Validators.max(23)
       ]),
       minutes: new FormControl('', [
         Validators.required,
         Validators.pattern('^[0-9]*$'),
+        Validators.min(0),
+        Validators.max(59)
       ]),
       movie_id: new FormControl('', [Validators.required]),
       location_id: new FormControl('', [Validators.required]),
+      tickets: new FormControl(''),
     });
   }
 
@@ -107,6 +118,39 @@ export class CreateBillboardComponent implements OnInit {
       );
   }
 
+  listTickets() {
+    this.genericService
+        .List<Tickets>('tickets', this.tickets)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          (t: Tickets[]) => {
+            this.tickets = t;
+          },
+          (error: any) => {
+            this.notification.message(error.name, error.messge, 'error');
+          }
+        );
+  }
+
+  saveTickets(event) {
+    event.preventDefault();
+    const id = this.CreateForm.get('tickets').value;
+    const foundT = this.selectedTickets.find((value) => value.id === id);
+    if (foundT === undefined) {
+      this.selectedTickets.push(this.tickets.find((value) => value.id === id));
+    }
+  }
+
+  deleteTickets(event, id: number) {
+    event.preventDefault();
+    const removedIndex = this.selectedTickets
+      .map((item) => {
+        return item.id;
+      })
+      .indexOf(id);
+    this.selectedTickets.splice(removedIndex, 1);
+  }
+
   // This will create a new session for the solicited movie
   onSubmitToBillboard() {
     this.isSubmited = true;
@@ -125,12 +169,18 @@ export class CreateBillboardComponent implements OnInit {
       'GMT-0600'
     );
 
+    const goToTickets = [];
+    this.selectedTickets.forEach((item) => {
+      goToTickets.push(item.id);
+    });
+
     this.billboard = {
       capacity: this.CreateForm.get('capacity').value,
       date_now: formatedDate,
       show_date: showDated,
       movie_id: this.CreateForm.get('movie_id').value,
       location_id: this.CreateForm.get('location_id').value,
+      tickets: goToTickets,
       status: true,
     };
     if (this.billboard !== undefined) {

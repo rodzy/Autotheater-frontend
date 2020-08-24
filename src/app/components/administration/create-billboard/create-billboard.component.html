@@ -82,8 +82,8 @@
           />
           <input
             type="number"
-            min="00"
-            max="24"
+            min="0"
+            max="23"
             name="show_hour"
             id="show_hour"
             class="inputs"
@@ -92,8 +92,8 @@
           />
           <input
             type="number"
-            min="00"
-            max="60"
+            min="0"
+            max="59"
             name="show_minutes"
             id="show_minutes"
             class="inputs"
@@ -104,10 +104,10 @@
         <div
           class="errorContainer"
           *ngIf="
-            isSubmited && (
-            createForm.show_date.errors ||
-            createForm.hour.errors ||
-            createForm.minutes.errors)
+            isSubmited &&
+            (createForm.show_date.errors ||
+              createForm.hour.errors ||
+              createForm.minutes.errors)
           "
         >
           <p class="erroMsgs">
@@ -121,23 +121,28 @@
           </p>
         </div>
 
+        <label for="movie-genre" class="labels">
+          Capacity
+        </label>
         <div>
-          <label for="movie-genre" class="labels">
-            Capacity
-          </label>
-          <input
-            type="number"
-            name="capacity"
-            id="capacity"
-            formControlName="capacity"
-            class="inputs"
-          />
+          <div style="display: flex; width: 100%; margin: 0;">
+            <input
+              type="number"
+              name="capacity"
+              id="capacity"
+              formControlName="capacity"
+              class="inputs"
+              style="width: 20%;"
+              max="30"
+              min="0"
+            />
+          </div>
           <div
             class="errorContainer"
             *ngIf="isSubmited && createForm.capacity.errors"
           >
             <p class="erroMsgs">
-              The capacity is required
+              The capacity is required & the maximum capacity is 30 vehicles
               <span
                 class="material-icons"
                 style="vertical-align: middle; display: inline-flex;"
@@ -147,27 +152,69 @@
             </p>
           </div>
         </div>
-        <!-- <div>
-          <label for="movie-cover" class="labels">
-            Movie cover
-          </label>
-          <ng-container *ngIf="selectedMovie.id !== 0; else elseTemplate">
-            <div class="image-port">
-              <img
-                id="movie-cover"
-                alt="movie-cover"
-                aria-label="movie-cover"
-                src="{{
-                  'https://image.tmdb.org/t/p/w600_and_h900_bestv2' +
-                    selectedMovie.poster_path
-                }}"
-              />
-            </div>
-          </ng-container>
-          <ng-template #elseTemplate>
-            <div class="image-port"></div>
-          </ng-template>
-        </div> -->
+        <label for="movie-genre" class="labels">
+          Tickets
+        </label>
+        <div style="display: flex; width: 100%; margin: 0;">
+          <select class="inputs" formControlName="tickets">
+            <option disabled selected value="">Select your option</option>
+            <option *ngFor="let i of tickets" [ngValue]="i.id"
+              >{{ i.name }}: ${{ i.pricing | number: "1.0-0" }}</option
+            >
+          </select>
+          <input type="submit" value="Add tickets" (click)="saveTickets($event)" class="submit-button" />
+        </div>
+        <ng-container *ngIf="selectedTickets.length > 0; else elseTemplate">
+          <div class="table-cont">
+            <table class="contents-table">
+              <caption>
+                Tickets associated with this show
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col" colspan="1">
+                    Selected tickets
+                  </th>
+
+                  <th scope="col">
+                    Remove tickets 🚮
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of selectedTickets">
+                  <td>
+                    {{ item.name }}
+                  </td>
+                  <td>
+                    <input
+                      type="button"
+                      name="deleteBtn"
+                      id="delete-btn"
+                      value="Remove"
+                      (click)="deleteTickets($event, item.id)"
+                      class="submit-button"
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <div class="no-no-container">
+            <p>No tickets added yet 🚨👮‍♂️🚨</p>
+          </div>
+        </ng-template>
+
+        <div
+          class="errorContainer"
+          *ngIf="isSubmited && this.selectedTickets.length === 0"
+        >
+          <p class="erroMsgs" style="text-align: center;">
+            🚨 Remember that the tickets are required 🚨
+          </p>
+        </div>
         <div class="btnContainer">
           <input type="submit" value="Submit changes" class="submit-button" />
           <input type="reset" value="Reset changes" class="submit-button" />

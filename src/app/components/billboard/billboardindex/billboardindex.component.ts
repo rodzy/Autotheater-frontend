@@ -5,6 +5,8 @@ import { Billboard } from 'src/app/models/Bilboard.interface';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Movie } from '../../../models/Movies.interface';
+import { DatePipe } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-billboardindex',
@@ -21,7 +23,9 @@ export class BillboardindexComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
     private gService: GenericService,
-    private notification: NotficationService
+    private notification: NotficationService,
+    public datepipe: DatePipe,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -29,18 +33,53 @@ export class BillboardindexComponent implements OnInit {
       this.show = localStorage.getItem('currentUser');
     }
     this.listBillboards();
+    this.messages();
   }
 
+  messages() {
+    let done = false;
+    this.route.queryParams.subscribe((params) => {
+      done = params.done || false;
+    });
+    if (done) {
+      this.notification.message(
+        'Success, your reservation has been processed ✅',
+        `You can check the details of your transaction on the profile tab, we hope to see you at AutoTheater`,
+        'success'
+      );
+    }
+  }
   // Listing billboards, separatelly for each location in mind
   listBillboards() {
+    const currentDate = new Date();
     this.gService
       .List<Billboard>('billboard', this.data)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         (billboards: Billboard[]) => {
           this.data = billboards;
-          this.location1 = this.data.filter((item) => item.location_id === 1);
-          this.location2 = this.data.filter((item) => item.location_id === 2);
+          this.location1 = this.data.filter(
+            (item) =>
+              item.location_id === 1 &&
+              item.show_date >
+                this.datepipe.transform(
+                  currentDate,
+                  'yyyy-MM-dd HH:mm:ss',
+                  'GMT-0600'
+                ) &&
+              item.capacity > 0
+          );
+          this.location2 = this.data.filter(
+            (item) =>
+              item.location_id === 2 &&
+              item.show_date >
+                this.datepipe.transform(
+                  currentDate,
+                  'yyyy-MM-dd HH:mm:ss',
+                  'GMT-0600'
+                ) &&
+              item.capacity > 0
+          );
           if (this.location1 !== undefined) {
             this.location1.forEach((element) => {
               this.gService

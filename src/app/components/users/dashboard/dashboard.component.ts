@@ -3,6 +3,10 @@ import { Users } from '../../../models/Users.interface';
 import { AuthService } from '../../../services/auth.service';
 import { NotficationService } from '../../../services/notfication.service';
 import { ActivatedRoute } from '@angular/router';
+import { Reservation } from '../../../models/Reservation.interface';
+import { GenericService } from '../../../services/generic.service';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,8 +15,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   user: Users;
+  reservations: Reservation[] = [];
+  destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
     private authService: AuthService,
+    private genericService: GenericService,
     private notification: NotficationService,
     private route: ActivatedRoute
   ) {}
@@ -20,6 +27,26 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.authService.getCurrentUserInfo().user;
     this.messages();
+  }
+
+  onloadReservations(event) {
+    event.preventDefault();
+    this.listReservations();
+  }
+
+  listReservations() {
+    this.genericService
+      .Obtain<Reservation>('reservation', this.reservations, this.user.id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (reservs: Reservation[]) => {
+          this.reservations = reservs;
+          console.log(this.reservations);
+        },
+        (error: any) => {
+          this.notification.message(error.name, error.messge, 'error');
+        }
+      );
   }
 
   messages() {
@@ -61,5 +88,10 @@ export class DashboardComponent implements OnInit {
         'success'
       );
     }
+  }
+  // tslint:disable-next-line: use-lifecycle-interface
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

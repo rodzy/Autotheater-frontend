@@ -23,11 +23,56 @@
       </div>
       <ng-container *ngIf="user.role_id !== 1; else elseTemplate">
         <h3 class="inheadings">Your Reservations:</h3>
+        <table class="contents-table" *ngIf="reservations.length>0">
+          <thead>
+            <tr>
+              <th scope="col" colspan="2">
+                Date of the reservation
+              </th>
+              <th scope="col" colspan="3">
+                Tickets
+              </th>
+              <th scope="col" colspan="3">
+                Products
+              </th>
+              <th scope="col">
+                Taxing
+              </th>
+              <th scope="col">
+                Total
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of reservations">
+              <td colspan="2">
+                {{ item.date_now | date: "dd/MM/yyyy" }}
+              </td>
+              <td colspan="3">
+                <select class="inputs" style="margin-top: 30px;">
+                  <option *ngFor="let i of item.tickets"
+                    >{{ i.name }} ${{ i.pricing | number: "1.0-0" }}</option
+                  >
+                </select>
+              </td>
+              <td colspan="3">
+                <select class="inputs" style="margin-top: 30px;">
+                  <option *ngFor="let i of item.products"
+                    >{{ i.name }} ${{ i.price | number: "1.0-0" }}</option
+                  >
+                </select>
+              </td>
+              <td>{{ item.tax | number: "1.0-0" }}%</td>
+              <td>$ {{ item.total | number: "1.0-0" }}</td>
+            </tr>
+          </tbody>
+        </table>
         <div class="btnContainer">
           <input
             type="submit"
             value="Load reservations history"
             class="submit-button2"
+            (click)="onloadReservations($event)"
           />
         </div>
       </ng-container>
@@ -38,12 +83,14 @@
             routerLink="/create-movies"
             routerLinkActive="true"
             class="submit-button"
-          >Register the latest releases</a>
+            >Register the latest releases</a
+          >
           <a
             routerLink="/check-movies"
             routerLinkActive="true"
             class="submit-button"
-          >Check the listing</a>
+            >Check the listing</a
+          >
         </div>
         <h3 class="inheadings">Manage products:</h3>
         <div class="btnContainer">
@@ -51,12 +98,14 @@
             routerLink="/create-products"
             routerLinkActive="true"
             class="submit-button"
-          >Register new products</a>
+            >Register new products</a
+          >
           <a
             routerLink="/check-products"
             routerLinkActive="true"
             class="submit-button"
-          >Check the listing</a>
+            >Check the listing</a
+          >
         </div>
         <h3 class="inheadings">Manage billboards:</h3>
         <div class="btnContainer">
@@ -64,7 +113,8 @@
             routerLink="/create-billboard"
             routerLinkActive="true"
             class="submit-button"
-          >Create a billboard for the day</a>
+            >Create a billboard for the day</a
+          >
           <!-- <a
             routerLink="/check-products"
             routerLinkActive="true"
