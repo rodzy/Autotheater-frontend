@@ -8,34 +8,22 @@
           @carouselAnimation
           alt="carouselimg"
         />
-        <span style="top: 476px; padding: 30px; position: relative;"
+        <div style="width: 100%">
+          <span class="text-head">
+            {{ slide.heading }}
+          </span>
+        </div>
+        <span
+          style="
+            padding: 20px;
+            position: relative;
+            text-align: right;
+          "
           >Photo by
           <a href="{{ slide.profile }}">{{ slide.author }}</a>
           on
           <a href="{{ slide.link }}">Unsplash</a></span
         >
-        <div
-          style="
-            position: relative;
-            width: 100%;
-            line-height: 1;
-
-            top: 400px;
-          "
-        >
-          <p
-            style="
-              position: relative;
-              font-weight: 600;
-              font-size: 40px;
-              left: 70px;
-              text-align: center;
-              text-shadow: 3px 3px #3c045c;
-            "
-          >
-            {{ slide.heading }}
-          </p>
-        </div>
       </ng-container>
     </ng-container>
 
