@@ -1,23 +1,50 @@
 <div class="container">
-
-    <div class="carousel">
-      <ng-container *ngFor="let slide of slides; let i = index">
+  <div class="carousel">
+    <ng-container *ngFor="let slide of slides; let i = index">
+      <ng-container *ngIf="i === currentSlide">
         <img
-        *ngIf="i === currentSlide"
-        [src]="slide.src"
-        class="slide"
-        @carouselAnimation
-        alt="carouselimg"
+          [src]="slide.src"
+          class="slide"
+          @carouselAnimation
+          alt="carouselimg"
         />
+        <span style="top: 476px; padding: 30px; position: relative;"
+          >Photo by
+          <a href="{{ slide.profile }}">{{ slide.author }}</a>
+          on
+          <a href="{{ slide.link }}">Unsplash</a></span
+        >
+        <div
+          style="
+            position: relative;
+            width: 100%;
+            line-height: 1;
+
+            top: 400px;
+          "
+        >
+          <p
+            style="
+              position: relative;
+              font-weight: 600;
+              font-size: 40px;
+              left: 70px;
+              text-align: center;
+              text-shadow: 3px 3px #3c045c;
+            "
+          >
+            {{ slide.heading }}
+          </p>
+        </div>
       </ng-container>
+    </ng-container>
 
-      <!-- controls -->
-      <button class="control prev" (click)="onPreviousClick()">
-        <span class="arrow left"></span>
-      </button>
-      <button class="control next" (click)="onNextClick()">
-        <span class="arrow right"></span>
-      </button>
-
+    <!-- controls -->
+    <button class="control prev" (click)="onPreviousClick()">
+      <span class="arrow left"></span>
+    </button>
+    <button class="control next" (click)="onNextClick()">
+      <span class="arrow right"></span>
+    </button>
   </div>
 </div>

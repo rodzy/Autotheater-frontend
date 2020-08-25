@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { LocationsComponent } from './locations/locations.component';
 import { LikedmoviesComponent } from './likedmovies/likedmovies.component';
 import { PagesRoutingModule } from './pages-routing.module';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 const declarations: any[] = [
   IndexComponent,
@@ -22,7 +23,12 @@ const exports: any[] = [
   LocationsComponent,
 ];
 
-const imports: any[] = [CommonModule, SharedModule, PagesRoutingModule];
+const imports: any[] = [
+  CommonModule,
+  SharedModule,
+  PagesRoutingModule,
+  TooltipModule,
+];
 
 @NgModule({
   declarations: [...declarations],

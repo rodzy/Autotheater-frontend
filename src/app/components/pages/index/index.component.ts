@@ -12,16 +12,31 @@ export class IndexComponent implements OnInit {
   show = null;
   public slides = [
     {
-      src:
-        'https://images.unsplash.com/photo-1563603357963-439f524bd662?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80',
+      src: 'assets/images/tran-mau-tri-tam--81lVsfM4gQ-unsplash.jpg',
+      author: 'Tran Mau Tri Tam',
+      profile:
+        'https://unsplash.com/@tranmautritam?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText',
+      link:
+        'https://unsplash.com/s/photos/pets?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText',
+      heading: 'We are a pet friendly auto cinema',
     },
     {
-      src:
-        'https://images.unsplash.com/photo-1505686994434-e3cc5abf1330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80',
+      src: 'assets/images/jeremy-yap-J39X2xX_8CQ-unsplash.jpg',
+      author: 'Jeremy Yap',
+      profile:
+        'https://unsplash.com/@jeremyyappy?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText',
+      link:
+        'https://unsplash.com/s/photos/cinema?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText',
+      heading: 'The latest movies in premiere every week',
     },
     {
-      src:
-        'https://images.unsplash.com/photo-1543536448-1e76fc2795bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1324&q=80',
+      src: 'assets/images/jona-8KLIipGfYo4-unsplash.jpg',
+      author: 'Jona',
+      profile:
+        'https://unsplash.com/@jona_schm?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText',
+      link:
+        'https://unsplash.com/s/photos/auto-cinema?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText',
+      heading: 'Come visit us and have a great time',
     },
   ];
 
