@@ -84,10 +84,10 @@
             "karmaConfig": "karma.conf.js",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.scss",
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.scss",
               "node_modules/ngx-toastr/toastr.css",
-              "./node_modules/swipper/css/swiper.css"
+              "./node_modules/swiper/swiper-bundle.css"
             ],
             "scripts": []
           }
